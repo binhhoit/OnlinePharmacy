@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h3 class="modal-title">Thông tin chi tiết về toa thuốc</h3>
+</div>
+<div class="modal-body">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Tên thuốc</th>
+        <th>Số lượng</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="miniprescription in prescriptions">
+        <td>{{miniprescription.nameMedical}}</td>
+        <td>{{miniprescription.number}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <table class="table">
+    <tr>
+      <td>
+        <h5>trạng thái đơn thuốc: </h5>
+      </td>
+      <td>
+        <input class="checkbox" ng-model="presciption.status" type="checkbox"> Đã Duyệt
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h5>Tổng Giá tiền: </h5>
+      </td>
+      <td>
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="presciption.price" placeholder="Tổng giá tiền">
+          <div class="input-group-addon">VNĐ</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="add()">Cập nhật</button>
+  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

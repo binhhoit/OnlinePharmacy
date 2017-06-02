@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_receiver_presciption"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.thanh.project1.Prescription.fragments.receiverPresciption">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/layout1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <TextView
+                android:id="@+id/tv_name_x"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:text="Mã Đơn Thuốc:"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:text="Mã" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <TextView
+                android:id="@+id/tv_id_x"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp"
+                android:text="Tên:"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp"
+                android:text="Email" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <TextView
+                android:id="@+id/tv_address_x"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp"
+                android:text="Địa chỉ:"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp"
+                android:text="Địa Chỉ" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <TextView
+                android:id="@+id/tv_numberbuy_x"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp"
+                android:text="Lần Giao Dịch:"
+                android:textSize="15dp" />
+
+            <Spinner
+                android:id="@+id/spn_numberbuy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp"></Spinner>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorPeterRiver"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Tên thuốc"
+                android:background="@drawable/table_pharmacy"
+                android:textAlignment="center"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_pharmacy_right"
+                android:layout_weight="1"
+                android:text="số lượng"
+                android:textAlignment="center"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout2"
+        android:layout_below="@+id/layout1"
+        android:layout_above="@+id/layout3"
+
+        android:background="#f1f1f1"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/lv_prescription"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:id="@+id/layout3"
+        >
+
+        <Button
+            android:id="@+id/btn_selectPay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="2dp"
+            android:background="@drawable/button_login_form"
+            android:textColor="@color/colorWhite"
+            android:text="Chọn phương thức Thanh Toán" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorTurquoise">#1abc9c</color>
+    <color name="colorGreenSea">#16a085</color>
+    <color name="colorCloud">#ecf0f1</color>
+    <color name="colorEmerald">#2ecc71</color>
+    <color name="colorNephritis">#27ae60</color>
+    <color name="colorPeterRiver">#3498db</color>
+    <color name="colorBelizeHole">#2980b9</color>
+    <color name="colorSiver">#bdc3c7</color>
+    <color name="colorAsbestos">#7f8c8d</color>
+
+    <color name="bgToolbar">#183545</color>
+    <color name="colorWhite">#FFF</color>
+    <color name="bgLogo">#f67122</color>
+    <color name="colorGray">#CCC</color>
+    <color name="colorFacebook">#4a6ea9</color>
+    <color name="colorGoogle">#da4835</color>
+    <color name="colorBlack">#000</color>
+    <color name="colorRed">#FFF62226</color>
+    <color name="tranparentBlack">#B2000000</color>
+    <color name="colorGreen">#38f734</color>
+    <color name="colorSliderInActive">#8095a1</color>
+</resources>

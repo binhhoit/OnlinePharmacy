@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.thanh.project1">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/medicine"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Login.profile" />
+        <activity android:name=".Prescription.fragments.receiverPresciption" />
+        <activity android:name=".Pay.fragment.Pay_card" />
+        <activity
+            android:name=".Pay.fragment.Pay"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".Prescription.fragments.sendPresciption"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".Menu.Menu" />
+        <activity android:name=".Prescription.fragments.QRcode_Prescription" />
+        <activity android:name=".Prescription.Select_method_send_prescription" />
+        <activity android:name=".Prescription.fragments.Take_Photo_sent_prescription" />
+        <activity android:name=".Prescription.fragments.ReceiverPrescriptionConfirm"></activity>
+    </application>
+
+</manifest>

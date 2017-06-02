@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script src="assets/js/jquery-1.11.3.min.js"></script>
+    <script src="assets/js/angular.js"></script>
+    <script src="assets/js/angular-ui-router.min.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
+    <!--<script src="assets/js/app.js"></script>-->
+    <script src="assets/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="assets/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">    
+    <script src="assets/js/app_drug.js"></script>
+</head>
+
+<body class="container">
+
+    <div ng-app>
+        <table class="table" ng-controller="drugStoreHTML">
+            <thead>
+                <tr>
+                    <th>Tên Nhà Thuốc</th>
+                    <th>Địa Chỉ</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Ngày thành Lập</th>
+                    <th>Loại Nhà thuốc</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input class="form-control" ng-model="drugstore.name"> </td>
+                    <td><input class="form-control" ng-model="drugstore.address"></td>
+                    <td><input class="form-control" ng-model="drugstore.number" type="number"></td>
+                    <td><input class="form-control" ng-model="drugstore.datefound" type="date"></td>
+                    <td><input class="form-control" ng-model="drugstore.type"></td>
+                    <td><button class="btn btn-primary" ng-click="addData()">ADD</td>
+                </tr>
+                <tr ng-repeat="drugstore in drugstorelist ">
+                    <td>{{drugstore.name}}</td>
+                    <td>{{drugstore.address}}</td>
+                    <td>{{drugstore.number}}</td>
+                    <td>{{drugstore.datefound}}</td>
+                    <td>{{drugstore.type}}</td>
+                    <td><button class="btn btn-danger" ng-click="removeData(drugstore._id)">Delete</td>
+
+                </tr>
+            </tbody>
+        </table>
+        <div>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
+        <div ng-controller="prescriptionHTML"> 
+           <table class="table" >
+               <ul>
+                   <li> Khách Hàng : <input class="form-control" ng-model="prescription.id" ></li>
+                   <li> Địa Chỉ Nhận : <input  class="form-control" ng-model="prescription.addressReceive" value="HCM"></li>
+                   <li> Số Lần Giao Dịch : <input   class="form-control" ng-model="prescription.number_buy" type="number"value="1" ></li>
+               </ul>
+               <thead>
+                <tr>
+                    <th>thành Phần </th>
+                    <th>số lượng</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td><input class="form-control" ng-model="prescription.nameMedical" </td>
+                    <td><input class="form-control" ng-model="prescription.number" type="number"></td>
+                    <td><button class="btn btn-primary" ng-click="addData()">ADD</td>
+                </tr>
+                <tr ng-repeat="prescription in prescriptionlist ">
+                    <td>{{prescription.id}}</td>
+                    <td>{{prescription.addressReceive}}</td>
+                    <td>{{prescription.number_buy}}</td>
+                    <td>
+                        <tr ng-repeat="prescription_x in prescriptionlist_x ">
+                            <td>{{prescription_x.nameMedical}}</td>
+                            <td>{{prescription_x.number}}</td>
+                        </tr>
+                        <td>
+                            <button class="btn btn-danger" ng-click="removeData(drugstore._id)">Delete</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>-------------------------------------------------------------------------------- thanh toán trực tuyến phiên bản nodejs ------------------------------------------------------------------------------------------------</div>
+                    <div ng-controller="Pay"> 
+                        <ul>
+                            <li> Loại thẻ :<select class="selectpicker" ng-model="cardInfo.type">
+                                <optgroup label="Loại Thẻ">
+                                    <option value="vinaphone">vinaphone</option>
+                                    <option value="mobifone">mobifone</option>
+                                    <option value="viettel">viettel</option>
+                                    <option value="vcoin">vcoin</option>
+                                    <option value="gate">gate</option>
+                                    <option value="zing">zing</option>
+                                    <option value="vnmobile">vnmobile</option>
+                                </optgroup>
+                            </select></li>
+                        </br>
+                        <li> Mã thẻ Cào : <input class="form-control" ng-model="cardInfo.pin"></li>
+                    </br>
+                    <li> Số seri thẻ cào : <input class="form-control" ng-model="cardInfo.serial"></li>
+                </br>
+                <button class="btn btn-primary" ng-click="submit()">Submit</button>
+                </br>
+                <div ng-repeat="cardInfo in cardInfolist_x ">
+                    <li>{{cardInfo.pin}}</li>
+                    <li>{{cardInfo.serial}}</li>
+                    <li>{{cardInfo.serial}}</li>
+                </div>
+            </ul>
+        </br>                       
+        
+    </div>
+</div>
+</div>
+</body>
+
+</html>

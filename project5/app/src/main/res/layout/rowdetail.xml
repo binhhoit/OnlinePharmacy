@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rowdetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="3"
+    android:orientation="horizontal">
+
+
+    <EditText
+        android:id="@+id/et_medicine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:ems="8"
+        android:inputType="text"
+        android:text="thuốc cảm">
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/et_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:inputType="text"
+        android:text="9">
+
+        <requestFocus />
+    </EditText>
+
+
+    <ImageButton android:id="@+id/btnRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="REMOVE"
+        android:src="@android:drawable/ic_delete" />
+</LinearLayout>

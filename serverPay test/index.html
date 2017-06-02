@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-ui-router.min.js"></script>
+    <script src="js/app.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+            crossorigin="anonymous">
+
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                crossorigin="anonymous"></script>
+</head>
+
+<body  class="container">
+    <!--
+    <div ng-app="directoryApp">
+        <a class="btn btn-primary" ui-sref="home">Home</a >
+        <a  class="btn btn-primary" ui-sref="about">About</a >
+        <div  ui-view></div>
+    </div >-->
+
+    <div ng-include="'Views/About.ejs'"></div>
+
+    <div ng-app >
+    <table  class="table" ng-controller="DataTest">
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>gmail</th>
+                <th>number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input class="form-control" ng-model="contact.name"> </td>
+                <td><input class="form-control" ng-model="contact.gmail"></td>
+                <td><input class="form-control" ng-model="contact.number"></td>
+                <td><button class="btn btn-primary" ng-click="addData()">ADD</td>
+            </tr>
+            <tr ng-repeat="contact in contactlist ">
+                <td>{{contact.name}}</td>
+                <td>{{contact.gmail}}</td>
+                <td>{{contact.number}}</td>
+                <td><button class="btn btn-danger" ng-click="removeData(contact._id)">Delete</td>
+            
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</body>
+
+</html>

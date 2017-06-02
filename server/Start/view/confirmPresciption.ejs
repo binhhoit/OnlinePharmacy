@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule" ng-controller="comfirmPresciptionHTML">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="assets/js/jquery-1.11.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="assets/js/angular-ui-router.min.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="assets/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/ui-bootstrap-csp.css">
+    <script src="assets/js/ui-bootstrap-tpls.js"></script>
+    
+    <title>Xác nhận đơn thuốc </title>
+   
+</head>
+
+<body class="container">
+    <h1>Xác nhận đơn thuốc</h1>
+    <div>
+        <table class="table table-hover" >
+            <thead>
+                <tr>
+                    <th>Mã đơn thuốc</th>
+                    <th>tên người nhận</th>
+                    <th>Địa Chỉ</th>
+                    <th>ID người dùng</th>
+                    <th>Ngày mua</th>
+                    <th>Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="presciption in presciptionlist track by $index">
+                    <td>{{presciption._id}}</td>
+                    <td>{{presciption.email}}</td>
+                    <td>{{presciption.addressReceive}}</td>
+                    <td>{{presciption.id}}</td>
+                    <td>{{presciption.number_buy}}</td>
+                    <!--<td><a id="show">Chi tiết</a></td>-->
+                    <!--<div id="myModal" class="modal">
+                        <div class="modal-content">
+                            <table class="table">
+                                <tr ng-repeat="minipresciption in miniPresciption ">
+                                    <td>{{minipresciption.nameMedical}}</td>
+                                    <td>{{minipresciption.number}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>-->
+                    <td><span ng-click="open(presciption.prescription, presciption._id)">click</span><td>
+                </tr>
+            </tbody>
+        </table>
+        <div>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
+
+    </div>
+
+
+</body>
+<script src="assets/js/app_confirm.js"></script>
+</html>
