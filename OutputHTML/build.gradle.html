@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>build.gradle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,0); }
+.s1 { color: rgb(0,128,0); font-weight: bold; }
+.s2 { color: rgb(0,0,255); }
+.s3 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+build.gradle</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">apply plugin: </span><span class="s1">'com.android.application'</span><span class="s0"> 
+ 
+android { 
+ 
+    signingConfigs { 
+        dev { 
+            keyAlias </span><span class="s1">'keyDev'</span><span class="s0"> 
+            keyPassword </span><span class="s1">'dev'</span><span class="s0"> 
+            storeFile file(</span><span class="s1">'E:/Android/beesightsoft/keyOnlinePharmacy.jks'</span><span class="s0">) 
+            storePassword </span><span class="s1">'dev'</span><span class="s0"> 
+        } 
+    } 
+    compileSdkVersion </span><span class="s2">24</span><span class="s0"> 
+    buildToolsVersion </span><span class="s1">&quot;25.0.2&quot;</span><span class="s0"> 
+    defaultConfig { 
+        applicationId </span><span class="s1">&quot;com.example.thanh.project1&quot;</span><span class="s0"> 
+        minSdkVersion </span><span class="s2">21</span><span class="s0"> 
+        targetSdkVersion </span><span class="s2">24</span><span class="s0"> 
+        versionCode </span><span class="s2">1</span><span class="s0"> 
+        versionName </span><span class="s1">&quot;1.0&quot;</span><span class="s0"> 
+        multiDexEnabled true 
+        testInstrumentationRunner </span><span class="s1">&quot;android.support.test.runner.AndroidJUnitRunner&quot;</span><span class="s0"> 
+        jackOptions { 
+            enabled true 
+        } 
+    } 
+    buildTypes { 
+        release { 
+            minifyEnabled false 
+            proguardFiles getDefaultProguardFile(</span><span class="s1">'proguard-android.txt'</span><span class="s0">), </span><span class="s1">'proguard-rules.pro'</span><span class="s0"> 
+        } 
+    } 
+    compileOptions { 
+        sourceCompatibility JavaVersion.VERSION_1_8 
+        targetCompatibility JavaVersion.VERSION_1_8 
+    } 
+    productFlavors { 
+ 
+        dev { 
+            targetSdkVersion </span><span class="s2">21</span><span class="s0"> 
+        } 
+    } 
+} 
+ 
+dependencies { 
+    compile fileTree(include: [</span><span class="s1">'*.jar'</span><span class="s0">], dir: </span><span class="s1">'libs'</span><span class="s0">) 
+    androidTestCompile(</span><span class="s1">'com.android.support.test.espresso:espresso-core:2.2.2'</span><span class="s0">, { 
+        exclude group: </span><span class="s1">'com.android.support'</span><span class="s0">, module: </span><span class="s1">'support-annotations'</span><span class="s0"> 
+    }) 
+    </span><span class="s3">//photo byte code</span><span class="s0"> 
+    compile files(</span><span class="s1">'libs/GenAsync.jar'</span><span class="s0">) 
+    compile files(</span><span class="s1">'libs/PhotoUtil.jar'</span><span class="s0">) 
+    testCompile </span><span class="s1">'junit:junit:4.12'</span><span class="s0"> 
+    </span><span class="s3">//android</span><span class="s0"> 
+    compile </span><span class="s1">'com.android.support:appcompat-v7:24.2.1'</span><span class="s0"> 
+    compile </span><span class="s1">'com.android.support:design:24.2.1'</span><span class="s0"> 
+    compile </span><span class="s1">'com.android.support:cardview-v7:24.2.1'</span><span class="s0"> 
+    compile </span><span class="s1">'com.android.support.constraint:constraint-layout:1.0.0-beta5'</span><span class="s0"> 
+    compile </span><span class="s1">'com.android.support:support-annotations:24.2.0'</span><span class="s0"> 
+    </span><span class="s3">//retrofit</span><span class="s0"> 
+    compile </span><span class="s1">'com.squareup.retrofit2:retrofit:2.1.0'</span><span class="s0"> 
+    compile </span><span class="s1">'com.squareup.retrofit2:converter-gson:2.1.0'</span><span class="s0"> 
+    compile </span><span class="s1">'com.squareup.retrofit2:adapter-rxjava:2.1.0'</span><span class="s0"> 
+    compile </span><span class="s1">'io.reactivex:rxjava:1.2.0'</span><span class="s0"> 
+    compile </span><span class="s1">'io.reactivex:rxandroid:1.2.1'</span><span class="s0"> 
+    </span><span class="s3">//custom avata</span><span class="s0"> 
+    compile </span><span class="s1">'com.alexzh:circleimageview:1.1.2@aar'</span><span class="s0"> 
+    compile </span><span class="s1">'com.mikhaellopez:circularimageview:2.0.1'</span><span class="s0"> 
+    compile </span><span class="s1">'com.makeramen:roundedimageview:2.2.1'</span><span class="s0"> 
+    </span><span class="s3">//QR code</span><span class="s0"> 
+    compile </span><span class="s1">'me.dm7.barcodescanner:zxing:1.9'</span><span class="s0"> 
+    compile </span><span class="s1">'com.google.zxing:core:3.2.1'</span><span class="s0"> 
+    compile </span><span class="s1">'com.journeyapps:zxing-android-embedded:3.2.0@aar'</span><span class="s0"> 
+    </span><span class="s3">// multidex line code</span><span class="s0"> 
+    compile </span><span class="s1">'com.android.support:multidex:1.0.1'</span><span class="s0"> 
+} 
+</span></pre>
+</body>
+</html>

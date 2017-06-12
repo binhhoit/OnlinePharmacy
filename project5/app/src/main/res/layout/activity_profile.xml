@@ -6,7 +6,7 @@
     android:id="@+id/activity_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.thanh.project1.Login.profile">
+    tools:context="com.example.thanh.OnlinePharmacy.Login.profile">
 
     <FrameLayout
         android:layout_width="match_parent"

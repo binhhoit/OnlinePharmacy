@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.thanh.project1">
+    package="com.example.thanh.OnlinePharmacy">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,33 +13,38 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@drawable/medicine"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreen">
+        <meta-data
+            android:name="net.hockeyapp.android.appIdentifier"
+            android:value="${HOCKEYAPP_APP_ID}" />
+
+        <activity android:name="com.example.thanh.OnlinePharmacy.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Login.profile" />
-        <activity android:name=".Prescription.fragments.receiverPresciption" />
-        <activity android:name=".Pay.fragment.Pay_card" />
+
+        <activity android:name="com.example.thanh.OnlinePharmacy.MainActivity" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.Login.profile" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.Prescription.fragments.receiverPresciption" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.Pay.fragment.PayCard" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.Menu.Menu" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.Prescription.fragments.QRcodePrescription" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.Prescription.Select_method_send_prescription" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.Prescription.fragments.takePhotoSentPrescription" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.Prescription.fragments.receiverPrescriptionConfirm" />
         <activity
-            android:name=".Pay.fragment.Pay"
+            android:name="com.example.thanh.OnlinePharmacy.Pay.fragment.Pay"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".Prescription.fragments.sendPresciption"
+            android:name="com.example.thanh.OnlinePharmacy.Prescription.fragments.sendPresciption"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".Menu.Menu" />
-        <activity android:name=".Prescription.fragments.QRcode_Prescription" />
-        <activity android:name=".Prescription.Select_method_send_prescription" />
-        <activity android:name=".Prescription.fragments.Take_Photo_sent_prescription" />
-        <activity android:name=".Prescription.fragments.ReceiverPrescriptionConfirm"></activity>
     </application>
 
 </manifest>

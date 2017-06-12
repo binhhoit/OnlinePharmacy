@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingTop="150dp"
     android:paddingLeft="10dp"
-    tools:context="com.example.thanh.project1.Prescription.Select_method_send_prescription">
+    tools:context="com.example.thanh.OnlinePharmacy.Prescription.Select_method_send_prescription">
 
     <Button
         android:layout_width="wrap_content"

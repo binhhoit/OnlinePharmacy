@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.thanh.project1.Prescription.fragments.QRcode_Prescription">
+    tools:context="com.example.thanh.OnlinePharmacy.Prescription.fragments.QRcodePrescription">
 
     <TextView
         android:id="@+id/tv_scan"
