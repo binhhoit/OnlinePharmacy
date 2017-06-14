@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'checkstyle'
 android {
 
     compileSdkVersion 24
@@ -73,4 +73,5 @@ dependencies {
     compile 'com.android.support:multidex:1.0.1'
     // find crask
     compile 'net.hockeyapp.android:HockeySDK:4.0.0'
+    //checkstyle
 }

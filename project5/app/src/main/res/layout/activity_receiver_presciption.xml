@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.thanh.OnlinePharmacy.Prescription.fragments.receiverPresciption">
+    tools:context="com.example.thanh.OnlinePharmacy.Prescription.fragments.ReceiverPresciption">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/activity_receiverPresciption_tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="10dp"
@@ -53,7 +53,7 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/tv_email"
+                android:id="@+id/activity_receiverPresciption_tv_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="15dp"
@@ -76,7 +76,7 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/tv_address"
+                android:id="@+id/activity_receiverPresciption_tv_address"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="15dp"
@@ -99,7 +99,7 @@
                 android:textSize="15dp" />
 
             <Spinner
-                android:id="@+id/spn_numberbuy"
+                android:id="@+id/activity_receiverPresciption_spn_numberbuy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="15dp"></Spinner>
@@ -146,7 +146,7 @@
         android:orientation="horizontal">
 
         <ListView
-            android:id="@+id/lv_prescription"
+            android:id="@+id/activity_receiverPresciption_lv_prescription"
             android:layout_width="match_parent"
             android:layout_height="320dp"
             android:paddingLeft="15dp"
@@ -164,7 +164,7 @@
         >
 
         <Button
-            android:id="@+id/btn_selectPay"
+            android:id="@+id/activity_receiverPresciption_btn_selectPay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"

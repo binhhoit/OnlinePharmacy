@@ -3,6 +3,7 @@
     android:id="@+id/activity_receiver_presciption"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="15dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -27,7 +28,7 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/activity_receiverPresciptionConfirm_tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="10dp"
@@ -51,7 +52,7 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/tv_email"
+                android:id="@+id/activity_receiverPresciptionConfirm_tv_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="15dp"
@@ -74,7 +75,7 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/tv_address"
+                android:id="@+id/activity_receiverPresciptionConfirm_tv_address"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="15dp"
@@ -97,7 +98,7 @@
                 android:textSize="15dp" />
 
             <Spinner
-                android:id="@+id/spn_numberbuy"
+                android:id="@+id/activity_receiverPresciptionConfirm_spn_numberbuy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="15dp"></Spinner>
@@ -140,9 +141,9 @@
         android:orientation="horizontal">
 
         <ListView
-            android:id="@+id/lv_prescription"
+            android:id="@+id/activity_receiverPresciptionConfirm_lv_prescription"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
+            android:layout_height="300dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp" />
     </LinearLayout>
@@ -161,7 +162,7 @@
         <TextView
             android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:id="@+id/tv_price"
+            android:id="@+id/activity_receiverPresciptionConfirm_tv_price"
             android:gravity="center"/>
 
         <TextView
@@ -183,13 +184,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_selectPay"
+            android:id="@+id/activity_receiverPresciptionConfirm_btn_selectPay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_login_form"
             android:paddingBottom="5dp"
             android:paddingTop="2dp"
-            android:text="Chọn phương thức Thanh Toán"
+            android:text="phương thức Thanh Toán"
             android:textColor="@color/colorWhite" />
     </LinearLayout>
 

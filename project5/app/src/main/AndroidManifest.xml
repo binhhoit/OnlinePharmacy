@@ -23,7 +23,7 @@
             android:name="net.hockeyapp.android.appIdentifier"
             android:value="${HOCKEYAPP_APP_ID}" />
 
-        <activity android:name="com.example.thanh.OnlinePharmacy.SplashScreen">
+        <activity android:name="com.example.thanh.OnlinePharmacy.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -31,19 +31,19 @@
         </activity>
 
         <activity android:name="com.example.thanh.OnlinePharmacy.MainActivity" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.Login.profile" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.Prescription.fragments.receiverPresciption" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.Pay.fragment.PayCard" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.Menu.Menu" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.Prescription.fragments.QRcodePrescription" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.Prescription.Select_method_send_prescription" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.Prescription.fragments.takePhotoSentPrescription" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.Prescription.fragments.receiverPrescriptionConfirm" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.login.Profile" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.prescription.ReceiverPresciptionActivity" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.pay.PayCardActivity" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.menu.Menu" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.prescription.QRcodePrescriptionActivity" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.prescription.SelectMethodSendPrescriptionActivity" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.prescription.TakePhotoSentPrescriptionActivity" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.prescription.ReceiverPrescriptionConfirmActivity" />
         <activity
-            android:name="com.example.thanh.OnlinePharmacy.Pay.fragment.Pay"
+            android:name="com.example.thanh.OnlinePharmacy.pay.PayActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name="com.example.thanh.OnlinePharmacy.Prescription.fragments.sendPresciption"
+            android:name="com.example.thanh.OnlinePharmacy.prescription.SendPresciptionActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
     </application>
 

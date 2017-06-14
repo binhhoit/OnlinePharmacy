@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.thanh.OnlinePharmacy.Prescription.fragments.receiverPresciption">
+    tools:context="com.example.thanh.OnlinePharmacy.Prescription.fragments.ReceiverPresciption">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:text="Tên:"/>
 
             <TextView
-                android:id="@+id/et_name_transfer"
+                android:id="@+id/activity_send_prescript_et_name_transfer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp" />
@@ -44,7 +44,7 @@
                 android:text="Địa chỉ:"/>
 
             <EditText
-                android:id="@+id/et_address_transfer"
+                android:id="@+id/activity_send_prescript_et_address_transfer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -64,7 +64,7 @@
                 android:text="Lần giao dịch:"/>
 
             <TextView
-                android:id="@+id/et_number_transfer"
+                android:id="@+id/activity_send_prescript_et_number_transfer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -122,7 +122,7 @@
         android:id="@+id/layout_send_3"
         android:layout_alignParentBottom="true">
 
-        <ImageButton android:id="@+id/btnAdd"
+        <ImageButton android:id="@+id/activity_send_prescript_btn_Add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -133,7 +133,7 @@
             android:layout_marginBottom="5dp"
 
 
-            android:layout_above="@+id/btnSubmit"
+            android:layout_above="@+id/activity_send_prescript_btn_Submit"
             android:background="@drawable/button_round"
             android:src="@android:drawable/ic_menu_add" />
 

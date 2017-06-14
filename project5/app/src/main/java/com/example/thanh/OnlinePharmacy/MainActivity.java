@@ -8,16 +8,16 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
-import com.example.thanh.OnlinePharmacy.Login.fragments.LoginFragment;
-import com.example.thanh.OnlinePharmacy.Login.fragments.ResetPasswordDialog;
+import com.example.thanh.OnlinePharmacy.login.fragments.LoginFragment;
+import com.example.thanh.OnlinePharmacy.login.fragments.ResetPasswordDialog;
 
 
 public class MainActivity extends AppCompatActivity implements ResetPasswordDialog.Listener {
     int temp = 0;
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private LoginFragment mLoginFragment;
-    private ResetPasswordDialog mResetPasswordDialog;
+    private LoginFragment loginFragment;
+    private ResetPasswordDialog resetPasswordDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +55,11 @@ public class MainActivity extends AppCompatActivity implements ResetPasswordDial
 
     private void loadFragment() {
 
-        if (mLoginFragment == null) {
+        if (loginFragment == null) {
 
-            mLoginFragment = new LoginFragment();
+            loginFragment = new LoginFragment();
         } //load fragment login frist
-        getFragmentManager().beginTransaction().replace(R.id.fragmentFrame, mLoginFragment, LoginFragment.TAG).commit();
+        getFragmentManager().beginTransaction().replace(R.id.fragmentFrame, loginFragment, LoginFragment.TAG).commit();
     }
 
     @Override
@@ -69,10 +69,10 @@ public class MainActivity extends AppCompatActivity implements ResetPasswordDial
         String data = intent.getData().getLastPathSegment();
         Log.d(TAG, "onNewIntent: " + data);
 
-        mResetPasswordDialog = (ResetPasswordDialog) getFragmentManager().findFragmentByTag(ResetPasswordDialog.TAG);
+        resetPasswordDialog = (ResetPasswordDialog) getFragmentManager().findFragmentByTag(ResetPasswordDialog.TAG);
 
-        if (mResetPasswordDialog != null)
-            mResetPasswordDialog.setToken(data);
+        if (resetPasswordDialog != null)
+            resetPasswordDialog.setToken(data);
     }
 
     @Override
