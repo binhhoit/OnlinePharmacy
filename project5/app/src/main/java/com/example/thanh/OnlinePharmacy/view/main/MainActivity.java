@@ -1,7 +1,6 @@
 package com.example.thanh.OnlinePharmacy.view.main;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,25 +9,26 @@ import android.widget.Toast;
 
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.view.login.fragments.LoginFragment;
+import com.example.thanh.OnlinePharmacy.view.login.fragments.LoginFragment_;
 import com.example.thanh.OnlinePharmacy.view.login.fragments.ResetPasswordDialog;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
 
+@EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity implements ResetPasswordDialog.Listener {
+
     int temp = 0;
     public static final String TAG = MainActivity.class.getSimpleName();
 
     private LoginFragment loginFragment;
     private ResetPasswordDialog resetPasswordDialog;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    @AfterViews
+    void init() {
 
-        if (savedInstanceState == null) {
+        loadFragment();
 
-            loadFragment();
-        }
     }
 
 
@@ -57,8 +57,7 @@ public class MainActivity extends AppCompatActivity implements ResetPasswordDial
     private void loadFragment() {
 
         if (loginFragment == null) {
-
-            loginFragment = new LoginFragment();
+            loginFragment = new LoginFragment_();
         } //load fragment login frist
         getFragmentManager().beginTransaction().replace(R.id.fragmentFrame, loginFragment, LoginFragment.TAG).commit();
     }

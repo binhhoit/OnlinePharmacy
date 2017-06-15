@@ -19,10 +19,10 @@
             android:background="@drawable/ic_pharmacy" />
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/ti_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
-            android:id="@+id/ti_email"
             android:background="@drawable/editext_login">
 
             <EditText
@@ -31,16 +31,16 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/editext_login"
                 android:hint="Tài khoản (Email)"
-                android:text="hobinhit@gmail.com"
                 android:inputType="textEmailAddress"
-                android:padding="16dp" />
+                android:padding="16dp"
+                android:text="hobinhit@gmail.com" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/ti_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:id="@+id/ti_password"
             android:background="@drawable/editext_login">
 
             <EditText
@@ -50,8 +50,8 @@
                 android:background="@drawable/editext_login"
                 android:hint="Mật Khẩu"
                 android:inputType="textPassword"
-                android:text="1"
-                android:padding="16dp" />
+                android:padding="16dp"
+                android:text="1" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -84,13 +84,17 @@
             android:textAlignment="center"
             android:textColor="#ff0000" />
 
-        <ProgressBar
-            android:id="@+id/progress"
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/activity_login_avi_loading"
+            style="@style/AVLoadingIndicatorView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="20dp"
             android:visibility="gone"
-             />
+            app:indicatorColor="#e7d1d1"
+            app:indicatorName="BallBeatIndicator" />
+
+
     </LinearLayout>
 </RelativeLayout>

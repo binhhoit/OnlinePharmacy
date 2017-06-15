@@ -2,10 +2,12 @@ package com.example.thanh.OnlinePharmacy.view.login.fragments;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +15,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.thanh.OnlinePharmacy.model.Response;
 import com.example.thanh.OnlinePharmacy.model.User;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.R;
+import com.example.thanh.OnlinePharmacy.view.main.MainActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 
 import java.io.IOException;
 
@@ -31,75 +40,67 @@ import rx.subscriptions.CompositeSubscription;
 import static com.example.thanh.OnlinePharmacy.utils.Validation.validateEmail;
 import static com.example.thanh.OnlinePharmacy.utils.Validation.validateFields;
 
-
+@EFragment(R.layout.activity_register_fragment)
 public class RegisterFragment extends Fragment {
 
     public static final String TAG = RegisterFragment.class.getSimpleName();
 
-    private EditText mEtName;
-    private EditText mEtEmail;
-    private EditText mEtPassword;
-    private Button mBtRegister;
-    private TextView mTvLogin;
-    private TextInputLayout mTiName;
-    private TextInputLayout mTiEmail;
-    private TextInputLayout mTiPassword;
-    private ProgressBar mProgressbar;
+    @ViewById(R.id.et_name)
+    EditText etName;
 
-    private CompositeSubscription mSubscriptions;
+    @ViewById(R.id.et_email)
+    EditText etEmail;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @ViewById(R.id.et_password)
+    EditText etPassword;
 
-        View view = inflater.inflate(R.layout.activity_register_fragment, container, false);
-        mSubscriptions = new CompositeSubscription();
-        initViews(view);
-        return view;
+    @ViewById(R.id.ti_name)
+    TextInputLayout tiName;
+
+    @ViewById(R.id.ti_email)
+    TextInputLayout tiEmail;
+
+    @ViewById(R.id.ti_password)
+    TextInputLayout tiPassword;
+
+    @ViewById(R.id.progress)
+    ProgressBar progressbar;
+
+    private CompositeSubscription subscriptions;
+
+    @AfterViews
+    void init() {
+
+        subscriptions = new CompositeSubscription();
     }
 
-    private void initViews(View v) {
-
-        mEtName = (EditText) v.findViewById(R.id.et_name);
-        mEtEmail = (EditText) v.findViewById(R.id.et_email);
-        mEtPassword = (EditText) v.findViewById(R.id.et_password);
-        mBtRegister = (Button) v.findViewById(R.id.btn_register);
-        mTvLogin = (TextView) v.findViewById(R.id.tv_login);
-        mTiName = (TextInputLayout) v.findViewById(R.id.ti_name);
-        mTiEmail = (TextInputLayout) v.findViewById(R.id.ti_email);
-        mTiPassword = (TextInputLayout) v.findViewById(R.id.ti_password);
-        mProgressbar = (ProgressBar) v.findViewById(R.id.progress);
-
-        mBtRegister.setOnClickListener(view -> register());
-        mTvLogin.setOnClickListener(view -> goToLogin());
-    }
-
-    private void register() {
+    @Click(R.id.btn_register)
+    void register() {
 
         setError();
 
-        String name = mEtName.getText().toString();
-        String email = mEtEmail.getText().toString();
-        String password = mEtPassword.getText().toString();
+        String name = etName.getText().toString();
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
 
         int err = 0;
 
         if (!validateFields(name)) {
 
             err++;
-            mTiName.setError("Name should not be empty !");
+            tiName.setError("Name should not be empty !");
         }
 
         if (!validateEmail(email)) {
 
             err++;
-            mTiEmail.setError("Email should be valid !");
+            tiEmail.setError("Email should be valid !");
         }
 
         if (!validateFields(password)) {
 
             err++;
-            mTiPassword.setError("Password should not be empty !");
+            tiPassword.setError("Password should not be empty !");
         }
 
         if (err == 0) {
@@ -109,7 +110,7 @@ public class RegisterFragment extends Fragment {
             user.setEmail(email);
             user.setPassword(password);
 
-            mProgressbar.setVisibility(View.VISIBLE);
+            progressbar.setVisibility(View.VISIBLE);
             registerProcess(user);
 
 
@@ -123,14 +124,14 @@ public class RegisterFragment extends Fragment {
 
     private void setError() {
 
-        mTiName.setError(null);
-        mTiEmail.setError(null);
-        mTiPassword.setError(null);
+        tiName.setError(null);
+        tiEmail.setError(null);
+        tiPassword.setError(null);
     }
 
     private void registerProcess(User user) {
 
-        mSubscriptions.add(NetworkUtil.getRetrofit().register(user)
+        subscriptions.add(NetworkUtil.getRetrofit().register(user)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError));
@@ -138,7 +139,7 @@ public class RegisterFragment extends Fragment {
 
     private void handleResponse(Response response) {
 
-        mProgressbar.setVisibility(View.GONE);
+        progressbar.setVisibility(View.GONE);
         showSnackBarMessage(response.getMessage());
 
 
@@ -146,7 +147,7 @@ public class RegisterFragment extends Fragment {
 
     private void handleError(Throwable error) {
 
-        mProgressbar.setVisibility(View.GONE);
+        progressbar.setVisibility(View.GONE);
 
         if (error instanceof HttpException) {
 
@@ -174,12 +175,37 @@ public class RegisterFragment extends Fragment {
             Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
         }
 
-       }
+    }
 
-    private void goToLogin() {
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            temp++;
+//            if (temp == 1) {
+//                Toast.makeText(MainActivity.this, "Nhấn back 1 lần nữa sẽ thoát chương trình", Toast.LENGTH_SHORT).show();
+//            }
+//            if (temp == 2) {
+//                //thoát khỏi chương trình
+//                Intent startMain = new Intent(Intent.ACTION_MAIN);
+//                startMain.addCategory(Intent.CATEGORY_HOME);
+//                startActivity(startMain);
+//                finish();
+//            }
+//
+//            return true;
+//        }
+//
+//        return super.onKeyDown(keyCode, event);
+//    }
+
+
+
+    @Click(R.id.tv_login)
+    void goToLogin() {
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        LoginFragment fragment = new LoginFragment();
+        LoginFragment fragment = new LoginFragment_();
         ft.replace(R.id.fragmentFrame, fragment, LoginFragment.TAG);
         ft.commit();
     }
@@ -187,6 +213,6 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mSubscriptions.unsubscribe();
+        subscriptions.unsubscribe();
     }
 }

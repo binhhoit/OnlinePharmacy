@@ -85,5 +85,6 @@ dependencies {
     // find crask
     compile 'net.hockeyapp.android:HockeySDK:4.0.0'
 
-    //checkstyle
+    //loading
+    compile 'com.wang.avi:library:2.1.3'
 }

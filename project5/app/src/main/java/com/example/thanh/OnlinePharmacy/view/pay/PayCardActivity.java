@@ -2,7 +2,6 @@ package com.example.thanh.OnlinePharmacy.view.pay;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -30,13 +29,13 @@ import retrofit2.Response;
 @EActivity(R.layout.activity_pay_card)
 public class PayCardActivity extends AppCompatActivity {
     @ViewById(R.id.tv_submit)
-    private TextView tvSubmit;
+    TextView tvSubmit;
     @ViewById(R.id.et_Pin)
-    private EditText et_Pin;
+    EditText etPin;
     @ViewById(R.id.et_serial)
-    private EditText et_Serial;
+    EditText etSerial;
     @ViewById(R.id.spn_type)
-    private Spinner spn_Type;
+    Spinner spnType;
     private ArrayAdapter<String> arrayAdapter;
 
     @AfterViews
@@ -82,8 +81,8 @@ public class PayCardActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, types);
 
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
-        spn_Type.setAdapter(arrayAdapter);
-        spn_Type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spnType.setAdapter(arrayAdapter);
+        spnType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -107,9 +106,9 @@ public class PayCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //add pin add serial
-                card.setPin(et_Pin.getText().toString());
-                card.setSerial(et_Serial.getText().toString());
-                if (et_Pin.getText().toString().equals("") == true || et_Serial.getText().toString().equals("") == true || card.getType().equals("chon") == true) {
+                card.setPin(etPin.getText().toString());
+                card.setSerial(etSerial.getText().toString());
+                if (etPin.getText().toString().equals("") == true || etSerial.getText().toString().equals("") == true || card.getType().equals("chon") == true) {
                     Toast.makeText(getApplication(), "Các trường chưa phù hợp", Toast.LENGTH_SHORT).show();
                 } else {
                     //submit info card transfer server

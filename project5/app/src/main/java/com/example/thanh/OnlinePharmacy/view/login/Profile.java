@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -15,10 +14,16 @@ import com.example.thanh.OnlinePharmacy.model.Response;
 import com.example.thanh.OnlinePharmacy.model.User;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
-import com.example.thanh.OnlinePharmacy.view.main.MainActivity;
 import com.example.thanh.OnlinePharmacy.R;
+import com.example.thanh.OnlinePharmacy.view.login.fragments.ChangePasswordDialog_;
+import com.example.thanh.OnlinePharmacy.view.main.MainActivity_;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import java.io.IOException;
 
@@ -27,75 +32,63 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
-
+@EActivity(R.layout.activity_profile)
 public class Profile extends AppCompatActivity implements ChangePasswordDialog.Listener {
 
     public static final String TAG = Profile.class.getSimpleName();
 
-    private TextView mTvName;
-    private TextView mTvEmail;
-    private TextView mTvDate;
-    private Button mBtChangePassword;
-    private Button mBtLogout;
-    private ProgressBar mProgressbar;
-    private SharedPreferences mSharedPreferences;
-    private String mToken;
-    private String mEmail;
+    @ViewById(R.id.activity_receiverPresciption_tv_name)
+    TextView tvName;
+    @ViewById(R.id.activity_receiverPresciption_tv_email)
+    TextView tvEmail;
+    @ViewById(R.id.tv_date)
+    TextView tvDate;
+    @ViewById(R.id.progress)
+    ProgressBar progressbar;
+
+    private SharedPreferences sharedPreferences;
+    private String token;
+    private String email;
 
 
-    private CompositeSubscription mSubscriptions;
+    private CompositeSubscription subscriptions;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        mSubscriptions = new CompositeSubscription();
-        initViews();
+    @AfterViews
+    void init() {
+
+        subscriptions = new CompositeSubscription();
         initSharedPreferences();
         loadProfile();
 
     }
 
-    //khởi tạo findviewbyid
-    private void initViews() {
-
-        mTvName = (TextView) findViewById(R.id.activity_receiverPresciption_tv_name);
-        mTvEmail = (TextView) findViewById(R.id.activity_receiverPresciption_tv_email);
-        mTvDate = (TextView) findViewById(R.id.tv_date);
-        mBtChangePassword = (Button) findViewById(R.id.btn_change_password);
-        mBtLogout = (Button) findViewById(R.id.btn_logout);
-        mProgressbar = (ProgressBar) findViewById(R.id.progress);
-        mBtChangePassword.setOnClickListener(view -> showDialog());
-        mBtLogout.setOnClickListener(view -> logout());
-    }
-
-
     private void initSharedPreferences() {
 
-        mSharedPreferences = getApplication().getSharedPreferences("account",MODE_PRIVATE);
-        mToken = mSharedPreferences.getString(Constants.TOKEN, "");
-        mEmail = mSharedPreferences.getString(Constants.EMAIL, "");
+        sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
+        token = sharedPreferences.getString(Constants.TOKEN, "");
+        email = sharedPreferences.getString(Constants.EMAIL, "");
     }
 
-    private void logout() {
+    @Click(R.id.btn_logout)
+    void logout() {
 
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(Constants.EMAIL, "");
         editor.putString(Constants.TOKEN, "");
         editor.apply();
-        Intent intent = new Intent(Profile.this, MainActivity.class);
+        Intent intent = new Intent(Profile.this, MainActivity_.class);
         startActivity(intent);
         finish();
     }
 
+    @Click(R.id.btn_change_password)
+    void showDialog() {
 
-    private void showDialog() {
-
-        ChangePasswordDialog fragment = new ChangePasswordDialog();
-        // Bundle dùng để đẩy dữ liệu qua các activity
+        ChangePasswordDialog fragment = new ChangePasswordDialog_();
+        // Bundle pass data to activity
         Bundle bundle = new Bundle();
-        bundle.putString(Constants.EMAIL, mEmail);
-        bundle.putString(Constants.TOKEN, mToken);
+        bundle.putString(Constants.EMAIL, email);
+        bundle.putString(Constants.TOKEN, token);
         fragment.setArguments(bundle);
 
         fragment.show(getFragmentManager(), ChangePasswordDialog.TAG);
@@ -104,7 +97,7 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
     // các phản hồi đưa lên đc load
     private void loadProfile() {
 
-        mSubscriptions.add(NetworkUtil.getRetrofit(mToken).getProfile(mEmail)
+        subscriptions.add(NetworkUtil.getRetrofit(token).getProfile(email)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError));
@@ -113,15 +106,15 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
     // phản hồi của user lên server
     private void handleResponse(User user) {
 
-        mProgressbar.setVisibility(View.GONE);
-        mTvName.setText(user.getName());
-        mTvEmail.setText(user.getEmail());
-        mTvDate.setText(user.getCreated_at());
+        progressbar.setVisibility(View.GONE);
+        tvName.setText(user.getName());
+        tvEmail.setText(user.getEmail());
+        tvDate.setText(user.getCreated_at());
     }
 
     private void handleError(Throwable error) {
 
-        mProgressbar.setVisibility(View.GONE);
+        progressbar.setVisibility(View.GONE);
 
         if (error instanceof HttpException) {
 
@@ -151,7 +144,7 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mSubscriptions.unsubscribe();
+        subscriptions.unsubscribe();
     }
 
     @Override
