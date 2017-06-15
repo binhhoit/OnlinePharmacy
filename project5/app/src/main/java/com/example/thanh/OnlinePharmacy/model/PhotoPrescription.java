@@ -1,4 +1,4 @@
-package com.example.thanh.OnlinePharmacy.prescription.model;
+package com.example.thanh.OnlinePharmacy.model;
 
 import com.google.gson.annotations.SerializedName;
 

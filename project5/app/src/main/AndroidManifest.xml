@@ -23,27 +23,27 @@
             android:name="net.hockeyapp.android.appIdentifier"
             android:value="${HOCKEYAPP_APP_ID}" />
 
-        <activity android:name="com.example.thanh.OnlinePharmacy.SplashScreenActivity">
+        <activity android:name="com.example.thanh.OnlinePharmacy.SplashScreenActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.thanh.OnlinePharmacy.MainActivity" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.login.Profile" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.prescription.ReceiverPresciptionActivity" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.pay.PayCardActivity" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.menu.Menu" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.prescription.QRcodePrescriptionActivity" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.prescription.SelectMethodSendPrescriptionActivity" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.prescription.TakePhotoSentPrescriptionActivity" />
-        <activity android:name="com.example.thanh.OnlinePharmacy.prescription.ReceiverPrescriptionConfirmActivity" />
+        <activity android:name="com.example.thanh.OnlinePharmacy.view.main.MainActivity" />
+        <activity android:name=".view.login.Profile" />
+        <activity android:name=".view.prescription.ReceiverPresciptionActivity_" />
+        <activity android:name=".view.pay.PayCardActivity_" />
+        <activity android:name=".view.menu.Menu" />
+        <activity android:name=".view.prescription.QRcodePrescriptionActivity_" />
+        <activity android:name=".view.prescription.SelectMethodSendPrescriptionActivity_" />
+        <activity android:name=".view.prescription.TakePhotoSentPrescriptionActivity_" />
+        <activity android:name=".view.prescription.ReceiverPrescriptionConfirmActivity_" />
         <activity
-            android:name="com.example.thanh.OnlinePharmacy.pay.PayActivity"
+            android:name=".view.pay.PayActivity_"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name="com.example.thanh.OnlinePharmacy.prescription.SendPresciptionActivity"
+            android:name=".view.prescription.SendPresciptionActivity_"
             android:windowSoftInputMode="stateHidden|adjustResize" />
     </application>
 

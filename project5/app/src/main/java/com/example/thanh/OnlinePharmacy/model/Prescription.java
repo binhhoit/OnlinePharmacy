@@ -1,4 +1,4 @@
-package com.example.thanh.OnlinePharmacy.prescription.model;
+package com.example.thanh.OnlinePharmacy.model;
 
 /**
  * Created by thanh on 3/22/2017.

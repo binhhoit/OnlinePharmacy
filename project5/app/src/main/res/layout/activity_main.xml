@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     android:orientation="vertical"
-    tools:context="com.example.thanh.OnlinePharmacy.MainActivity">
+    tools:context="com.example.thanh.OnlinePharmacy.view.main.MainActivity">
 
     <FrameLayout
         android:id="@+id/fragmentFrame"

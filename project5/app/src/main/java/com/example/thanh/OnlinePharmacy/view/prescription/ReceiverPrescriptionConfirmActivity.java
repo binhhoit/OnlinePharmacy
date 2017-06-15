@@ -1,4 +1,4 @@
-package com.example.thanh.OnlinePharmacy.prescription;
+package com.example.thanh.OnlinePharmacy.view.prescription;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,19 +9,24 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.thanh.OnlinePharmacy.view.login.network.NetworkUtil;
-import com.example.thanh.OnlinePharmacy.view.login.utils.Constants;
-import com.example.thanh.OnlinePharmacy.menu.Menu;
-import com.example.thanh.OnlinePharmacy.view.main.pay.PayActivity;
-import com.example.thanh.OnlinePharmacy.prescription.model.ArrayAdapterListview;
+import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
+import com.example.thanh.OnlinePharmacy.utils.Constants;
+import com.example.thanh.OnlinePharmacy.view.menu.Menu;
+import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
+import com.example.thanh.OnlinePharmacy.model.ArrayAdapterListview;
 import com.example.thanh.OnlinePharmacy.R;
-import com.example.thanh.OnlinePharmacy.prescription.model.Prescription;
+import com.example.thanh.OnlinePharmacy.model.Prescription;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,22 +35,32 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 
+@EActivity(R.layout.activity_receiver_prescription_confirm)
 public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
 
-    private TextView tvName, tvEmail, tvAddress, tvPrice;
-    private Spinner spnNumberBuy;
-    private ListView lvReceiver;
+    @ViewById(R.id.activity_receiverPresciptionConfirm_tv_name)
+    TextView tvName;
+    @ViewById(R.id.activity_receiverPresciptionConfirm_tv_email)
+    TextView tvEmail;
+    @ViewById(R.id.activity_receiverPresciptionConfirm_tv_address)
+    TextView tvAddress;
+    @ViewById(R.id.activity_receiverPresciptionConfirm_tv_price)
+    TextView tvPrice;
+    @ViewById(R.id.activity_receiverPresciptionConfirm_spn_numberbuy)
+    Spinner spnNumberBuy;
+    @ViewById(R.id.activity_receiverPresciptionConfirm_lv_prescription)
+    ListView lvReceiver;
+    @ViewById(R.id.activity_receiverPresciptionConfirm_btn_selectPay)
+    Button btnSelectPay;
+
     private List<Prescription> prescription = new ArrayList<>();
     private ArrayAdapterListview arrayAdapterListview;
-    private android.widget.ArrayAdapter spnArrayAdapter;
-    private Button btnSelectPay;
+    private ArrayAdapter spnArrayAdapter;
     private SharedPreferences sharedPreferences;
     private String Id;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_receiver_prescription_confirm);
+    @AfterViews
+    void init() {
         findViewByIDs();
         initSharedPreferences();
         getPrescription();
@@ -108,7 +123,7 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
                         Collections.reverse(number_buy);
                         Collections.reverse(prescription);
                         //choosen number buy to seen
-                        spnArrayAdapter = new android.widget.ArrayAdapter(ReceiverPrescriptionConfirmActivity.this, android.R.layout.simple_spinner_item, number_buy);
+                        spnArrayAdapter = new ArrayAdapter(ReceiverPrescriptionConfirmActivity.this, android.R.layout.simple_spinner_item, number_buy);
                         spnArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
                         spnNumberBuy.setAdapter(spnArrayAdapter);
                         spnNumberBuy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -135,6 +150,7 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<List<Prescription>> call, Throwable t) {
                 // TODO: handle error

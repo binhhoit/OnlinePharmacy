@@ -1,4 +1,4 @@
-package com.example.thanh.OnlinePharmacy.prescription;
+package com.example.thanh.OnlinePharmacy.view.prescription;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,20 +13,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.thanh.OnlinePharmacy.view.login.network.NetworkUtil;
-import com.example.thanh.OnlinePharmacy.view.login.utils.Constants;
-import com.example.thanh.OnlinePharmacy.view.main.pay.PayActivity;
-import com.example.thanh.OnlinePharmacy.prescription.model.ArrayAdapterListview;
-import com.example.thanh.OnlinePharmacy.prescription.model.Prescription;
-import com.example.thanh.OnlinePharmacy.prescription.model.MiniPrescription;
+import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
+import com.example.thanh.OnlinePharmacy.utils.Constants;
+import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
+import com.example.thanh.OnlinePharmacy.model.ArrayAdapterListview;
+import com.example.thanh.OnlinePharmacy.model.Prescription;
+import com.example.thanh.OnlinePharmacy.model.MiniPrescription;
 import com.example.thanh.OnlinePharmacy.R;
-import com.example.thanh.OnlinePharmacy.ResponseStatus;
+import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 
 import java.text.SimpleDateFormat;
@@ -47,15 +47,10 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
     private ArrayAdapterListview arrayAdapterListview;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qrcode_prescription);
-
+    @AfterViews
+    void init() {
         initSharedPreferences();
         ScannerQRcode(this);
-
-
     }
 
     private void ScannerQRcode(Activity activity) {
@@ -170,8 +165,7 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
                     Toast.makeText(getApplication(), "QR định dạng ko chính xác, vui lòng thử lại", Toast.LENGTH_LONG).show();
                 }
             }
-        } else
-        {
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }

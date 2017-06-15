@@ -1,4 +1,4 @@
-package com.example.thanh.OnlinePharmacy.menu;
+package com.example.thanh.OnlinePharmacy.view.menu;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +10,10 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.thanh.OnlinePharmacy.view.login.Profile;
-import com.example.thanh.OnlinePharmacy.view.main.pay.PayCardActivity;
-import com.example.thanh.OnlinePharmacy.prescription.SelectMethodSendPrescriptionActivity;
-import com.example.thanh.OnlinePharmacy.prescription.ReceiverPrescriptionConfirmActivity;
-import com.example.thanh.OnlinePharmacy.prescription.ReceiverPresciptionActivity;
+import com.example.thanh.OnlinePharmacy.view.pay.PayCardActivity;
+import com.example.thanh.OnlinePharmacy.view.prescription.SelectMethodSendPrescriptionActivity;
+import com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPrescriptionConfirmActivity;
+import com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPresciptionActivity;
 import com.example.thanh.OnlinePharmacy.R;
 
 public class Menu extends AppCompatActivity {

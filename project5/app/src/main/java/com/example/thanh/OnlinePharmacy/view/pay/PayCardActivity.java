@@ -1,4 +1,4 @@
-package com.example.thanh.OnlinePharmacy.pay;
+package com.example.thanh.OnlinePharmacy.view.pay;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,37 +13,35 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.thanh.OnlinePharmacy.login.network.NetworkUtil;
-import com.example.thanh.OnlinePharmacy.menu.Menu;
-import com.example.thanh.OnlinePharmacy.pay.model.PayCard;
+import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
+import com.example.thanh.OnlinePharmacy.view.menu.Menu;
+import com.example.thanh.OnlinePharmacy.model.PayCard;
 import com.example.thanh.OnlinePharmacy.R;
-import com.example.thanh.OnlinePharmacy.ResponseStatus;
+import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@EActivity(R.layout.activity_pay_card)
 public class PayCardActivity extends AppCompatActivity {
-
+    @ViewById(R.id.tv_submit)
     private TextView tvSubmit;
+    @ViewById(R.id.et_Pin)
     private EditText et_Pin;
+    @ViewById(R.id.et_serial)
     private EditText et_Serial;
+    @ViewById(R.id.spn_type)
     private Spinner spn_Type;
     private ArrayAdapter<String> arrayAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pay_card);
-        FindViewById();
+    @AfterViews
+    void init() {
         submitPayCard();
-    }
-
-    private void FindViewById() {
-        tvSubmit = (TextView) findViewById(R.id.tv_submit);
-        et_Pin = (EditText) findViewById(R.id.et_Pin);
-        et_Serial = (EditText) findViewById(R.id.et_serial);
-        spn_Type = (Spinner) findViewById(R.id.spn_type);
     }
 
     private void postPayCard(PayCard card) {

@@ -25,7 +25,7 @@
                 android:text="Tên:"/>
 
             <TextView
-                android:id="@+id/activity_send_prescript_et_name_transfer"
+                android:id="@+id/activity_send_prescript_tv_name_transfer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp" />

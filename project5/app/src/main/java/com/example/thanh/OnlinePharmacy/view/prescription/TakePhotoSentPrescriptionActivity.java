@@ -1,27 +1,30 @@
-package com.example.thanh.OnlinePharmacy.prescription;
+package com.example.thanh.OnlinePharmacy.view.prescription;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.thanh.OnlinePharmacy.check_crash.Crash;
-import com.example.thanh.OnlinePharmacy.view.login.network.NetworkUtil;
-import com.example.thanh.OnlinePharmacy.view.login.utils.Constants;
-import com.example.thanh.OnlinePharmacy.view.main.pay.PayActivity;
-import com.example.thanh.OnlinePharmacy.prescription.model.PhotoPrescription;
+import com.example.thanh.OnlinePharmacy.model.Crash;
+import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
+import com.example.thanh.OnlinePharmacy.utils.Constants;
+import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
+import com.example.thanh.OnlinePharmacy.model.PhotoPrescription;
 import com.example.thanh.OnlinePharmacy.R;
-import com.example.thanh.OnlinePharmacy.ResponseStatus;
+import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.kosalgeek.android.photoutil.CameraPhoto;
 import com.kosalgeek.android.photoutil.GalleryPhoto;
 import com.kosalgeek.android.photoutil.ImageBase64;
 import com.kosalgeek.android.photoutil.ImageLoader;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -32,11 +35,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@EActivity(R.layout.activity_take_photo_sent_prescription)
 public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
 
-    private final String TAG = this.getClass().getName();
+    @ViewById(R.id.activity_photo_iv_camera)
+    ImageView ivCamera;
+    @ViewById(R.id.activity_photo_iv_picture)
+    ImageView ivPicture;
+    @ViewById(R.id.activity_photo_iv_upload)
+    ImageView ivUpload;
+    @ViewById(R.id.activity_photo_iv_image)
+    ImageView ivImage;
 
-    ImageView ivCamera, ivPicture, ivUpload, ivImage;
+    private final String TAG = this.getClass().getName();
 
     CameraPhoto cameraPhoto;
     GalleryPhoto galleryPhoto;
@@ -49,19 +60,12 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
     private String Email;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_take_photo_sent_prescription);
+    @AfterViews
+    void init() {
         initSharedPreferences();
 
         cameraPhoto = new CameraPhoto(getApplicationContext());
         galleryPhoto = new GalleryPhoto(getApplicationContext());
-
-        ivCamera = (ImageView) findViewById(R.id.activity_photo_iv_camera);
-        ivPicture = (ImageView) findViewById(R.id.activity_photo_iv_picture);
-        ivUpload = (ImageView) findViewById(R.id.activity_photo_iv_upload);
-        ivImage = (ImageView) findViewById(R.id.activity_photo_iv_image);
 
         ivCamera.setOnClickListener(new View.OnClickListener() {
             @Override

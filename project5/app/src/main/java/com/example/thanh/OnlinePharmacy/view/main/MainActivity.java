@@ -1,4 +1,4 @@
-package com.example.thanh.OnlinePharmacy;
+package com.example.thanh.OnlinePharmacy.view.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,9 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
-import com.example.thanh.OnlinePharmacy.login.fragments.LoginFragment;
-import com.example.thanh.OnlinePharmacy.login.fragments.ResetPasswordDialog;
+import com.example.thanh.OnlinePharmacy.R;
+import com.example.thanh.OnlinePharmacy.view.login.fragments.LoginFragment;
+import com.example.thanh.OnlinePharmacy.view.login.fragments.ResetPasswordDialog;
 
 
 public class MainActivity extends AppCompatActivity implements ResetPasswordDialog.Listener {

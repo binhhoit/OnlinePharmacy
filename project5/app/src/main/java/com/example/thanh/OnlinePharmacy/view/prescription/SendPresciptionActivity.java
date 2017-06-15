@@ -1,4 +1,4 @@
-package com.example.thanh.OnlinePharmacy.prescription;
+package com.example.thanh.OnlinePharmacy.view.prescription;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,14 +18,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.thanh.OnlinePharmacy.view.login.network.NetworkUtil;
-import com.example.thanh.OnlinePharmacy.view.login.utils.Constants;
-import com.example.thanh.OnlinePharmacy.view.main.pay.PayActivity;
-import com.example.thanh.OnlinePharmacy.prescription.model.ArrayAdapterListview;
-import com.example.thanh.OnlinePharmacy.prescription.model.Prescription;
-import com.example.thanh.OnlinePharmacy.prescription.model.MiniPrescription;
+import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
+import com.example.thanh.OnlinePharmacy.utils.Constants;
+import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
+import com.example.thanh.OnlinePharmacy.model.ArrayAdapterListview;
+import com.example.thanh.OnlinePharmacy.model.Prescription;
+import com.example.thanh.OnlinePharmacy.model.MiniPrescription;
 import com.example.thanh.OnlinePharmacy.R;
-import com.example.thanh.OnlinePharmacy.ResponseStatus;
+import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,24 +39,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@EActivity(R.layout.activity_send_presciption)
 public class SendPresciptionActivity extends AppCompatActivity {
 
-    private Button btnSubmit;
-    private ImageButton btnAdd;
-    private TextView etUserName;
-    private EditText etAddress;
-    private TextView etNumber;
+    @ViewById(R.id.activity_send_prescript_btn_Add)
+    ImageButton btnAdd;
+    @ViewById(R.id.activity_send_prescript_btn_Submit)
+    Button btnSubmit;
+    @ViewById(R.id.activity_send_prescript_tv_name_transfer)
+    TextView etUserName;
+    @ViewById(R.id.activity_send_prescript_et_address_transfer)
+    EditText etAddress;
+    @ViewById(R.id.activity_send_prescript_et_number_transfer)
+    TextView etNumber;
+
     private ArrayAdapterListview arrayAdapterListview;
     private SharedPreferences sharedPreferences;
     private String Id;
     private String Email;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send_presciption);
+    @AfterViews
+    void init() {
 
-        findViewByIds();
         initSharedPreferences();
         add(this, btnAdd);
         submit(this, btnSubmit);
@@ -64,14 +71,6 @@ public class SendPresciptionActivity extends AppCompatActivity {
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
         Id = sharedPreferences.getString(Constants.ID, "");
         Email = sharedPreferences.getString(Constants.EMAIL, "");
-    }
-
-    private void findViewByIds() {
-        btnAdd = (ImageButton) findViewById(R.id.activity_send_prescript_btn_Add);
-        btnSubmit = (Button) findViewById(R.id.activity_send_prescript_btn_Submit);
-        etUserName = (TextView) findViewById(R.id.activity_send_prescript_et_name_transfer);
-        etAddress = (EditText) findViewById(R.id.activity_send_prescript_et_address_transfer);
-        etNumber = (TextView) findViewById(R.id.activity_send_prescript_et_number_transfer);
     }
 
     public void submit(final Activity activity, Button btn) {

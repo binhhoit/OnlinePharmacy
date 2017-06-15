@@ -1,4 +1,4 @@
-package com.example.thanh.OnlinePharmacy.prescription.model;
+package com.example.thanh.OnlinePharmacy.model;
 
 import android.content.Context;
 import android.view.LayoutInflater;

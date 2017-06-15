@@ -1,4 +1,4 @@
-package com.example.thanh.OnlinePharmacy.menu;
+package com.example.thanh.OnlinePharmacy.view.menu;
 
 import android.content.Context;
 import android.view.LayoutInflater;

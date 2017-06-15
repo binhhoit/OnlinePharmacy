@@ -1,4 +1,4 @@
-package com.example.thanh.OnlinePharmacy.prescription;
+package com.example.thanh.OnlinePharmacy.view.prescription;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,13 +9,21 @@ import android.widget.Button;
 
 import com.example.thanh.OnlinePharmacy.R;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+@EActivity(R.layout.activity_select_method_send_prescription)
 public class SelectMethodSendPrescriptionActivity extends AppCompatActivity {
-    Button btnPhoto, btnQR, btnHandInput;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_method_send_prescription);
-        FindViewByIds();
+    @ViewById(R.id.btn_photo)
+    Button btnPhoto;
+    @ViewById(R.id.btn_QR)
+    Button btnQR;
+    @ViewById(R.id.btn_handInput)
+    Button btnHandInput;
+
+    @AfterViews
+    void init() {
         btnPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,9 +47,6 @@ public class SelectMethodSendPrescriptionActivity extends AppCompatActivity {
         });
 
     }
-    private void FindViewByIds(){
-        btnPhoto = (Button) findViewById(R.id.btn_photo);
-        btnQR = (Button) findViewById(R.id.btn_QR);
-        btnHandInput = (Button) findViewById(R.id.btn_handInput);
-    }
+
+
 }

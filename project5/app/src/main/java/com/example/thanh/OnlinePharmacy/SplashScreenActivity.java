@@ -6,16 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.thanh.OnlinePharmacy.view.main.MainActivity;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+
 /**
  * Created by Thien Long on 3/22/2017.
  */
 
+@EActivity(R.layout.activity_splash)
 public class SplashScreenActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+    @AfterViews
+    void init() {
+
         Thread timerThread = new Thread() {
             public void run() {
                 try {
