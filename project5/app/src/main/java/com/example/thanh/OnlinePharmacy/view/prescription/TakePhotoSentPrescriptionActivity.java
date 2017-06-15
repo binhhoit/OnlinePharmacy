@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.thanh.OnlinePharmacy.check_crash.Crash;
-import com.example.thanh.OnlinePharmacy.login.network.NetworkUtil;
-import com.example.thanh.OnlinePharmacy.login.utils.Constants;
-import com.example.thanh.OnlinePharmacy.pay.PayActivity;
+import com.example.thanh.OnlinePharmacy.view.login.network.NetworkUtil;
+import com.example.thanh.OnlinePharmacy.view.login.utils.Constants;
+import com.example.thanh.OnlinePharmacy.view.main.pay.PayActivity;
 import com.example.thanh.OnlinePharmacy.prescription.model.PhotoPrescription;
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.ResponseStatus;

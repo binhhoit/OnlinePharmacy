@@ -15,10 +15,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.thanh.OnlinePharmacy.login.network.NetworkUtil;
-import com.example.thanh.OnlinePharmacy.login.utils.Constants;
+import com.example.thanh.OnlinePharmacy.view.login.network.NetworkUtil;
+import com.example.thanh.OnlinePharmacy.view.login.utils.Constants;
 import com.example.thanh.OnlinePharmacy.menu.Menu;
-import com.example.thanh.OnlinePharmacy.pay.PayActivity;
+import com.example.thanh.OnlinePharmacy.view.main.pay.PayActivity;
 import com.example.thanh.OnlinePharmacy.prescription.model.ArrayAdapterListview;
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.prescription.model.Prescription;

@@ -9,8 +9,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.example.thanh.OnlinePharmacy.login.Profile;
-import com.example.thanh.OnlinePharmacy.pay.PayCardActivity;
+import com.example.thanh.OnlinePharmacy.view.login.Profile;
+import com.example.thanh.OnlinePharmacy.view.main.pay.PayCardActivity;
 import com.example.thanh.OnlinePharmacy.prescription.SelectMethodSendPrescriptionActivity;
 import com.example.thanh.OnlinePharmacy.prescription.ReceiverPrescriptionConfirmActivity;
 import com.example.thanh.OnlinePharmacy.prescription.ReceiverPresciptionActivity;

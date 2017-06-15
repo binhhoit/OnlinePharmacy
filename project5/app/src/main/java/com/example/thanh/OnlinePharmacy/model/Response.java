@@ -1,4 +1,4 @@
-package com.example.thanh.OnlinePharmacy.login.model;
+package com.example.thanh.OnlinePharmacy.view.login.model;
 
 /**
  * Created by thanh on 3/7/2017.

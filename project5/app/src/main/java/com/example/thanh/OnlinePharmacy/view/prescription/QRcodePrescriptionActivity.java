@@ -14,9 +14,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.thanh.OnlinePharmacy.login.network.NetworkUtil;
-import com.example.thanh.OnlinePharmacy.login.utils.Constants;
-import com.example.thanh.OnlinePharmacy.pay.PayActivity;
+import com.example.thanh.OnlinePharmacy.view.login.network.NetworkUtil;
+import com.example.thanh.OnlinePharmacy.view.login.utils.Constants;
+import com.example.thanh.OnlinePharmacy.view.main.pay.PayActivity;
 import com.example.thanh.OnlinePharmacy.prescription.model.ArrayAdapterListview;
 import com.example.thanh.OnlinePharmacy.prescription.model.Prescription;
 import com.example.thanh.OnlinePharmacy.prescription.model.MiniPrescription;
@@ -28,6 +28,8 @@ import com.google.gson.JsonParser;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.androidannotations.annotations.EActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,7 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+@EActivity(R.layout.activity_qrcode_prescription)
 public class QRcodePrescriptionActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
