@@ -64,7 +64,7 @@ public class Prescription {
     }
 
     public void setStatus(String status) {
-        status = "false";
+        // status = "false";
         this.status = status;
     }
 

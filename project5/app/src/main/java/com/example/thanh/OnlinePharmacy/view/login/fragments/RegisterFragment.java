@@ -2,26 +2,19 @@ package com.example.thanh.OnlinePharmacy.view.login.fragments;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
+
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.example.thanh.OnlinePharmacy.model.Response;
 import com.example.thanh.OnlinePharmacy.model.User;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.R;
-import com.example.thanh.OnlinePharmacy.view.main.MainActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

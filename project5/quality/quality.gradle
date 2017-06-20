@@ -1,0 +1,100 @@
+
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+
+checkstyle {
+    configFile file("${project.rootDir}/quality/checkstyle/checkstyle_rules.xml")
+    toolVersion = '6.16.1'
+}
+
+task checkstyle(type: Checkstyle) {
+    configProperties.checkstyleSuppressionsPath = file("${project.rootDir}/quality/checkstyle/suppressions.xml").absolutePath
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    classpath = files()
+    
+    reports {
+        xml.enabled = true
+        html.enabled = false
+        xml {
+            destination "$project.buildDir/reports/checkstyle/checkstyle-result.xml"
+        }
+        html {
+            destination "$project.buildDir/reports/checkstyle/checkstyle-result.html"
+        }
+    }
+}
+
+task checkstyleMain(type: Checkstyle) {
+    configProperties.checkstyleSuppressionsPath = file("${project.rootDir}/quality/checkstyle/suppressions.xml").absolutePath
+    source 'src/main', 'src/release'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
+    classpath = files()
+    
+    reports {
+        xml.enabled = true
+        html.enabled = false
+        xml {
+            destination "$project.buildDir/reports/checkstyle/checkstyle-result.xml"
+        }
+        html {
+            destination "$project.buildDir/reports/checkstyle/checkstyle-result.html"
+        }
+    }
+}
+
+
+
+task findbugs(type: FindBugs) {
+    ignoreFailures = true
+    effort = "max"
+    reportLevel = "high"
+    excludeFilter = new File("${project.rootDir}/quality/findbugs/findbugs_rules.xml")
+    classes = files("${project.rootDir}/app/build/intermediates/classes")
+
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        xml.enabled = true
+        html.enabled = false
+        xml {
+            destination "$project.buildDir/reports/findbugs/findbugs.xml"
+        }
+        html {
+            destination "$project.buildDir/reports/findbugs/findbugs.html"
+        }
+    }
+
+    classpath = files()
+}
+
+task pmd(type: Pmd) {
+    ignoreFailures = true
+    ruleSetFiles = files("${project.rootDir}/quality/pmd/pmd_rules.xml")
+    ruleSets = []
+
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        xml.enabled = true
+        html.enabled = false
+        xml {
+            destination "$project.buildDir/reports/pmd/pmd.xml"
+        }
+        html {
+            destination "$project.buildDir/reports/pmd/pmd.html"
+        }
+    }
+}
+
+check.dependsOn 'checkstyle', 'findbugs', 'pmd'
+
