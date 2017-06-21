@@ -6,9 +6,9 @@ package com.example.thanh.OnlinePharmacy.utils;
 
 public class Constants {
     //125.253.123.32 10.86.85.147
-    static public final String BASE_URL = "http://125.253.123.32:8080/api/";
-    static public final String TOKEN = "token";
-    static public final String EMAIL = "email";
-    static public final String ID = "id";
+    public static final String BASE_URL = "http://125.253.123.32:8080/api/";
+    public static final String TOKEN = "token";
+    public static final String EMAIL = "email";
+    public static final String ID = "id";
 
 }

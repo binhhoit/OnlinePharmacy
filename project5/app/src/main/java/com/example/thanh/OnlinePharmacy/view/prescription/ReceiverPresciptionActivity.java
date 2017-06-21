@@ -37,7 +37,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-
 @EActivity(R.layout.activity_receiver_presciption)
 public class ReceiverPresciptionActivity extends AppCompatActivity {
 

@@ -46,14 +46,13 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
     private String email;
     private ArrayAdapterListview arrayAdapterListview;
 
-
     @AfterViews
-    void init() {
+    protected void init() {
         initSharedPreferences();
-        ScannerQRcode(this);
+        scannerQrCode(this);
     }
 
-    private void ScannerQRcode(Activity activity) {
+    private void scannerQrCode(Activity activity) {
         IntentIntegrator integrator = new IntentIntegrator(activity);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
         integrator.setPrompt("Scan QR");
@@ -113,18 +112,18 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
                     alertDialogBuilder.setTitle("Đơn Thuốc Bạn Đặt Mua");
                     alertDialogBuilder.setView(customDialogView);
                     // gán các thuộc tính vào dialog
-                    ListView lv_sendPresciption = (ListView) customDialogView.findViewById(R.id.dialog_lv_sendPresciption);
-                    TextView tv_nameSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_nameSend);
-                    TextView tv_addressSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_addressSend);
-                    TextView tv_numberSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_numberSend);
-                    tv_nameSend.setText(prescription.getEmail());
-                    tv_addressSend.setText(prescription.getAddressReceive());
-                    tv_numberSend.setText(prescription.getNumberBuy());
+                    ListView lvSendPresciption = (ListView) customDialogView.findViewById(R.id.dialog_lv_sendPresciption);
+                    TextView tvNameSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_nameSend);
+                    TextView tvAddressSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_addressSend);
+                    TextView tvNumberSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_numberSend);
+                    tvNameSend.setText(prescription.getEmail());
+                    tvAddressSend.setText(prescription.getAddressReceive());
+                    tvNumberSend.setText(prescription.getNumberBuy());
                     arrayAdapterListview = new ArrayAdapterListview(
                             QRcodePrescriptionActivity.this,
                             R.layout.custom_listview,
                             prescription.getMiniPrescription());
-                    lv_sendPresciption.setAdapter(arrayAdapterListview);
+                    lvSendPresciption.setAdapter(arrayAdapterListview);
                     //
                     alertDialogBuilder.setCancelable(false).setPositiveButton("Đồng Ý",
                             new DialogInterface.OnClickListener() {
@@ -157,7 +156,7 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
 //                                                dialog.cancel();
-                                            ScannerQRcode(QRcodePrescriptionActivity.this);
+                                            scannerQrCode(QRcodePrescriptionActivity.this);
                                             dialog.cancel();
                                         }
                                     });
@@ -176,7 +175,6 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
 
     @Override
     protected void onDestroy() {

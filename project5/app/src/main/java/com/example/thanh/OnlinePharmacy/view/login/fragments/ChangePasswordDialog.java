@@ -32,7 +32,6 @@ import rx.subscriptions.CompositeSubscription;
 
 import static com.example.thanh.OnlinePharmacy.utils.Validation.validateFields;
 
-
 @EFragment(R.layout.dialog_fragment_change_password)
 public class ChangePasswordDialog extends DialogFragment {
 
@@ -89,14 +88,13 @@ public class ChangePasswordDialog extends DialogFragment {
         listener = (Profile) context;
     }
 
-
     @Click(R.id.btn_cancel)
-    void cancel() {
+    protected void cancel() {
         dismiss();
     }
 
     @Click(R.id.btn_change_password)
-    void changePassword() {
+    protected void changePassword() {
 
         setError();
 

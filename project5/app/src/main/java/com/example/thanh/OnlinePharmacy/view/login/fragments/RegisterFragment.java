@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-
 import com.example.thanh.OnlinePharmacy.model.Response;
 import com.example.thanh.OnlinePharmacy.model.User;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;

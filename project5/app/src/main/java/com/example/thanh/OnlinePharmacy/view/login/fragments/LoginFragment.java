@@ -19,7 +19,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wang.avi.AVLoadingIndicatorView;
 
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
@@ -55,13 +54,11 @@ public class LoginFragment extends Fragment {
     private CompositeSubscription subscriptions;
     private SharedPreferences sharedPreferences;
 
-
     @AfterViews
     void init() {
         subscriptions = new CompositeSubscription();
         initSharedPreferences();
     }
-
 
     private void initSharedPreferences() {
 

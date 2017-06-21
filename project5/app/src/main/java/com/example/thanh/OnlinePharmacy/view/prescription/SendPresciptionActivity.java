@@ -55,8 +55,8 @@ public class SendPresciptionActivity extends AppCompatActivity {
 
     private ArrayAdapterListview arrayAdapterListview;
     private SharedPreferences sharedPreferences;
-    private String Id;
-    private String Email;
+    private String id;
+    private String email;
 
     @AfterViews
     void init() {
@@ -69,19 +69,19 @@ public class SendPresciptionActivity extends AppCompatActivity {
 
     private void initSharedPreferences() {
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
-        Id = sharedPreferences.getString(Constants.ID, "");
-        Email = sharedPreferences.getString(Constants.EMAIL, "");
+        id = sharedPreferences.getString(Constants.ID, "");
+        email = sharedPreferences.getString(Constants.EMAIL, "");
     }
 
     public void submit(final Activity activity, Button btn) {
-        etUserName.setText(Email);
+        etUserName.setText(email);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LinearLayout scrollViewlinerLayout = (LinearLayout) activity.findViewById(R.id.linearLayoutForm);
                 Prescription prescription = new Prescription();
                 prescription.setEmail(etUserName.getText().toString());     //user name get email
-                prescription.setId(Id);     //get ID
+                prescription.setId(id);     //get ID
                 prescription.setAddressReceive(etAddress.getText().toString());     //get address
                 etNumber.setText(time());      //get time buy
                 prescription.setNumberBuy(etNumber.getText().toString());// set number buy

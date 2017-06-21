@@ -59,7 +59,6 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
     private String id;
     private String email;
 
-
     @AfterViews
     void init() {
         initSharedPreferences();

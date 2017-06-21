@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-
 import com.example.thanh.OnlinePharmacy.R;
 
 import org.androidannotations.annotations.AfterViews;
@@ -22,28 +21,28 @@ public class SelectMethodSendPrescriptionActivity extends AppCompatActivity {
     protected Button btnHandInput;
 
     @AfterViews
-    void init() {
+    protected void init() {
         btnPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent TakePhoto = new Intent(
+                Intent takePhoto = new Intent(
                         SelectMethodSendPrescriptionActivity.this,
                         TakePhotoSentPrescriptionActivity.class);
-                startActivity(TakePhoto);
+                startActivity(takePhoto);
             }
         });
         btnQr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent QRcode = new Intent(SelectMethodSendPrescriptionActivity.this, QRcodePrescriptionActivity.class);
-                startActivity(QRcode);
+                Intent qrCode = new Intent(SelectMethodSendPrescriptionActivity.this, QRcodePrescriptionActivity.class);
+                startActivity(qrCode);
             }
         });
         btnHandInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent HandInput = new Intent(SelectMethodSendPrescriptionActivity.this, SendPresciptionActivity.class);
-                startActivity(HandInput);
+                Intent handInput = new Intent(SelectMethodSendPrescriptionActivity.this, SendPresciptionActivity.class);
+                startActivity(handInput);
             }
         });
 

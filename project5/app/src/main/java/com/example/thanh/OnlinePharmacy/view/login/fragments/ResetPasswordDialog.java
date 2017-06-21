@@ -71,14 +71,13 @@ public class ResetPasswordDialog extends DialogFragment {
     private Listener listner;
 
     @AfterViews
-    void init() {
+    protected void init() {
 
         subscriptions = new CompositeSubscription();
     }
 
-
     @Click(R.id.btn_reset_password)
-    void resetPassword() {
+    protected void resetPassword() {
 
         if (isInit) resetPasswordInit();
         else resetPasswordFinish();

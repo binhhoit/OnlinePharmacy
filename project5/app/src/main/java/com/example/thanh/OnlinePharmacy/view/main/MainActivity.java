@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements ResetPasswordDial
 
     }
 
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -72,8 +71,9 @@ public class MainActivity extends AppCompatActivity implements ResetPasswordDial
 
         resetPasswordDialog = (ResetPasswordDialog) getFragmentManager().findFragmentByTag(ResetPasswordDialog.TAG);
 
-        if (resetPasswordDialog != null)
+        if (resetPasswordDialog != null) {
             resetPasswordDialog.setToken(data);
+        }
     }
 
     @Override

@@ -144,7 +144,6 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
 
     @Override
     public void onPasswordChanged() {
-
         showSnackBarMessage("Password Changed Successfully !");
     }
 

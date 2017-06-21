@@ -23,8 +23,7 @@ import org.androidannotations.annotations.ViewById;
 public class Menu extends AppCompatActivity {
 
     @ViewById(R.id.grid_view_image_text)
-    GridView androidGridView;
-
+    protected GridView androidGridView;
 
     private int temp = 0;
     private String[] gridViewString = getResources().getStringArray(R.array.menu);
