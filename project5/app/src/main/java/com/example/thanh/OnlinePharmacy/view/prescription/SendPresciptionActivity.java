@@ -187,12 +187,12 @@ public class SendPresciptionActivity extends AppCompatActivity {
     }
 
     public static void add(final Activity activity, ImageButton btn) {
-        final LinearLayout linearLayoutForm = (LinearLayout) activity.findViewById(R.id.linearLayoutForm);
+        LinearLayout linearLayoutForm = (LinearLayout) activity.findViewById(R.id.linearLayoutForm);
         btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                final LinearLayout newView = (LinearLayout) activity
+                LinearLayout newView = (LinearLayout) activity
                         .getLayoutInflater()
                         .inflate(R.layout.rowdetail, null);
                 newView.setLayoutParams(

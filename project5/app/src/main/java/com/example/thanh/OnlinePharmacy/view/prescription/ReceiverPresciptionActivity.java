@@ -74,7 +74,7 @@ public class ReceiverPresciptionActivity extends AppCompatActivity {
     }
 
     private void getPrescription() {
-        final List<String> numberBuy = new ArrayList<>();
+        List<String> numberBuy = new ArrayList<>();
         Call<List<Prescription>> call = NetworkUtil.getRetrofit().getPrescription(id);
         call.enqueue(new Callback<List<Prescription>>() {
             @Override

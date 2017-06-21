@@ -48,5 +48,4 @@ public class SelectMethodSendPrescriptionActivity extends AppCompatActivity {
 
     }
 
-
 }

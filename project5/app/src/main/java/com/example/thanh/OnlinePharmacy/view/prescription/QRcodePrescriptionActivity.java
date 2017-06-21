@@ -111,20 +111,27 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(QRcodePrescriptionActivity.this);
                     alertDialogBuilder.setTitle("Đơn Thuốc Bạn Đặt Mua");
                     alertDialogBuilder.setView(customDialogView);
+
                     // gán các thuộc tính vào dialog
-                    ListView lvSendPresciption = (ListView) customDialogView.findViewById(R.id.dialog_lv_sendPresciption);
-                    TextView tvNameSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_nameSend);
-                    TextView tvAddressSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_addressSend);
-                    TextView tvNumberSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_numberSend);
+                    ListView lvSendPresciption = (ListView) customDialogView
+                            .findViewById(R.id.dialog_lv_sendPresciption);
+                    TextView tvNameSend = (TextView) customDialogView
+                            .findViewById(R.id.dialog_tv_nameSend);
+                    TextView tvAddressSend = (TextView) customDialogView
+                            .findViewById(R.id.dialog_tv_addressSend);
+                    TextView tvNumberSend = (TextView) customDialogView
+                            .findViewById(R.id.dialog_tv_numberSend);
+
                     tvNameSend.setText(prescription.getEmail());
                     tvAddressSend.setText(prescription.getAddressReceive());
                     tvNumberSend.setText(prescription.getNumberBuy());
+
                     arrayAdapterListview = new ArrayAdapterListview(
                             QRcodePrescriptionActivity.this,
                             R.layout.custom_listview,
                             prescription.getMiniPrescription());
                     lvSendPresciption.setAdapter(arrayAdapterListview);
-                    //
+
                     alertDialogBuilder.setCancelable(false).setPositiveButton("Đồng Ý",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -134,8 +141,13 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
                                     call.enqueue(new Callback<ResponseStatus>() {
                                         @Override
                                         public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
-                                            Toast.makeText(QRcodePrescriptionActivity.this, "Thành Công: " + response.body().getStatus() +
-                                                    "  " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(
+                                                    QRcodePrescriptionActivity.this,
+                                                    "Thành Công: " +
+                                                            response.body().getStatus() +
+                                                            "  " +
+                                                            response.body().getMessage(),
+                                                    Toast.LENGTH_SHORT).show();
 
                                             Intent intent = new Intent(QRcodePrescriptionActivity.this, PayActivity.class);
                                             dialog.dismiss();
@@ -144,7 +156,11 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
 
                                         @Override
                                         public void onFailure(Call<ResponseStatus> call, Throwable t) {
-                                            Toast.makeText(QRcodePrescriptionActivity.this, "Thất Bại " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(
+                                                    QRcodePrescriptionActivity.this,
+                                                    "Thất Bại " +
+                                                            t.getMessage(),
+                                                    Toast.LENGTH_SHORT).show();
                                             Log.e("ERROR", "" + t.getMessage());
                                         }
                                     });
@@ -167,7 +183,10 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
 
                 } catch (Exception e) {
                     Log.e("Error QR", "" + e.getMessage());
-                    Toast.makeText(getApplication(), getString(R.string.qr_faile), Toast.LENGTH_LONG)
+                    Toast.makeText(
+                            getApplication(),
+                            getString(R.string.qr_faile),
+                            Toast.LENGTH_LONG)
                             .show();
                 }
             }
