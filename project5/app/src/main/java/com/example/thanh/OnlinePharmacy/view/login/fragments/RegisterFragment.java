@@ -170,33 +170,8 @@ public class RegisterFragment extends Fragment {
 
     }
 
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//
-//        if (keyCode == KeyEvent.KEYCODE_BACK) {
-//            temp++;
-//            if (temp == 1) {
-//                Toast.makeText(MainActivity.this, "Nhấn back 1 lần nữa sẽ thoát chương trình", Toast.LENGTH_SHORT).show();
-//            }
-//            if (temp == 2) {
-//                //thoát khỏi chương trình
-//                Intent startMain = new Intent(Intent.ACTION_MAIN);
-//                startMain.addCategory(Intent.CATEGORY_HOME);
-//                startActivity(startMain);
-//                finish();
-//            }
-//
-//            return true;
-//        }
-//
-//        return super.onKeyDown(keyCode, event);
-//    }
-
-
-
     @Click(R.id.tv_login)
     void goToLogin() {
-
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         LoginFragment fragment = new LoginFragment_();
         ft.replace(R.id.fragmentFrame, fragment, LoginFragment.TAG);

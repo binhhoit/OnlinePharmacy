@@ -8,7 +8,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private String created_at;
+    private String createdAt;
     private String newPassword;
     private String token;
 
@@ -36,12 +36,12 @@ public class User {
         this.password = password;
     }
 
-    public String getCreated_at() {
-        return created_at;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getNewPassword() {

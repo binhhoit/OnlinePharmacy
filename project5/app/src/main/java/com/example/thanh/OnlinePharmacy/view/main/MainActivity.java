@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity implements ResetPasswordDial
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             temp++;
             if (temp == 1) {
-                Toast.makeText(MainActivity.this, "Nhấn back 1 lần nữa sẽ thoát chương trình", Toast.LENGTH_SHORT).show();
+                String string = getString(R.string.back);
+                Toast.makeText(MainActivity.this, string, Toast.LENGTH_SHORT).show();
             }
             if (temp == 2) {
                 //thoát khỏi chương trình

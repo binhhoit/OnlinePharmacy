@@ -113,7 +113,10 @@ public class SendPresciptionActivity extends AppCompatActivity {
                 tvNameSend.setText(prescription.getEmail());
                 tvAddressSend.setText(prescription.getAddressReceive());
                 tvNumberSend.setText(prescription.getNumberBuy());
-                arrayAdapterListview = new ArrayAdapterListview(SendPresciptionActivity.this, R.layout.custom_listview, prescription.getMiniPrescription());
+                arrayAdapterListview = new ArrayAdapterListview(
+                        SendPresciptionActivity.this,
+                        R.layout.custom_listview,
+                        prescription.getMiniPrescription());
                 lvSendPresciption.setAdapter(arrayAdapterListview);
                 //
                 alertDialogBuilder.setCancelable(false).setPositiveButton("Đồng Ý",
@@ -124,8 +127,13 @@ public class SendPresciptionActivity extends AppCompatActivity {
                                 call.enqueue(new Callback<ResponseStatus>() {
                                     @Override
                                     public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
-                                        Toast.makeText(activity.getApplicationContext(), "Thành Công: " + response.body().getStatus() +
-                                                "  " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(
+                                                activity.getApplicationContext(),
+                                                "Thành Công: " +
+                                                        response.body().getStatus() +
+                                                        "  " +
+                                                        response.body().getMessage(),
+                                                Toast.LENGTH_SHORT).show();
 
                                         Intent intent = new Intent(SendPresciptionActivity.this, PayActivity.class);
                                         startActivity(intent);
@@ -134,14 +142,27 @@ public class SendPresciptionActivity extends AppCompatActivity {
 
                                     @Override
                                     public void onFailure(Call<ResponseStatus> call, Throwable t) {
-                                        Toast.makeText(activity.getApplicationContext(), "Thất Bại " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(
+                                                activity.getApplicationContext(),
+                                                "Thất Bại " + t.getMessage(),
+                                                Toast.LENGTH_SHORT).show();
                                         Log.e("ERROR", "" + t.getMessage());
                                     }
                                 });
 
-                                Toast.makeText(activity.getApplicationContext(),
-                                        prescription.getMiniPrescription().get(0).getNameMedical().toString()
-                                                + prescription.getMiniPrescription().get(0).getNumber().toString(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(
+                                        activity.getApplicationContext(),
+                                        prescription
+                                                .getMiniPrescription()
+                                                .get(0)
+                                                .getNameMedical()
+                                                .toString() +
+                                                prescription
+                                                        .getMiniPrescription()
+                                                        .get(0)
+                                                        .getNumber()
+                                                        .toString(),
+                                        Toast.LENGTH_SHORT).show();
 
                             }
                         })
@@ -171,8 +192,13 @@ public class SendPresciptionActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                final LinearLayout newView = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.rowdetail, null);
-                newView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                final LinearLayout newView = (LinearLayout) activity
+                        .getLayoutInflater()
+                        .inflate(R.layout.rowdetail, null);
+                newView.setLayoutParams(
+                        new ViewGroup.LayoutParams(
+                                ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT));
 
                 ImageButton btnRemove = (ImageButton) newView.findViewById(R.id.btnRemove);
                 btnRemove.setOnClickListener(new View.OnClickListener() {

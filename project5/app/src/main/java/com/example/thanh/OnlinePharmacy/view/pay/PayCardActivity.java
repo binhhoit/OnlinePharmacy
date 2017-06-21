@@ -77,7 +77,7 @@ public class PayCardActivity extends AppCompatActivity {
     private void submitPayCard() {
         //selection type card
         PayCard card = new PayCard();
-        String[] types = getResources().getStringArray(R.array.TypeCard);
+        String[] types = getResources().getStringArray(R.array.type_card);
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, types);
 
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
@@ -108,7 +108,9 @@ public class PayCardActivity extends AppCompatActivity {
                 //add pin add serial
                 card.setPin(etPin.getText().toString());
                 card.setSerial(etSerial.getText().toString());
-                if (etPin.getText().toString().equals("") == true || etSerial.getText().toString().equals("") == true || card.getType().equals("chon") == true) {
+                if (etPin.getText().toString().equals("") == true ||
+                        etSerial.getText().toString().equals("") == true ||
+                        card.getType().equals("chon") == true) {
                     Toast.makeText(getApplication(), "Các trường chưa phù hợp", Toast.LENGTH_SHORT).show();
                 } else {
                     //submit info card transfer server

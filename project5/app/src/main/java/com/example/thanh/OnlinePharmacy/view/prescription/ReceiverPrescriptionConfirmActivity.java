@@ -132,7 +132,7 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
                                     Toast.makeText(ReceiverPrescriptionConfirmActivity.this, "Vui lòng chọn lần mua phía trên", Toast.LENGTH_SHORT).show();
                                 } else {
                                     position = position - 1;
-                                    tvName.setText(prescription.get(position).get_id());
+                                    tvName.setText(prescription.get(position).getIdDatabaseCreate());
                                     tvEmail.setText(prescription.get(position).getEmail());
                                     tvAddress.setText(prescription.get(position).getAddressReceive());
                                     tvPrice.setText(prescription.get(position).getPrice());

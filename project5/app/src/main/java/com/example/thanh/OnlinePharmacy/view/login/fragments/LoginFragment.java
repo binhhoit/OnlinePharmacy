@@ -113,7 +113,9 @@ public class LoginFragment extends Fragment {
     // process login
     private void loginProcess(String email, String password) {
         // khởi tạo gọi class NetworkUtil
-        subscriptions.add(NetworkUtil.getRetrofit(email, password).login() //gọi ngược lại các lớp class đã gọi để xuất ra các đường đẫn
+        subscriptions.add(NetworkUtil
+                .getRetrofit(email, password)
+                .login() //gọi ngược lại các lớp class đã gọi để xuất ra các đường đẫn
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError)); // hiển thị các phản hồi trên server đưa về

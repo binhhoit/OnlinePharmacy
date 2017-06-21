@@ -95,9 +95,12 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
                     JsonArray jsonArray = (JsonArray) jsonParser.parse(result.getContents());
                     for (int i = 0; i < jsonArray.size(); i++) {
                         Gson gson = new Gson();
-                        MiniPrescription tempMiniPrescription = gson.fromJson(jsonArray.get(i).getAsJsonObject().toString(), MiniPrescription.class);
-                        /*miniPrescription_.setNameMedical(jsonArray.get(i).getAsJsonObject().get("nameMedical").toString());
-                        miniPrescription_.setNumber(jsonArray.get(i).getAsJsonObject().get("number").toString());// Lay thong tin so luong*/
+                        MiniPrescription tempMiniPrescription = gson.fromJson(
+                                jsonArray
+                                        .get(i)
+                                        .getAsJsonObject()
+                                        .toString(),
+                                MiniPrescription.class);
                         miniPrescriptions.add(tempMiniPrescription);
                     }
                     prescription.setMiniPrescription(miniPrescriptions);
@@ -117,7 +120,10 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
                     tv_nameSend.setText(prescription.getEmail());
                     tv_addressSend.setText(prescription.getAddressReceive());
                     tv_numberSend.setText(prescription.getNumberBuy());
-                    arrayAdapterListview = new ArrayAdapterListview(QRcodePrescriptionActivity.this, R.layout.custom_listview, prescription.getMiniPrescription());
+                    arrayAdapterListview = new ArrayAdapterListview(
+                            QRcodePrescriptionActivity.this,
+                            R.layout.custom_listview,
+                            prescription.getMiniPrescription());
                     lv_sendPresciption.setAdapter(arrayAdapterListview);
                     //
                     alertDialogBuilder.setCancelable(false).setPositiveButton("Đồng Ý",
@@ -162,7 +168,8 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
 
                 } catch (Exception e) {
                     Log.e("Error QR", "" + e.getMessage());
-                    Toast.makeText(getApplication(), "QR định dạng ko chính xác, vui lòng thử lại", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplication(), getString(R.string.qr_faile), Toast.LENGTH_LONG)
+                            .show();
                 }
             }
         } else {

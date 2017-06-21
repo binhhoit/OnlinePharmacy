@@ -156,7 +156,10 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
                     ivImage.setImageBitmap(bitmap);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Load khong duoc picture sau khi chup ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(
+                            getApplicationContext(),
+                            getString(R.string.take_again),
+                            Toast.LENGTH_SHORT).show();
                 }
 
             } else if (requestCode == GALLERY_REQUEST) {

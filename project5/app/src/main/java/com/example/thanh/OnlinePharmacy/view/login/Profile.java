@@ -109,7 +109,7 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
         progressbar.setVisibility(View.GONE);
         tvName.setText(user.getName());
         tvEmail.setText(user.getEmail());
-        tvDate.setText(user.getCreated_at());
+        tvDate.setText(user.getCreatedAt());
     }
 
     private void handleError(Throwable error) {

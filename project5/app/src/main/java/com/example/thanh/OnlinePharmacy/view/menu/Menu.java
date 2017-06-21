@@ -27,18 +27,23 @@ public class Menu extends AppCompatActivity {
     @ViewById(R.id.grid_view_image_text)
     GridView androidGridView;
 
-    String[] gridViewString = {
-            "Thiết lập người dùng", "Kiểm tra tài khoản", "Đặt đơn thuốc", "Kiểm tra các đơn thuốc", "Đơn thuốc đã duyệt", "Thông Tin Thêm",
-    };
+    String[] gridViewString = getResources().getStringArray(R.array.menu);
     int[] gridViewImageId = {
-            R.drawable.ic_user, R.drawable.ic_checked, R.drawable.ic_list, R.drawable.ic_checkpharmacy, R.drawable.ic_browsing, R.drawable.ic_user,
+            R.drawable.ic_user,
+            R.drawable.ic_checked,
+            R.drawable.ic_list,
+            R.drawable.ic_checkpharmacy,
+            R.drawable.ic_browsing,
+            R.drawable.ic_user,
     };
 
     @AfterViews
     void init() {
 
-        CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(Menu.this, gridViewString, gridViewImageId);
-
+        CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(
+                Menu.this,
+                gridViewString,
+                gridViewImageId);
         androidGridView.setAdapter(adapterViewAndroid);
         androidGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -66,7 +71,7 @@ public class Menu extends AppCompatActivity {
                     startActivity(passPrescriptionConfirm);
                 }
                 if (i == 5) {
-                    Toast.makeText(getApplicationContext(), "NULL --  tạm thời chưa thêm chức năng mới ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "about ", Toast.LENGTH_SHORT).show();
                 }
 
             }

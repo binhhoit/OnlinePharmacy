@@ -7,8 +7,8 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class PhotoPrescription {
-    @SerializedName("_id")
-    private String _id;
+    @SerializedName("idDatabaseCreate")
+    private String idDatabaseCreate;
     @SerializedName("id")
     private String id;
     @SerializedName("email")
@@ -22,12 +22,12 @@ public class PhotoPrescription {
     @SerializedName("photo")
     private String photo;
 
-    public String get_id() {
-        return _id;
+    public String getIdDatabaseCreate() {
+        return idDatabaseCreate;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setIdDatabaseCreate(String idDatabaseCreate) {
+        this.idDatabaseCreate = idDatabaseCreate;
     }
 
     public String getId() {

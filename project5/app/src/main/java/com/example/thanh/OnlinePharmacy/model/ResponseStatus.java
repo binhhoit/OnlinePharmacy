@@ -8,23 +8,23 @@ import com.google.gson.annotations.SerializedName;
 
 public class ResponseStatus {
     @SerializedName("status")
-    private String Status;
+    private String status;
     @SerializedName("message")
-    private String Message;
+    private String message;
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(String status) {
-        Status = status;
+        this.status = status;
     }
 
     public String getMessage() {
-        return Message;
+        return message;
     }
 
     public void setMessage(String message) {
-        Message = message;
+        this.message = message;
     }
 }

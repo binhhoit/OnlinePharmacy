@@ -12,7 +12,7 @@ public class MiniPrescription {
     @SerializedName("number")
     private String number;
     @SerializedName("_id")
-    private String _id;
+    private String id;
 
     public String getNameMedical() {
         return nameMedical;
@@ -31,10 +31,10 @@ public class MiniPrescription {
     }
 
     public String get_id() {
-        return _id;
+        return id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void set_id(String id) {
+        this.id = id;
     }
 }

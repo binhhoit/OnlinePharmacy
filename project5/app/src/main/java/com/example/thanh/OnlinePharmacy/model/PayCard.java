@@ -8,33 +8,33 @@ import com.google.gson.annotations.SerializedName;
 
 public class PayCard {
     @SerializedName("pin")
-    private String Pin;
+    private String pin;
     @SerializedName("serial")
-    private String Serial;
+    private String serial;
     @SerializedName("type")
-    private String Type;
+    private String type;
 
     public String getPin() {
-        return Pin;
+        return pin;
     }
 
     public void setPin(String pin) {
-        Pin = pin;
+        this.pin = pin;
     }
 
     public String getSerial() {
-        return Serial;
+        return serial;
     }
 
     public void setSerial(String serial) {
-        Serial = serial;
+        this.serial = serial;
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
     public void setType(String type) {
-        Type = type;
+        this.type = type;
     }
 }

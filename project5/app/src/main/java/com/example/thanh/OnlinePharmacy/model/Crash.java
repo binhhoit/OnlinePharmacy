@@ -12,17 +12,17 @@ import net.hockeyapp.android.UpdateManager;
 
 public class Crash {
 
-        static public void checkForCrashes(Context context) {
-            CrashManager.register(context);
-        }
+    public static void checkForCrashes(Context context) {
+        CrashManager.register(context);
+    }
 
-        static public void checkForUpdates(Activity activity) {
-            // Remove this for store builds!
-            UpdateManager.register(activity);
-        }
+    public static void checkForUpdates(Activity activity) {
+        // Remove this for store builds!
+        UpdateManager.register(activity);
+    }
 
-        static public void unregisterManagers() {
-            UpdateManager.unregister();
-        }
+    public static void unregisterManagers() {
+        UpdateManager.unregister();
+    }
 
 }

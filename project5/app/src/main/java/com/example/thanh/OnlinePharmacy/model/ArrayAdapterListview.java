@@ -15,9 +15,9 @@ import java.util.List;
  */
 
 public class ArrayAdapterListview extends android.widget.ArrayAdapter<MiniPrescription> {
-    TextView tvMedical;
-    TextView tvNumber;
-    Context context;
+    private TextView tvMedical;
+    private TextView tvNumber;
+    private Context context;
 
     public ArrayAdapterListview(Context context, int resource, List<MiniPrescription> miniPrescription) {
         super(context, resource, miniPrescription);

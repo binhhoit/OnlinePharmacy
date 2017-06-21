@@ -111,20 +111,27 @@ public class ReceiverPresciptionActivity extends AppCompatActivity {
                         Collections.reverse(numberBuy);
                         Collections.reverse(prescription);
                         //lưa chọn lần mua để xem
-                        spnArrayAdapter = new ArrayAdapter(ReceiverPresciptionActivity.this, android.R.layout.simple_spinner_item, numberBuy);
+                        spnArrayAdapter = new ArrayAdapter(
+                                ReceiverPresciptionActivity.this,
+                                android.R.layout.simple_spinner_item,
+                                numberBuy);
                         spnArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
                         spnNumberBuy.setAdapter(spnArrayAdapter);
                         spnNumberBuy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                 if (position == 0) {
-                                    Toast.makeText(ReceiverPresciptionActivity.this, "Vui lòng chọn lần mua phía trên", Toast.LENGTH_SHORT).show();
+                                    String string = getString(R.string.choose_top);
+                                    Toast.makeText(ReceiverPresciptionActivity.this, string, Toast.LENGTH_SHORT).show();
                                 } else {
                                     position = position - 1;
-                                    tvName.setText(prescription.get(position).get_id());
+                                    tvName.setText(prescription.get(position).getIdDatabaseCreate());
                                     tvEmail.setText(prescription.get(position).getEmail());
                                     tvAddress.setText(prescription.get(position).getAddressReceive());
-                                    arrayAdapterListview = new ArrayAdapterListview(ReceiverPresciptionActivity.this, R.layout.custom_listview, prescription.get(position).getMiniPrescription());
+                                    arrayAdapterListview = new ArrayAdapterListview(
+                                            ReceiverPresciptionActivity.this,
+                                            R.layout.custom_listview,
+                                            prescription.get(position).getMiniPrescription());
                                     lvReceiver.setAdapter(arrayAdapterListview);
                                 }
                             }

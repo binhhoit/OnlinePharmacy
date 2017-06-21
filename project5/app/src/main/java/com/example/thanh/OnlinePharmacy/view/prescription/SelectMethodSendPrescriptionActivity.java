@@ -26,7 +26,9 @@ public class SelectMethodSendPrescriptionActivity extends AppCompatActivity {
         btnPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent TakePhoto = new Intent(SelectMethodSendPrescriptionActivity.this, TakePhotoSentPrescriptionActivity.class);
+                Intent TakePhoto = new Intent(
+                        SelectMethodSendPrescriptionActivity.this,
+                        TakePhotoSentPrescriptionActivity.class);
                 startActivity(TakePhoto);
             }
         });
