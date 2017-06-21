@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-
 import com.example.thanh.OnlinePharmacy.view.main.MainActivity_;
 import com.wang.avi.AVLoadingIndicatorView;
 

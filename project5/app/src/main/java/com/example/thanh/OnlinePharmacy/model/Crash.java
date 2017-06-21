@@ -25,5 +25,4 @@ public class Crash {
             UpdateManager.unregister();
         }
 
-
 }

@@ -1,12 +1,10 @@
 package com.example.thanh.OnlinePharmacy.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by thanh on 3/22/2017.
  */
-
-import com.google.gson.annotations.SerializedName;
-
-
 
 public class MiniPrescription {
     @SerializedName("nameMedical")

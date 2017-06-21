@@ -21,9 +21,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import rx.Observable;
 
-
 public interface RetrofitInterface {
-
     @POST("users")
     Observable<Response> register(@Body User user);
     //  ứng với router.post('/authenticate', (req, res)

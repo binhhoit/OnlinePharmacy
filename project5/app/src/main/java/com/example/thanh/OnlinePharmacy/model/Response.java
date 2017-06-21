@@ -29,6 +29,4 @@ public class Response {
     public String getId() {
         return id;
     }
-
-
 }
