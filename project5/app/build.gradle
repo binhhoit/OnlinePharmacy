@@ -46,6 +46,7 @@ android {
 repositories {
     mavenCentral()
 }
+def rootAndroid = '24.2.1'
 def androidAnnotationVersion = '4.2.0'
 
 dependencies {
@@ -58,9 +59,9 @@ dependencies {
     compile files('libs/PhotoUtil.jar')
     testCompile 'junit:junit:4.12'
     //android
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
-    compile 'com.android.support:cardview-v7:24.2.1'
+    compile "com.android.support:appcompat-v7:$rootAndroid"
+    compile "com.android.support:design:$rootAndroid"
+    compile "com.android.support:cardview-v7:$rootAndroid"
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
     //annotation
     compile "org.androidannotations:androidannotations-api:$androidAnnotationVersion"
