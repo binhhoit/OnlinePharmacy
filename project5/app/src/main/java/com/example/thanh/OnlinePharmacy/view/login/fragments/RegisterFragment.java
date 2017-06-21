@@ -39,25 +39,25 @@ public class RegisterFragment extends Fragment {
     public static final String TAG = RegisterFragment.class.getSimpleName();
 
     @ViewById(R.id.et_name)
-    EditText etName;
+    protected EditText etName;
 
     @ViewById(R.id.et_email)
-    EditText etEmail;
+    protected EditText etEmail;
 
     @ViewById(R.id.et_password)
-    EditText etPassword;
+    protected EditText etPassword;
 
     @ViewById(R.id.ti_name)
-    TextInputLayout tiName;
+    protected TextInputLayout tiName;
 
     @ViewById(R.id.ti_email)
-    TextInputLayout tiEmail;
+    protected TextInputLayout tiEmail;
 
     @ViewById(R.id.ti_password)
-    TextInputLayout tiPassword;
+    protected TextInputLayout tiPassword;
 
     @ViewById(R.id.progress)
-    ProgressBar progressbar;
+    protected ProgressBar progressbar;
 
     private CompositeSubscription subscriptions;
 

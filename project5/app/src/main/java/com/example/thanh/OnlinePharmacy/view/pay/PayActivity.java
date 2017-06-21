@@ -14,7 +14,7 @@ import org.androidannotations.annotations.ViewById;
 public class PayActivity extends AppCompatActivity {
 
     @ViewById(R.id.btn_pay)
-    Button btnPaycard;
+    protected Button btnPaycard;
 
 
     @AfterViews

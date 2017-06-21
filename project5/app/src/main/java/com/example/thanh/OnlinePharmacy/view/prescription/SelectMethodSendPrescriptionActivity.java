@@ -15,11 +15,11 @@ import org.androidannotations.annotations.ViewById;
 @EActivity(R.layout.activity_select_method_send_prescription)
 public class SelectMethodSendPrescriptionActivity extends AppCompatActivity {
     @ViewById(R.id.btn_photo)
-    Button btnPhoto;
+    protected Button btnPhoto;
     @ViewById(R.id.btn_QR)
-    Button btnQR;
+    protected Button btnQr;
     @ViewById(R.id.btn_handInput)
-    Button btnHandInput;
+    protected Button btnHandInput;
 
     @AfterViews
     void init() {
@@ -32,7 +32,7 @@ public class SelectMethodSendPrescriptionActivity extends AppCompatActivity {
                 startActivity(TakePhoto);
             }
         });
-        btnQR.setOnClickListener(new View.OnClickListener() {
+        btnQr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent QRcode = new Intent(SelectMethodSendPrescriptionActivity.this, QRcodePrescriptionActivity.class);

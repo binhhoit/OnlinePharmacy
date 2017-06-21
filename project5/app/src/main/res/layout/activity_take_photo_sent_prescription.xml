@@ -14,7 +14,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"
-            android:background="@drawable/ic_photo_camera" />
+            android:padding="10dp"
+            android:src="@drawable/ic_photo_camera" />
 
         <ImageView
             android:id="@+id/activity_photo_iv_picture"
@@ -22,7 +23,8 @@
             android:layout_height="50dp"
             android:layout_margin="5dp"
             android:layout_toRightOf="@+id/activity_photo_iv_camera"
-            android:background="@drawable/ic_picture" />
+            android:padding="10dp"
+            android:src="@drawable/ic_picture" />
 
         <ImageView
             android:id="@+id/activity_photo_iv_upload"

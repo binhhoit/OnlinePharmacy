@@ -38,25 +38,25 @@ import retrofit2.Callback;
 public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
 
     @ViewById(R.id.activity_receiverPresciptionConfirm_tv_name)
-    TextView tvName;
+    protected TextView tvName;
     @ViewById(R.id.activity_receiverPresciptionConfirm_tv_email)
-    TextView tvEmail;
+    protected TextView tvEmail;
     @ViewById(R.id.activity_receiverPresciptionConfirm_tv_address)
-    TextView tvAddress;
+    protected TextView tvAddress;
     @ViewById(R.id.activity_receiverPresciptionConfirm_tv_price)
-    TextView tvPrice;
+    protected TextView tvPrice;
     @ViewById(R.id.activity_receiverPresciptionConfirm_spn_numberbuy)
-    Spinner spnNumberBuy;
+    protected Spinner spnNumberBuy;
     @ViewById(R.id.activity_receiverPresciptionConfirm_lv_prescription)
-    ListView lvReceiver;
+    protected ListView lvReceiver;
     @ViewById(R.id.activity_receiverPresciptionConfirm_btn_selectPay)
-    Button btnSelectPay;
+    protected Button btnSelectPay;
 
     private List<Prescription> prescription = new ArrayList<>();
     private ArrayAdapterListview arrayAdapterListview;
     private ArrayAdapter spnArrayAdapter;
     private SharedPreferences sharedPreferences;
-    private String Id;
+    private String id;
 
     @AfterViews
     void init() {
@@ -69,7 +69,7 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
 
     private void initSharedPreferences() {
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
-        Id = sharedPreferences.getString(Constants.ID, "");
+        id = sharedPreferences.getString(Constants.ID, "");
     }
 
     private void findViewByIDs() {
@@ -84,7 +84,7 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
 
     private void getPrescription() {
         final List<String> number_buy = new ArrayList<>();
-        Call<List<Prescription>> call = NetworkUtil.getRetrofit().getPrescriptionConfirm(Id);
+        Call<List<Prescription>> call = NetworkUtil.getRetrofit().getPrescriptionConfirm(id);
         call.enqueue(new Callback<List<Prescription>>() {
             @Override
             public void onResponse(Call<List<Prescription>> call, retrofit2.Response<List<Prescription>> response) {

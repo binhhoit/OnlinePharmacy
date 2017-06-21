@@ -42,8 +42,8 @@ import retrofit2.Response;
 public class QRcodePrescriptionActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
-    private String Id;
-    private String Email;
+    private String id;
+    private String email;
     private ArrayAdapterListview arrayAdapterListview;
 
 
@@ -68,8 +68,8 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
     private void initSharedPreferences() {
 
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
-        Id = sharedPreferences.getString(Constants.ID, "");
-        Email = sharedPreferences.getString(Constants.EMAIL, "");
+        id = sharedPreferences.getString(Constants.ID, "");
+        email = sharedPreferences.getString(Constants.EMAIL, "");
     }
 
     @Override
@@ -82,8 +82,8 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
             } else {
 
                 Prescription prescription = new Prescription();
-                prescription.setEmail(Email);   //get mail
-                prescription.setId(Id);     //get id
+                prescription.setEmail(email);   //get mail
+                prescription.setId(id);     //get id
                 prescription.setAddressReceive("nghĩ cách điền sau");   //getaddress
                 prescription.setNumberBuy(time().toString());      //number buy
                 prescription.setStatus("false");

@@ -18,8 +18,8 @@ import org.androidannotations.annotations.EActivity;
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity implements ResetPasswordDialog.Listener {
 
-    int temp = 0;
     public static final String TAG = MainActivity.class.getSimpleName();
+    private int TEMP = 0;
 
     private LoginFragment loginFragment;
     private ResetPasswordDialog resetPasswordDialog;
@@ -36,12 +36,12 @@ public class MainActivity extends AppCompatActivity implements ResetPasswordDial
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            temp++;
-            if (temp == 1) {
+            TEMP++;
+            if (TEMP == 1) {
                 String string = getString(R.string.back);
                 Toast.makeText(MainActivity.this, string, Toast.LENGTH_SHORT).show();
             }
-            if (temp == 2) {
+            if (TEMP == 2) {
                 //thoát khỏi chương trình
                 Intent startMain = new Intent(Intent.ACTION_MAIN);
                 startMain.addCategory(Intent.CATEGORY_HOME);

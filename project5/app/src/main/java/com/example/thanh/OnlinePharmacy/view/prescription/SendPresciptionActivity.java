@@ -43,15 +43,15 @@ import retrofit2.Response;
 public class SendPresciptionActivity extends AppCompatActivity {
 
     @ViewById(R.id.activity_send_prescript_btn_Add)
-    ImageButton btnAdd;
+    protected ImageButton btnAdd;
     @ViewById(R.id.activity_send_prescript_btn_Submit)
-    Button btnSubmit;
+    protected Button btnSubmit;
     @ViewById(R.id.activity_send_prescript_tv_name_transfer)
-    TextView etUserName;
+    protected TextView etUserName;
     @ViewById(R.id.activity_send_prescript_et_address_transfer)
-    EditText etAddress;
+    protected EditText etAddress;
     @ViewById(R.id.activity_send_prescript_et_number_transfer)
-    TextView etNumber;
+    protected TextView etNumber;
 
     private ArrayAdapterListview arrayAdapterListview;
     private SharedPreferences sharedPreferences;

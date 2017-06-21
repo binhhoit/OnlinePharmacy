@@ -18,7 +18,7 @@ import org.androidannotations.annotations.ViewById;
 @EActivity(R.layout.activity_splash)
 public class SplashScreenActivity extends AppCompatActivity {
     @ViewById(R.id.activity_start_avi_loading)
-    AVLoadingIndicatorView avi;
+    protected AVLoadingIndicatorView avi;
 
     @AfterViews
     void init() {

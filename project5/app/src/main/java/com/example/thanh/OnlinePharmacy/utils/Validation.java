@@ -9,10 +9,9 @@ import android.util.Patterns;
 
 public class Validation {
 
-    public static boolean validateFields(String name){
-
+    public static boolean validateFields(String name) {
         if (TextUtils.isEmpty(name)) {
-
+            
             return false;
 
         } else {
@@ -29,7 +28,7 @@ public class Validation {
 
         } else {
 
-            return  true;
+            return true;
         }
     }
 

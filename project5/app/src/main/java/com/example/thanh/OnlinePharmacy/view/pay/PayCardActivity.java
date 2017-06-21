@@ -29,13 +29,13 @@ import retrofit2.Response;
 @EActivity(R.layout.activity_pay_card)
 public class PayCardActivity extends AppCompatActivity {
     @ViewById(R.id.tv_submit)
-    TextView tvSubmit;
+    protected TextView tvSubmit;
     @ViewById(R.id.et_Pin)
-    EditText etPin;
+    protected EditText etPin;
     @ViewById(R.id.et_serial)
-    EditText etSerial;
+    protected EditText etSerial;
     @ViewById(R.id.spn_type)
-    Spinner spnType;
+    protected Spinner spnType;
     private ArrayAdapter<String> arrayAdapter;
 
     @AfterViews

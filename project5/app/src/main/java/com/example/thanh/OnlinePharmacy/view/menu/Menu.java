@@ -22,13 +22,13 @@ import org.androidannotations.annotations.ViewById;
 @EActivity(R.layout.activity_menu)
 public class Menu extends AppCompatActivity {
 
-    private int TEMP = 0;
-
     @ViewById(R.id.grid_view_image_text)
     GridView androidGridView;
 
-    String[] gridViewString = getResources().getStringArray(R.array.menu);
-    int[] gridViewImageId = {
+
+    private int temp = 0;
+    private String[] gridViewString = getResources().getStringArray(R.array.menu);
+    private int[] gridViewImageId = {
             R.drawable.ic_user,
             R.drawable.ic_checked,
             R.drawable.ic_list,
@@ -83,13 +83,13 @@ public class Menu extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            TEMP++;
-            if (TEMP == 1) {
+            temp++;
+            if (temp == 1) {
 
                 Toast.makeText(Menu.this, "Nhấn back 1 lần nữa sẽ thoát chương trình", Toast.LENGTH_SHORT).show();
 
             }
-            if (TEMP == 2) {
+            if (temp == 2) {
                 //thoát khỏi chương trình
                 Intent startMain = new Intent(Intent.ACTION_MAIN);
                 startMain.addCategory(Intent.CATEGORY_HOME);

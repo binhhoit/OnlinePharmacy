@@ -35,22 +35,18 @@ import rx.subscriptions.CompositeSubscription;
 @EActivity(R.layout.activity_profile)
 public class Profile extends AppCompatActivity implements ChangePasswordDialog.Listener {
 
-    public static final String TAG = Profile.class.getSimpleName();
-
     @ViewById(R.id.activity_receiverPresciption_tv_name)
-    TextView tvName;
+    protected TextView tvName;
     @ViewById(R.id.activity_receiverPresciption_tv_email)
-    TextView tvEmail;
+    protected TextView tvEmail;
     @ViewById(R.id.tv_date)
-    TextView tvDate;
+    protected TextView tvDate;
     @ViewById(R.id.progress)
-    ProgressBar progressbar;
+    protected ProgressBar progressbar;
 
     private SharedPreferences sharedPreferences;
     private String token;
     private String email;
-
-
     private CompositeSubscription subscriptions;
 
     @AfterViews
@@ -90,7 +86,6 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
         bundle.putString(Constants.EMAIL, email);
         bundle.putString(Constants.TOKEN, token);
         fragment.setArguments(bundle);
-
         fragment.show(getFragmentManager(), ChangePasswordDialog.TAG);
     }
 

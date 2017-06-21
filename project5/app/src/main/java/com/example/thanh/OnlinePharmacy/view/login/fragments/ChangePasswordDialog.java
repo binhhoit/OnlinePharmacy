@@ -44,22 +44,22 @@ public class ChangePasswordDialog extends DialogFragment {
     public static final String TAG = ChangePasswordDialog.class.getSimpleName();
 
     @ViewById(R.id.et_old_password)
-    EditText etOldPassword;
+    protected EditText etOldPassword;
 
     @ViewById(R.id.et_new_password)
-    EditText etNewPassword;
+    protected EditText etNewPassword;
 
     @ViewById(R.id.ti_old_password)
-    TextInputLayout tiOldPassword;
+    protected TextInputLayout tiOldPassword;
 
     @ViewById(R.id.ti_new_password)
-    TextInputLayout tiNewPassword;
+    protected TextInputLayout tiNewPassword;
 
     @ViewById(R.id.tv_message)
-    TextView tvMessage;
+    protected TextView tvMessage;
 
     @ViewById(R.id.progress)
-    ProgressBar progressBar;
+    protected ProgressBar progressBar;
 
     private CompositeSubscription subscriptions;
 

@@ -39,23 +39,23 @@ import retrofit2.Callback;
 public class ReceiverPresciptionActivity extends AppCompatActivity {
 
     @ViewById(R.id.activity_receiverPresciption_tv_name)
-    TextView tvName;
+    protected TextView tvName;
     @ViewById(R.id.activity_receiverPresciption_tv_email)
-    TextView tvEmail;
+    protected TextView tvEmail;
     @ViewById(R.id.activity_receiverPresciption_tv_address)
-    TextView tvAddress;
+    protected TextView tvAddress;
     @ViewById(R.id.activity_receiverPresciption_spn_numberbuy)
-    Spinner spnNumberBuy;
+    protected Spinner spnNumberBuy;
     @ViewById(R.id.activity_receiverPresciption_lv_prescription)
-    ListView lvReceiver;
+    protected ListView lvReceiver;
     @ViewById(R.id.activity_receiverPresciption_btn_selectPay)
-    Button btnSelectPay;
+    protected Button btnSelectPay;
 
     private List<Prescription> prescription = new ArrayList<>();
     private ArrayAdapterListview arrayAdapterListview;
     private ArrayAdapter spnArrayAdapter;
     private SharedPreferences sharedPreferences;
-    private String Id;
+    private String id;
 
     @AfterViews
     void init() {
@@ -68,12 +68,12 @@ public class ReceiverPresciptionActivity extends AppCompatActivity {
     private void initSharedPreferences() {
 
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
-        Id = sharedPreferences.getString(Constants.ID, "");
+        id = sharedPreferences.getString(Constants.ID, "");
     }
 
     private void getPrescription() {
         final List<String> numberBuy = new ArrayList<>();
-        Call<List<Prescription>> call = NetworkUtil.getRetrofit().getPrescription(Id);
+        Call<List<Prescription>> call = NetworkUtil.getRetrofit().getPrescription(id);
         call.enqueue(new Callback<List<Prescription>>() {
             @Override
             public void onResponse(Call<List<Prescription>> call, retrofit2.Response<List<Prescription>> response) {

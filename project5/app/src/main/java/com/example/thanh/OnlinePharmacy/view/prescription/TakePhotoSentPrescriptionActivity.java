@@ -10,13 +10,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.model.Crash;
+import com.example.thanh.OnlinePharmacy.model.PhotoPrescription;
+import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
-import com.example.thanh.OnlinePharmacy.model.PhotoPrescription;
-import com.example.thanh.OnlinePharmacy.R;
-import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.kosalgeek.android.photoutil.CameraPhoto;
 import com.kosalgeek.android.photoutil.GalleryPhoto;
 import com.kosalgeek.android.photoutil.ImageBase64;
@@ -39,25 +39,25 @@ import retrofit2.Response;
 public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
 
     @ViewById(R.id.activity_photo_iv_camera)
-    ImageView ivCamera;
+    protected ImageView ivCamera;
     @ViewById(R.id.activity_photo_iv_picture)
-    ImageView ivPicture;
+    protected ImageView ivPicture;
     @ViewById(R.id.activity_photo_iv_upload)
-    ImageView ivUpload;
+    protected ImageView ivUpload;
     @ViewById(R.id.activity_photo_iv_image)
-    ImageView ivImage;
+    protected ImageView ivImage;
 
     private final String TAG = this.getClass().getName();
 
-    CameraPhoto cameraPhoto;
-    GalleryPhoto galleryPhoto;
-    int CAMERA_REQUEST = 13323;
-    int GALLERY_REQUEST = 22131;
+    private CameraPhoto cameraPhoto;
+    private GalleryPhoto galleryPhoto;
+    private int CAMERA_REQUEST = 13323;
+    private int GALLERY_REQUEST = 22131;
 
-    String selectPhoto;
+    private String selectPhoto;
     private SharedPreferences sharedPreferences;
-    private String Id;
-    private String Email;
+    private String id;
+    private String email;
 
 
     @AfterViews
@@ -97,9 +97,9 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
                     String encodedImage = ImageBase64.encode(bitmap);
                     Log.d(TAG, encodedImage);
                     PhotoPrescription photoPrescription = new PhotoPrescription();
-                    photoPrescription.setId(Id);
+                    photoPrescription.setId(id);
                     photoPrescription.setStatus("false");
-                    photoPrescription.setEmail(Email);
+                    photoPrescription.setEmail(email);
                     photoPrescription.setAddressReceive("làm chổ điền thêm zô sau");
                     photoPrescription.setPhoto(encodedImage);
                     photoPrescription.setNumberBuy(time());
@@ -133,8 +133,8 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
     private void initSharedPreferences() {
 
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
-        Id = sharedPreferences.getString(Constants.ID, "");
-        Email = sharedPreferences.getString(Constants.EMAIL, "");
+        id = sharedPreferences.getString(Constants.ID, "");
+        email = sharedPreferences.getString(Constants.EMAIL, "");
     }
 
     private String time() {

@@ -42,18 +42,18 @@ public class LoginFragment extends Fragment {
     public static final String TAG = LoginFragment.class.getSimpleName();
 
     @ViewById(R.id.et_email)
-    EditText etEmail;
+    protected EditText etEmail;
     @ViewById(R.id.et_password)
-    EditText etPassword;
+    protected EditText etPassword;
     @ViewById(R.id.ti_email)
-    TextInputLayout tiEmail;
+    protected TextInputLayout tiEmail;
     @ViewById(R.id.ti_password)
-    TextInputLayout tiPassword;
+    protected TextInputLayout tiPassword;
     @ViewById(R.id.activity_login_avi_loading)
-    AVLoadingIndicatorView avi;
+    protected AVLoadingIndicatorView avi;
 
     private CompositeSubscription subscriptions;
-    private SharedPreferences SharedPreferences;
+    private SharedPreferences sharedPreferences;
 
 
     @AfterViews
@@ -65,7 +65,7 @@ public class LoginFragment extends Fragment {
 
     private void initSharedPreferences() {
 
-        SharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
     }
 
     @Click(R.id.btn_login)
@@ -125,7 +125,7 @@ public class LoginFragment extends Fragment {
 
         stopAnim();
 
-        SharedPreferences.Editor editor = SharedPreferences.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(Constants.TOKEN, response.getToken());
         editor.putString(Constants.EMAIL, response.getMessage());
         editor.putString(Constants.ID, response.getId());

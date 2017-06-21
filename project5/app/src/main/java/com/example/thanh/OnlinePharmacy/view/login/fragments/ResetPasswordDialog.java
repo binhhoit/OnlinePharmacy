@@ -1,8 +1,6 @@
 package com.example.thanh.OnlinePharmacy.view.login.fragments;
 
 import android.widget.EditText;
-
-
 import android.app.DialogFragment;
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
@@ -44,28 +42,28 @@ public class ResetPasswordDialog extends DialogFragment {
     public static final String TAG = ResetPasswordDialog.class.getSimpleName();
 
     @ViewById(R.id.et_email)
-    EditText etEmail;
+    protected EditText etEmail;
 
     @ViewById(R.id.et_token)
-    EditText etToken;
+    protected  EditText etToken;
 
     @ViewById(R.id.et_password)
-    EditText etPassword;
+    protected EditText etPassword;
 
     @ViewById(R.id.progress)
-    ProgressBar progressBar;
+    protected ProgressBar progressBar;
 
     @ViewById(R.id.tv_message)
-    TextView tvMessage;
+    protected TextView tvMessage;
 
     @ViewById(R.id.ti_email)
-    TextInputLayout tiEmail;
+    protected TextInputLayout tiEmail;
 
     @ViewById(R.id.ti_token)
-    TextInputLayout tiToken;
+    protected TextInputLayout tiToken;
 
     @ViewById(R.id.ti_password)
-    TextInputLayout tiPassword;
+    protected TextInputLayout tiPassword;
 
     private CompositeSubscription subscriptions;
     private String email;
