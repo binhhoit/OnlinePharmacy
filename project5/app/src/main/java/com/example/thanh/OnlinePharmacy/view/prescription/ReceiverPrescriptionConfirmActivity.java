@@ -95,7 +95,9 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     prescription = response.body();
                     if (prescription.size() == 0) {
-                        AlertDialog alertDialog = new AlertDialog.Builder(ReceiverPrescriptionConfirmActivity.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(
+                                ReceiverPrescriptionConfirmActivity.this)
+                                .create();
                         alertDialog.setCanceledOnTouchOutside(false);
                         alertDialog.setTitle("Thông Báo");
                         alertDialog.setMessage("Bạn chưa có đơn thuốc nào !");
@@ -122,7 +124,10 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
                         Collections.reverse(number_buy);
                         Collections.reverse(prescription);
                         //choosen number buy to seen
-                        spnArrayAdapter = new ArrayAdapter(ReceiverPrescriptionConfirmActivity.this, android.R.layout.simple_spinner_item, number_buy);
+                        spnArrayAdapter = new ArrayAdapter(
+                                ReceiverPrescriptionConfirmActivity.this,
+                                android.R.layout.simple_spinner_item,
+                                number_buy);
                         spnArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
                         spnNumberBuy.setAdapter(spnArrayAdapter);
                         spnNumberBuy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

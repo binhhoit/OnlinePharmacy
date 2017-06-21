@@ -75,7 +75,11 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
                     // cameraPhoto.addToGallery();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Khong goi duoc camera", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Khong goi duoc camera",
+                            Toast.LENGTH_SHORT)
+                            .show();
                 }
             }
         });
@@ -102,26 +106,42 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
                     photoPrescription.setAddressReceive("làm chổ điền thêm zô sau");
                     photoPrescription.setPhoto(encodedImage);
                     photoPrescription.setNumberBuy(time());
-                    Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPhotoPrescription(photoPrescription);
+
+                    Call<ResponseStatus> call = NetworkUtil
+                            .getRetrofit()
+                            .postPhotoPrescription(photoPrescription);
                     call.enqueue(new Callback<ResponseStatus>() {
                         @Override
                         public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
-                            Toast.makeText(TakePhotoSentPrescriptionActivity.this, "Thành Công: " + response.body().getStatus() +
-                                    "  " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(TakePhotoSentPrescriptionActivity.this, PayActivity.class);
+                            Toast.makeText(
+                                    TakePhotoSentPrescriptionActivity.this,
+                                    "Thành Công: " +
+                                            response.body().getStatus() +
+                                            "  " +
+                                            response.body().getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(
+                                    TakePhotoSentPrescriptionActivity.this,
+                                    PayActivity.class);
                             startActivity(intent);
                             finish();
                         }
 
                         @Override
                         public void onFailure(Call<ResponseStatus> call, Throwable t) {
-                            Toast.makeText(TakePhotoSentPrescriptionActivity.this, "Thất Bại " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(
+                                    TakePhotoSentPrescriptionActivity.this,
+                                    "Thất Bại " + t.getMessage(),
+                                    Toast.LENGTH_SHORT).show();
                             Log.e("ERROR", "" + t.getMessage());
                         }
                     });
 
                 } catch (FileNotFoundException e) {
-                    Toast.makeText(getApplicationContext(), "Khong the endcoding picture", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Khong the endcoding picture",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -131,7 +151,9 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
 
     private void initSharedPreferences() {
 
-        sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
+        sharedPreferences = getApplication()
+                .getSharedPreferences("account", MODE_PRIVATE);
+
         id = sharedPreferences.getString(Constants.ID, "");
         email = sharedPreferences.getString(Constants.EMAIL, "");
     }
