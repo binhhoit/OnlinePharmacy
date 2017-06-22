@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.thanh.OnlinePharmacy.model.Response;
+import com.example.thanh.OnlinePharmacy.model.User;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.R;
@@ -23,6 +24,7 @@ import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
+import com.orhanobut.hawk.Hawk;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.androidannotations.annotations.AfterViews;
@@ -43,28 +45,39 @@ import static com.example.thanh.OnlinePharmacy.utils.Validation.validateEmail;
 import static com.example.thanh.OnlinePharmacy.utils.Validation.validateFields;
 
 @EFragment(R.layout.activity_login_fragment)
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment implements Validator.ValidationListener {
 
     public static final String TAG = LoginFragment.class.getSimpleName();
 
+    @NotEmpty(message = "Trường này chưa điền")
+    @Email(message = "Email chưa đúng")
     @ViewById(R.id.et_email)
     protected EditText etEmail;
+
+    @NotEmpty(message = "Trường này chưa điền")
+    @Password(min = 6, message = "Mật khẩu chưa chuẩn")
     @ViewById(R.id.et_password)
     protected EditText etPassword;
-    @ViewById(R.id.ti_email)
-    protected TextInputLayout tiEmail;
-    @ViewById(R.id.ti_password)
-    protected TextInputLayout tiPassword;
+
     @ViewById(R.id.activity_login_avi_loading)
     protected AVLoadingIndicatorView avi;
 
     private CompositeSubscription subscriptions;
     private SharedPreferences sharedPreferences;
+    private Validator validator;
 
     @AfterViews
     void init() {
+        validator = new Validator(this);
+        validator.setValidationListener(this);
+
         subscriptions = new CompositeSubscription();
+
+        Hawk.init(getActivity()).build();
         initSharedPreferences();
+
+        etEmail.setText(Hawk.get("user"));
+        etPassword.setText(Hawk.get("pass"));
     }
 
     private void initSharedPreferences() {
@@ -75,43 +88,35 @@ public class LoginFragment extends Fragment {
     @Click(R.id.btn_login)
     void login() {
 
-        setError();
+        validator.validate();
+    }
+
+    @Override
+    public void onValidationSucceeded() {
 
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
+        loginProcess(email, password);
         startAnim();
 
-        int err = 0;
-        // error no fill
-        if (!validateEmail(email)) {
-
-            err++;
-            tiEmail.setError("Email should be valid !");
-        }
-
-        if (!validateFields(password)) {
-
-            err++;
-            tiPassword.setError("Password should not be empty !");
-        }
-
-        if (err == 0) {
-            //no error --> login
-            loginProcess(email, password);
-            startAnim();
-
-        } else {
-
-            showSnackBarMessage("Enter Valid Details !");
-        }
     }
 
-    // error
-    private void setError() {
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        showSnackBarMessage("Enter Valid Details !");
 
-        tiEmail.setError(null);
-        tiPassword.setError(null);
+        for (ValidationError error : errors) {
+            View view = error.getView();
+            String message = error.getCollatedErrorMessage(getActivity());
+
+            // Display error messages ;)
+            if (view instanceof EditText) {
+                ((EditText) view).setError(message);
+            } else {
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     // process login

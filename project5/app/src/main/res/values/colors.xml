@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorTurquoise">#1abc9c</color>
+    <color name="colorTurquoiselight">#3b1abc9c</color>
     <color name="colorGreenSea">#16a085</color>
     <color name="colorCloud">#ecf0f1</color>
     <color name="colorEmerald">#2ecc71</color>

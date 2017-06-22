@@ -22,6 +22,7 @@ import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
+import com.orhanobut.hawk.Hawk;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -51,7 +52,7 @@ public class RegisterFragment extends Fragment implements Validator.ValidationLi
     protected EditText etEmail;
 
     @NotEmpty(message = "Trường này chưa điền")
-    @Password(min = 6, message = "Mật khẩu chưa đạt")
+    @Password(min = 6, message = "Mật khẩu yêu cầy 6 ký tự")
     @ViewById(R.id.et_password)
     protected EditText etPassword;
 
@@ -64,12 +65,13 @@ public class RegisterFragment extends Fragment implements Validator.ValidationLi
     protected ProgressBar progressbar;
 
     private CompositeSubscription subscriptions;
-    Validator validator;
+    private Validator validator;
 
     @AfterViews
     void init() {
         validator = new Validator(this);
         validator.setValidationListener(this);
+        Hawk.init(getActivity()).build();
         subscriptions = new CompositeSubscription();
     }
 
@@ -84,6 +86,9 @@ public class RegisterFragment extends Fragment implements Validator.ValidationLi
         String name = etName.getText().toString();
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
+        //save pass and user
+        Hawk.put("user", email);
+        Hawk.put("pass", password);
 
         User user = new User();
         user.setName(name);
