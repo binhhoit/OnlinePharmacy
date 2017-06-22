@@ -16,7 +16,6 @@ public class PayActivity extends AppCompatActivity {
     @ViewById(R.id.btn_pay)
     protected Button btnPaycard;
 
-
     @AfterViews
     void init() {
 

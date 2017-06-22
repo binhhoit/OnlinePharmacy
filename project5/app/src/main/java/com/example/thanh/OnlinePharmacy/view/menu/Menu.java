@@ -1,6 +1,7 @@
 package com.example.thanh.OnlinePharmacy.view.menu;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,7 +27,7 @@ public class Menu extends AppCompatActivity {
     protected GridView androidGridView;
 
     private int temp = 0;
-    private String[] gridViewString = getResources().getStringArray(R.array.menu);
+    private String[] gridViewString;
     private int[] gridViewImageId = {
             R.drawable.ic_user,
             R.drawable.ic_checked,
@@ -38,6 +39,7 @@ public class Menu extends AppCompatActivity {
 
     @AfterViews
     void init() {
+        gridViewString =  getResources().getStringArray(R.array.menu);
 
         CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(
                 Menu.this,

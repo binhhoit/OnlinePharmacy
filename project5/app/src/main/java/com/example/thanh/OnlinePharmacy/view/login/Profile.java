@@ -146,8 +146,6 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
     public void onPasswordChanged() {
         showSnackBarMessage("Password Changed Successfully !");
     }
-
-
 }
 
 
