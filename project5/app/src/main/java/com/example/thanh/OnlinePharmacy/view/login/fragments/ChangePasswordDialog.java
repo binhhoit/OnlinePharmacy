@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.thanh.OnlinePharmacy.view.login.Profile;
 import com.example.thanh.OnlinePharmacy.R;
@@ -17,6 +18,7 @@ import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mobsandgeeks.saripaar.ValidationError;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -24,6 +26,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.adapter.rxjava.HttpException;
 import rx.android.schedulers.AndroidSchedulers;
@@ -182,5 +185,6 @@ public class ChangePasswordDialog extends DialogFragment {
         super.onDestroy();
         subscriptions.unsubscribe();
     }
+
 }
 

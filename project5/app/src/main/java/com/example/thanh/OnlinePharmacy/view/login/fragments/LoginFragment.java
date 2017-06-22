@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,6 +18,11 @@ import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.view.menu.Menu_;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.Email;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Password;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.androidannotations.annotations.AfterViews;
@@ -25,6 +31,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.adapter.rxjava.HttpException;
 import rx.android.schedulers.AndroidSchedulers;
@@ -193,13 +200,14 @@ public class LoginFragment extends Fragment {
         subscriptions.unsubscribe();
     }
 
-    void startAnim() {
+    private void startAnim() {
         avi.show();
         // or avi.smoothToShow();
     }
 
-    void stopAnim() {
+    private void stopAnim() {
         avi.hide();
         // or avi.smoothToHide();
     }
+
 }
