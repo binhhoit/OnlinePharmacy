@@ -40,8 +40,11 @@ captures/
 .idea/dictionaries
 .idea/libraries
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 8e75026ce501d8915bd8445abfa3420338f07a62
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
 
