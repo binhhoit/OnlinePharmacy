@@ -17,7 +17,7 @@ import com.example.thanh.OnlinePharmacy.model.PhotoPrescription;
 import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
-import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
+import com.example.thanh.OnlinePharmacy.view.pay.PayActivity_;
 import com.kosalgeek.android.photoutil.CameraPhoto;
 import com.kosalgeek.android.photoutil.GalleryPhoto;
 import com.kosalgeek.android.photoutil.ImageBase64;
@@ -128,7 +128,7 @@ public class TakePhotoSentPrescriptionFragment extends Fragment {
                                     Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(
                                    getActivity(),
-                                    PayActivity.class);
+                                    PayActivity_.class);
                             startActivity(intent);
                             getActivity().finish();
                         }

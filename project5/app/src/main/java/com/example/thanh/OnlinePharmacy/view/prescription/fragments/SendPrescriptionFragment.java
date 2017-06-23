@@ -1,7 +1,6 @@
 package com.example.thanh.OnlinePharmacy.view.prescription.fragments;
 
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -29,6 +27,7 @@ import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
@@ -48,15 +47,11 @@ import static android.content.Context.MODE_PRIVATE;
 @EFragment(R.layout.fragment_sent_prescription)
 public class SendPrescriptionFragment extends Fragment {
 
-    @ViewById(R.id.activity_send_prescript_btn_Add)
-    protected ImageButton btnAdd;
-    @ViewById(R.id.activity_send_prescript_btn_Submit)
-    protected Button btnSubmit;
-    @ViewById(R.id.activity_send_prescript_tv_name_transfer)
+    @ViewById(R.id.fragment_send_prescript_tv_name_transfer)
     protected TextView etUserName;
-    @ViewById(R.id.activity_send_prescript_et_address_transfer)
+    @ViewById(R.id.fragment_send_prescript_et_address_transfer)
     protected EditText etAddress;
-    @ViewById(R.id.activity_send_prescript_et_number_transfer)
+    @ViewById(R.id.fragment_send_prescript_et_number_transfer)
     protected TextView etNumber;
 
     private ArrayAdapterListview arrayAdapterListview;
@@ -66,11 +61,8 @@ public class SendPrescriptionFragment extends Fragment {
 
     @AfterViews
     void init() {
-
         initSharedPreferences();
-        add(getActivity(), btnAdd);
-        submit(getActivity(), btnSubmit);
-
+        etUserName.setText(email);
     }
 
     private void initSharedPreferences() {
@@ -79,109 +71,98 @@ public class SendPrescriptionFragment extends Fragment {
         email = sharedPreferences.getString(Constants.EMAIL, "");
     }
 
-    public void submit(final Activity activity, Button btn) {
-        etUserName.setText(email);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LinearLayout scrollViewlinerLayout = (LinearLayout) activity.findViewById(R.id.linearLayoutForm);
-                Prescription prescription = new Prescription();
-                prescription.setEmail(etUserName.getText().toString());     //user name get email
-                prescription.setId(id);     //get ID
-                prescription.setAddressReceive(etAddress.getText().toString());     //get address
-                etNumber.setText(time());      //get time buy
-                prescription.setNumberBuy(etNumber.getText().toString());// set number buy
-                prescription.setStatus("false");
-                ArrayList<MiniPrescription> miniPrescriptions = new ArrayList<MiniPrescription>();
+    @Click(R.id.fragment_send_prescript_btn_Submit)
+    protected void submit() {
 
-                for (int i = 0; i < scrollViewlinerLayout.getChildCount(); i++) {
-                    LinearLayout innerLayout = (LinearLayout) scrollViewlinerLayout.getChildAt(i);
-                    EditText medicine = (EditText) innerLayout.findViewById(R.id.et_medicine);
-                    EditText number = (EditText) innerLayout.findViewById(R.id.et_number);
-                    MiniPrescription tempMiniPrescription = new MiniPrescription();
-                    tempMiniPrescription.setNameMedical(medicine.getText().toString());// Lay thong tin medicine(thuốc)
-                    tempMiniPrescription.setNumber(number.getText().toString());// Lay thong tin so luong
-                    miniPrescriptions.add(tempMiniPrescription);
-                    prescription.setMiniPrescription(miniPrescriptions);
+        LinearLayout scrollViewlinerLayout = (LinearLayout) getActivity()
+                .findViewById(R.id.linearLayoutForm);
 
-                }
-                LayoutInflater li = LayoutInflater.from(getActivity());
-                View customDialogView = li.inflate(R.layout.dialog_send_presciption, null);
+        Prescription prescription = new Prescription();
+        prescription.setEmail(etUserName.getText().toString());     //user name get email
+        prescription.setId(id);     //get ID
+        prescription.setAddressReceive(etAddress.getText().toString());     //get address
+        etNumber.setText(time());      //get time buy
+        prescription.setNumberBuy(etNumber.getText().toString());// set number buy
+        prescription.setStatus("false");
+        ArrayList<MiniPrescription> miniPrescriptions = new ArrayList<MiniPrescription>();
 
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-                alertDialogBuilder.setTitle("Đơn Thuốc Bạn Đặt Mua");
-                alertDialogBuilder.setView(customDialogView);
-                // gán các thuộc tính vào dialog
-                ListView lvSendPresciption = (ListView) customDialogView.findViewById(R.id.dialog_lv_sendPresciption);
-                TextView tvNameSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_nameSend);
-                TextView tvAddressSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_addressSend);
-                TextView tvNumberSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_numberSend);
-                tvNameSend.setText(prescription.getEmail());
-                tvAddressSend.setText(prescription.getAddressReceive());
-                tvNumberSend.setText(prescription.getNumberBuy());
-                arrayAdapterListview = new ArrayAdapterListview(
-                        getActivity(),
-                        R.layout.custom_listview,
-                        prescription.getMiniPrescription());
-                lvSendPresciption.setAdapter(arrayAdapterListview);
-                //
-                alertDialogBuilder.setCancelable(false).setPositiveButton("Đồng Ý",
+        for (int i = 0; i < scrollViewlinerLayout.getChildCount(); i++) {
+            LinearLayout innerLayout = (LinearLayout) scrollViewlinerLayout.getChildAt(i);
+            EditText medicine = (EditText) innerLayout.findViewById(R.id.et_medicine);
+            EditText number = (EditText) innerLayout.findViewById(R.id.et_number);
+            MiniPrescription tempMiniPrescription = new MiniPrescription();
+            tempMiniPrescription.setNameMedical(medicine.getText().toString());// Lay thong tin medicine(thuốc)
+            tempMiniPrescription.setNumber(number.getText().toString());// Lay thong tin so luong
+            miniPrescriptions.add(tempMiniPrescription);
+            prescription.setMiniPrescription(miniPrescriptions);
+
+        }
+        dialogShow(prescription);
+    }
+
+    private void dialogShow(Prescription prescription) {
+        LayoutInflater li = LayoutInflater.from(getActivity());
+        View customDialogView = li.inflate(R.layout.dialog_send_presciption, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        alertDialogBuilder.setTitle("Đơn Thuốc Bạn Đặt Mua");
+        alertDialogBuilder.setView(customDialogView);
+        // gán các thuộc tính vào dialog
+        ListView lvSendPresciption = (ListView) customDialogView.findViewById(R.id.dialog_lv_sendPresciption);
+        TextView tvNameSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_nameSend);
+        TextView tvAddressSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_addressSend);
+        TextView tvNumberSend = (TextView) customDialogView.findViewById(R.id.dialog_tv_numberSend);
+        tvNameSend.setText(prescription.getEmail());
+        tvAddressSend.setText(prescription.getAddressReceive());
+        tvNumberSend.setText(prescription.getNumberBuy());
+        arrayAdapterListview = new ArrayAdapterListview(
+                getActivity(),
+                R.layout.custom_listview,
+                prescription.getMiniPrescription());
+        lvSendPresciption.setAdapter(arrayAdapterListview);
+        //
+        alertDialogBuilder.setCancelable(false).setPositiveButton("Đồng Ý",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //submit server
+                        Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPrescription(prescription);
+                        call.enqueue(new Callback<ResponseStatus>() {
+                            @Override
+                            public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
+                                Toast.makeText(
+                                        getActivity(),
+                                        "Thành Công: " +
+                                                response.body().getStatus() +
+                                                "  " +
+                                                response.body().getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(getActivity(), PayActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseStatus> call, Throwable t) {
+                                Toast.makeText(
+                                        getActivity(),
+                                        "Thất Bại " + t.getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                                Log.e("ERROR", "" + t.getMessage());
+                            }
+                        });
+
+                    }
+                })
+                .setNegativeButton("Sửa hoặc Hủy",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                //submit server
-                                Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPrescription(prescription);
-                                call.enqueue(new Callback<ResponseStatus>() {
-                                    @Override
-                                    public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
-                                        Toast.makeText(
-                                                activity.getApplicationContext(),
-                                                "Thành Công: " +
-                                                        response.body().getStatus() +
-                                                        "  " +
-                                                        response.body().getMessage(),
-                                                Toast.LENGTH_SHORT).show();
-
-                                        Intent intent = new Intent(getActivity(), PayActivity.class);
-                                        startActivity(intent);
-                                        getActivity().finish();
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<ResponseStatus> call, Throwable t) {
-                                        Toast.makeText(
-                                                activity.getApplicationContext(),
-                                                "Thất Bại " + t.getMessage(),
-                                                Toast.LENGTH_SHORT).show();
-                                        Log.e("ERROR", "" + t.getMessage());
-                                    }
-                                });
-
-                                Toast.makeText(
-                                        activity.getApplicationContext(),
-                                        prescription
-                                                .getMiniPrescription()
-                                                .get(0)
-                                                .getNameMedical()
-                                                .toString() +
-                                                prescription
-                                                        .getMiniPrescription()
-                                                        .get(0)
-                                                        .getNumber()
-                                                        .toString(),
-                                        Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
                             }
-                        })
-                        .setNegativeButton("Sửa hoặc Hủy",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                    }
-                                });
+                        });
 
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-            }
-        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
 
     }
 
@@ -191,13 +172,11 @@ public class SendPrescriptionFragment extends Fragment {
         return timeFormat.format(today.getTime());
     }
 
-    public static void add(final Activity activity, ImageButton btn) {
-        LinearLayout linearLayoutForm = (LinearLayout) activity.findViewById(R.id.linearLayoutForm);
-        btn.setOnClickListener(new View.OnClickListener() {
+    @Click(R.id.fragment_send_prescript_btn_Add)
+    protected void add() {
+        LinearLayout linearLayoutForm = (LinearLayout) getActivity().findViewById(R.id.linearLayoutForm);
 
-            @Override
-            public void onClick(View v) {
-                LinearLayout newView = (LinearLayout) activity
+        LinearLayout newView = (LinearLayout) getActivity()
                         .getLayoutInflater()
                         .inflate(R.layout.rowdetail, null);
                 newView.setLayoutParams(
@@ -214,6 +193,5 @@ public class SendPrescriptionFragment extends Fragment {
                 });
                 linearLayoutForm.addView(newView);
             }
-        });
-    }
+
 }

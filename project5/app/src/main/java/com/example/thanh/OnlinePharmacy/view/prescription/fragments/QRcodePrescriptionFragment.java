@@ -1,6 +1,5 @@
 package com.example.thanh.OnlinePharmacy.view.prescription.fragments;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +27,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 
 import java.text.SimpleDateFormat;
@@ -53,12 +53,13 @@ public class QRcodePrescriptionFragment extends Fragment {
 
     @AfterViews
     protected void init() {
+
         initSharedPreferences();
-        scannerQrCode(getActivity());
     }
 
-    private void scannerQrCode(Activity activity) {
-        IntentIntegrator integrator = new IntentIntegrator(activity);
+    @Click(R.id.fragment_bt_scan_qr)
+    protected void scannerQrCode() {
+        IntentIntegrator integrator = new IntentIntegrator(getActivity());
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
         integrator.setPrompt("Scan QR");
         integrator.setCameraId(0);
@@ -172,7 +173,7 @@ public class QRcodePrescriptionFragment extends Fragment {
                             .setNegativeButton("Sửa hoặc Hủy",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-                                            scannerQrCode(getActivity());
+                                            scannerQrCode();
                                             dialog.cancel();
                                         }
                                     });

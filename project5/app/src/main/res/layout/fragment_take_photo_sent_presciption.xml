@@ -32,7 +32,8 @@
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:layout_margin="5dp"
-            android:background="@drawable/ic_upload" />
+            android:padding="10dp"
+            android:src="@drawable/ic_upload" />
     </RelativeLayout>
 
     <ImageView

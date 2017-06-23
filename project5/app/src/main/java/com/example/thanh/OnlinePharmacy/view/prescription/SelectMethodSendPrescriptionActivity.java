@@ -28,9 +28,9 @@ public class SelectMethodSendPrescriptionActivity extends AppCompatActivity {
     @AfterViews
     protected void init() {
 
-//        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         //toolbar.setLogo(getDrawable(R.drawable.ic_list));
-        toolbar.setTitle("Nhập Đơn thuốc");
+        toolbar.setTitle("Nhập Đơn Thuốc");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
         FragmentManager manager = getSupportFragmentManager();
         PagerFragmentAdapter adapter = new PagerFragmentAdapter(manager);

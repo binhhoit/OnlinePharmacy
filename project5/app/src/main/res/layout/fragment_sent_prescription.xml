@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_receiver_presciption"
+    android:id="@+id/fragment_receiver_presciption"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,64 +11,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/layout_send_1">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="16dp">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
                 android:id="@+id/tv_name_transfer"
                 android:text="Tên:"/>
 
             <TextView
-                android:id="@+id/activity_send_prescript_tv_name_transfer"
+                android:id="@+id/fragment_send_prescript_tv_name_transfer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_margin="16dp">
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
                 android:id="@+id/tv_address_transfer"
                 android:text="Địa chỉ:"/>
 
             <EditText
-                android:id="@+id/activity_send_prescript_et_address_transfer"
+                android:id="@+id/fragment_send_prescript_et_address_transfer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:text="xóm 5, thôn 3, xã Lộc An, H Bảo lâm, T lâm Đồng" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_margin="16dp">
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="125dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_number_transfer"
+                android:gravity="center|left"
                 android:text="Lần giao dịch:"/>
 
             <TextView
-                android:id="@+id/activity_send_prescript_et_number_transfer"
+                android:id="@+id/fragment_send_prescript_et_number_transfer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout
@@ -105,13 +104,15 @@
     <ScrollView android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_below="@id/layout_send_1"
-        android:layout_above="@+id/layout_send_3"     >
+        android:layout_above="@+id/layout_send_3">
+
         <LinearLayout android:id="@+id/linearLayoutForm"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
         </LinearLayout>
     </ScrollView>
 
@@ -119,31 +120,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginLeft="15dp"
         android:id="@+id/layout_send_3"
         android:layout_alignParentBottom="true">
 
-        <ImageButton android:id="@+id/activity_send_prescript_btn_Add"
+        <ImageButton
+            android:id="@+id/fragment_send_prescript_btn_Add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-
             android:layout_alignParentRight="true"
             android:contentDescription="ADD"
             android:padding="10dp"
             android:layout_marginBottom="5dp"
-
-
-            android:layout_above="@+id/activity_send_prescript_btn_Submit"
             android:background="@drawable/button_round"
             android:src="@android:drawable/ic_menu_add" />
 
-        <Button android:id="@+id/btnSubmit"
+        <Button
+            android:id="@+id/fragment_send_prescript_btn_Submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
             android:layout_alignParentBottom="true"
             android:background="@drawable/button_login_form"
             android:textColor="@color/colorWhite"
-
             android:text="Sumit!" />
     </LinearLayout>
 

@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/android_gridview_example"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_menu_toolbar"
+        app:tabSelectedTextColor="#e66d6d"
+        app:tabTextColor="#7c6854"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#0F9D58">
+    </android.support.v7.widget.Toolbar>
     <GridView
         android:id="@+id/grid_view_image_text"
         android:layout_width="match_parent"

@@ -3,6 +3,7 @@ package com.example.thanh.OnlinePharmacy.view.menu;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,7 +23,8 @@ import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_menu)
 public class Menu extends AppCompatActivity {
-
+    @ViewById(R.id.activity_menu_toolbar)
+    protected Toolbar toolbar;
     @ViewById(R.id.grid_view_image_text)
     protected GridView androidGridView;
 
@@ -39,6 +41,8 @@ public class Menu extends AppCompatActivity {
 
     @AfterViews
     void init() {
+        toolbar.setTitle("Lựa Chọn Chức Năng");
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
         gridViewString =  getResources().getStringArray(R.array.menu);
 
         CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(
