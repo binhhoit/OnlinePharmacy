@@ -1,11 +1,12 @@
-package com.example.thanh.OnlinePharmacy.view.prescription;
+package com.example.thanh.OnlinePharmacy.view.prescription.fragments;
+
 
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,17 +19,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.thanh.OnlinePharmacy.R;
+import com.example.thanh.OnlinePharmacy.model.ArrayAdapterListview;
+import com.example.thanh.OnlinePharmacy.model.MiniPrescription;
+import com.example.thanh.OnlinePharmacy.model.Prescription;
+import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
-import com.example.thanh.OnlinePharmacy.model.ArrayAdapterListview;
-import com.example.thanh.OnlinePharmacy.model.Prescription;
-import com.example.thanh.OnlinePharmacy.model.MiniPrescription;
-import com.example.thanh.OnlinePharmacy.R;
-import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 import java.text.SimpleDateFormat;
@@ -39,8 +40,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-@EActivity(R.layout.activity_send_presciption)
-public class SendPresciptionActivity extends AppCompatActivity {
+import static android.content.Context.MODE_PRIVATE;
+
+/**
+ * Created by PC_ASUS on 6/23/2017.
+ */
+@EFragment(R.layout.fragment_sent_prescription)
+public class SendPrescriptionFragment extends Fragment {
 
     @ViewById(R.id.activity_send_prescript_btn_Add)
     protected ImageButton btnAdd;
@@ -62,13 +68,13 @@ public class SendPresciptionActivity extends AppCompatActivity {
     void init() {
 
         initSharedPreferences();
-        add(this, btnAdd);
-        submit(this, btnSubmit);
+        add(getActivity(), btnAdd);
+        submit(getActivity(), btnSubmit);
 
     }
 
     private void initSharedPreferences() {
-        sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
         id = sharedPreferences.getString(Constants.ID, "");
         email = sharedPreferences.getString(Constants.EMAIL, "");
     }
@@ -99,10 +105,10 @@ public class SendPresciptionActivity extends AppCompatActivity {
                     prescription.setMiniPrescription(miniPrescriptions);
 
                 }
-                LayoutInflater li = LayoutInflater.from(SendPresciptionActivity.this);
+                LayoutInflater li = LayoutInflater.from(getActivity());
                 View customDialogView = li.inflate(R.layout.dialog_send_presciption, null);
 
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SendPresciptionActivity.this);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
                 alertDialogBuilder.setTitle("Đơn Thuốc Bạn Đặt Mua");
                 alertDialogBuilder.setView(customDialogView);
                 // gán các thuộc tính vào dialog
@@ -114,7 +120,7 @@ public class SendPresciptionActivity extends AppCompatActivity {
                 tvAddressSend.setText(prescription.getAddressReceive());
                 tvNumberSend.setText(prescription.getNumberBuy());
                 arrayAdapterListview = new ArrayAdapterListview(
-                        SendPresciptionActivity.this,
+                        getActivity(),
                         R.layout.custom_listview,
                         prescription.getMiniPrescription());
                 lvSendPresciption.setAdapter(arrayAdapterListview);
@@ -135,9 +141,9 @@ public class SendPresciptionActivity extends AppCompatActivity {
                                                         response.body().getMessage(),
                                                 Toast.LENGTH_SHORT).show();
 
-                                        Intent intent = new Intent(SendPresciptionActivity.this, PayActivity.class);
+                                        Intent intent = new Intent(getActivity(), PayActivity.class);
                                         startActivity(intent);
-                                        finish();
+                                        getActivity().finish();
                                     }
 
                                     @Override
@@ -163,7 +169,6 @@ public class SendPresciptionActivity extends AppCompatActivity {
                                                         .getNumber()
                                                         .toString(),
                                         Toast.LENGTH_SHORT).show();
-
                             }
                         })
                         .setNegativeButton("Sửa hoặc Hủy",

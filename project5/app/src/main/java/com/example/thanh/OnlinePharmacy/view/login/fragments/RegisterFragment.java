@@ -37,7 +37,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
-@EFragment(R.layout.activity_register_fragment)
+@EFragment(R.layout.fragment_register)
 public class RegisterFragment extends Fragment implements Validator.ValidationListener {
 
     public static final String TAG = RegisterFragment.class.getSimpleName();

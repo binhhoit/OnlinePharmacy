@@ -95,7 +95,7 @@
                 android:text="số lượng"
                 android:textAlignment="center"
                 android:textSize="20dp" />
-            </LinearLayout>
+        </LinearLayout>
 
 
     </LinearLayout>

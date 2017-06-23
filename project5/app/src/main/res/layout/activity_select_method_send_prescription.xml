@@ -4,25 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="150dp"
-    android:paddingLeft="10dp"
+    android:orientation="vertical"
     tools:context="com.example.thanh.OnlinePharmacy.Prescription.Select_method_send_prescription">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_photo"
-        android:text="chụp hình "/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_QR"
-        android:text="quét QR code"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_handInput"
-        android:text="Nhập bằng tay"/>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_select_method_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#c8c8c9"
+        app:tabSelectedTextColor="#e66d6d"
+        app:tabTextColor="#7c6854">
+
+    </android.support.v7.widget.Toolbar>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/activity_select_method_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#c8c8c9"
+        app:tabSelectedTextColor="#e66d6d"
+        app:tabTextColor="#7c6854">
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/activity_select_method_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!--
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_photo"
+            android:text="chụp hình "/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_QR"
+            android:text="quét QR code"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_handInput"
+            android:text="Nhập bằng tay"/>
+    -->
 
 
 </LinearLayout>

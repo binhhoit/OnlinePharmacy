@@ -5,14 +5,12 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.thanh.OnlinePharmacy.model.Response;
-import com.example.thanh.OnlinePharmacy.model.User;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.R;
@@ -41,10 +39,8 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.thanh.OnlinePharmacy.utils.Validation.validateEmail;
-import static com.example.thanh.OnlinePharmacy.utils.Validation.validateFields;
 
-@EFragment(R.layout.activity_login_fragment)
+@EFragment(R.layout.fragment_login)
 public class LoginFragment extends Fragment implements Validator.ValidationListener {
 
     public static final String TAG = LoginFragment.class.getSimpleName();

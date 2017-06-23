@@ -31,7 +31,7 @@ import rx.subscriptions.CompositeSubscription;
 import static com.example.thanh.OnlinePharmacy.utils.Validation.validateEmail;
 import static com.example.thanh.OnlinePharmacy.utils.Validation.validateFields;
 
-@EFragment(R.layout.activity_reset_password_dialog)
+@EFragment(R.layout.dialog_fragment_reset_password)
 public class ResetPasswordDialog extends DialogFragment {
 
     public interface Listener {

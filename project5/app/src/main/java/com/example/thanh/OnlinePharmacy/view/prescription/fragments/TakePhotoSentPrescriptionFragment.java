@@ -1,10 +1,11 @@
-package com.example.thanh.OnlinePharmacy.view.prescription;
+package com.example.thanh.OnlinePharmacy.view.prescription.fragments;
+
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,7 +24,7 @@ import com.kosalgeek.android.photoutil.ImageBase64;
 import com.kosalgeek.android.photoutil.ImageLoader;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 import java.io.FileNotFoundException;
@@ -35,9 +36,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-@EActivity(R.layout.activity_take_photo_sent_prescription)
-public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
+import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * Created by PC_ASUS on 6/23/2017.
+ */
+@EFragment(R.layout.fragment_take_photo_sent_presciption)
+public class TakePhotoSentPrescriptionFragment extends Fragment {
     @ViewById(R.id.activity_photo_iv_camera)
     protected ImageView ivCamera;
     @ViewById(R.id.activity_photo_iv_picture)
@@ -63,8 +69,8 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
     void init() {
         initSharedPreferences();
 
-        cameraPhoto = new CameraPhoto(getApplicationContext());
-        galleryPhoto = new GalleryPhoto(getApplicationContext());
+        cameraPhoto = new CameraPhoto(getContext());
+        galleryPhoto = new GalleryPhoto(getContext());
 
         ivCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +82,7 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(
-                            getApplicationContext(),
+                            getContext(),
                             "Khong goi duoc camera",
                             Toast.LENGTH_SHORT)
                             .show();
@@ -114,23 +120,23 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
                             Toast.makeText(
-                                    TakePhotoSentPrescriptionActivity.this,
+                                  getActivity(),
                                     "Thành Công: " +
                                             response.body().getStatus() +
                                             "  " +
                                             response.body().getMessage(),
                                     Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(
-                                    TakePhotoSentPrescriptionActivity.this,
+                                   getActivity(),
                                     PayActivity.class);
                             startActivity(intent);
-                            finish();
+                            getActivity().finish();
                         }
 
                         @Override
                         public void onFailure(Call<ResponseStatus> call, Throwable t) {
                             Toast.makeText(
-                                    TakePhotoSentPrescriptionActivity.this,
+                                    getActivity(),
                                     "Thất Bại " + t.getMessage(),
                                     Toast.LENGTH_SHORT).show();
                             Log.e("ERROR", "" + t.getMessage());
@@ -139,19 +145,19 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
 
                 } catch (FileNotFoundException e) {
                     Toast.makeText(
-                            getApplicationContext(),
+                            getActivity(),
                             "Khong the endcoding picture",
                             Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        Crash.checkForUpdates(this);
+        Crash.checkForUpdates(getActivity());
     }
 
     private void initSharedPreferences() {
 
-        sharedPreferences = getApplication()
+        sharedPreferences =   getActivity()
                 .getSharedPreferences("account", MODE_PRIVATE);
 
         id = sharedPreferences.getString(Constants.ID, "");
@@ -165,7 +171,7 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == CAMERA_REQUEST) {
                 String photoPath = cameraPhoto.getPhotoPath();
@@ -178,7 +184,7 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                     Toast.makeText(
-                            getApplicationContext(),
+                            getActivity(),
                             getString(R.string.take_again),
                             Toast.LENGTH_SHORT).show();
                 }
@@ -193,7 +199,7 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
                     Bitmap bitmap = ImageLoader.init().from(photoPath).requestSize(512, 512).getBitmap();
                     ivImage.setImageBitmap(bitmap);
                 } catch (FileNotFoundException e) {
-                    Toast.makeText(getApplicationContext(),
+                    Toast.makeText(getActivity(),
                             "Something Wrong while choosing photos", Toast.LENGTH_SHORT).show();
                 }
 
@@ -205,7 +211,7 @@ public class TakePhotoSentPrescriptionActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         // ... your own onResume implementation
-        Crash.checkForCrashes(this);
+        Crash.checkForCrashes(getActivity());
     }
 
     @Override

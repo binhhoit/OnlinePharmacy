@@ -89,5 +89,6 @@ dependencies {
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
     //Hawk 2.0 using save user or pass
     compile 'com.orhanobut:hawk:2.0.1'
+
 }
 apply from: '../quality/quality.gradle'

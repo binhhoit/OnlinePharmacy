@@ -1,11 +1,11 @@
-package com.example.thanh.OnlinePharmacy.view.prescription;
+package com.example.thanh.OnlinePharmacy.view.prescription.fragments;
 
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +13,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.thanh.OnlinePharmacy.R;
+import com.example.thanh.OnlinePharmacy.model.ArrayAdapterListview;
+import com.example.thanh.OnlinePharmacy.model.MiniPrescription;
+import com.example.thanh.OnlinePharmacy.model.Prescription;
+import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
-import com.example.thanh.OnlinePharmacy.model.ArrayAdapterListview;
-import com.example.thanh.OnlinePharmacy.model.Prescription;
-import com.example.thanh.OnlinePharmacy.model.MiniPrescription;
-import com.example.thanh.OnlinePharmacy.R;
-import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
@@ -28,7 +28,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.EFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,8 +38,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-@EActivity(R.layout.activity_qrcode_prescription)
-public class QRcodePrescriptionActivity extends AppCompatActivity {
+import static android.content.Context.MODE_PRIVATE;
+
+/**
+ * Created by PC_ASUS on 6/23/2017.
+ */
+@EFragment(R.layout.fragment_qrcode_prescription)
+public class QRcodePrescriptionFragment extends Fragment {
 
     private SharedPreferences sharedPreferences;
     private String id;
@@ -49,7 +54,7 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
     @AfterViews
     protected void init() {
         initSharedPreferences();
-        scannerQrCode(this);
+        scannerQrCode(getActivity());
     }
 
     private void scannerQrCode(Activity activity) {
@@ -62,22 +67,20 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
         integrator.initiateScan();
     }
 
-    ;
-
     private void initSharedPreferences() {
 
-        sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
         id = sharedPreferences.getString(Constants.ID, "");
         email = sharedPreferences.getString(Constants.EMAIL, "");
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
-                Toast.makeText(getApplicationContext(), "you cancelled the scanning", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "you cancelled the scanning", Toast.LENGTH_SHORT).show();
             } else {
 
                 Prescription prescription = new Prescription();
@@ -105,10 +108,10 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
                     prescription.setMiniPrescription(miniPrescriptions);
 
                     //show dialog
-                    LayoutInflater li = LayoutInflater.from(QRcodePrescriptionActivity.this);
+                    LayoutInflater li = LayoutInflater.from(getActivity());
                     View customDialogView = li.inflate(R.layout.dialog_send_presciption, null);
 
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(QRcodePrescriptionActivity.this);
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
                     alertDialogBuilder.setTitle("Đơn Thuốc Bạn Đặt Mua");
                     alertDialogBuilder.setView(customDialogView);
 
@@ -127,7 +130,7 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
                     tvNumberSend.setText(prescription.getNumberBuy());
 
                     arrayAdapterListview = new ArrayAdapterListview(
-                            QRcodePrescriptionActivity.this,
+                            getActivity(),
                             R.layout.custom_listview,
                             prescription.getMiniPrescription());
                     lvSendPresciption.setAdapter(arrayAdapterListview);
@@ -142,14 +145,14 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
                                         @Override
                                         public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
                                             Toast.makeText(
-                                                    QRcodePrescriptionActivity.this,
+                                                    getActivity(),
                                                     "Thành Công: " +
                                                             response.body().getStatus() +
                                                             "  " +
                                                             response.body().getMessage(),
                                                     Toast.LENGTH_SHORT).show();
 
-                                            Intent intent = new Intent(QRcodePrescriptionActivity.this, PayActivity.class);
+                                            Intent intent = new Intent(getActivity(), PayActivity.class);
                                             dialog.dismiss();
                                             startActivity(intent);
                                         }
@@ -157,22 +160,19 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
                                         @Override
                                         public void onFailure(Call<ResponseStatus> call, Throwable t) {
                                             Toast.makeText(
-                                                    QRcodePrescriptionActivity.this,
+                                                    getActivity(),
                                                     "Thất Bại " +
                                                             t.getMessage(),
                                                     Toast.LENGTH_SHORT).show();
                                             Log.e("ERROR", "" + t.getMessage());
                                         }
                                     });
-
-
                                 }
                             })
                             .setNegativeButton("Sửa hoặc Hủy",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-//                                                dialog.cancel();
-                                            scannerQrCode(QRcodePrescriptionActivity.this);
+                                            scannerQrCode(getActivity());
                                             dialog.cancel();
                                         }
                                     });
@@ -180,11 +180,10 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
 
-
                 } catch (Exception e) {
                     Log.e("Error QR", "" + e.getMessage());
                     Toast.makeText(
-                            getApplication(),
+                            getActivity(),
                             getString(R.string.qr_faile),
                             Toast.LENGTH_LONG)
                             .show();
@@ -196,10 +195,10 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         Log.e("finish", "ket thuc");
-        finish();
+        //finish();
     }
 
     private String time() {
@@ -208,3 +207,4 @@ public class QRcodePrescriptionActivity extends AppCompatActivity {
         return timeFormat.format(today.getTime());
     }
 }
+

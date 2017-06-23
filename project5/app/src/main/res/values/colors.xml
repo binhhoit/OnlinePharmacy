@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorTurquoise">#1abc9c</color>
-    <color name="colorTurquoiselight">#3b1abc9c</color>
+    <color name="colorTurquoiselight">#3bc2cecb</color>
     <color name="colorGreenSea">#16a085</color>
     <color name="colorCloud">#ecf0f1</color>
     <color name="colorEmerald">#2ecc71</color>
@@ -13,6 +13,7 @@
     <color name="colorBelizeHole">#2980b9</color>
     <color name="colorSiver">#bdc3c7</color>
     <color name="colorAsbestos">#7f8c8d</color>
+    <color name="colortoolbar">#e66d6d</color>
 
     <color name="bgToolbar">#183545</color>
     <color name="colorWhite">#FFF</color>

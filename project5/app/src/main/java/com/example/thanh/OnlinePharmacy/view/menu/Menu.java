@@ -34,7 +34,7 @@ public class Menu extends AppCompatActivity {
             R.drawable.ic_list,
             R.drawable.ic_checkpharmacy,
             R.drawable.ic_browsing,
-            R.drawable.ic_user,
+            R.drawable.ic_info_about,
     };
 
     @AfterViews

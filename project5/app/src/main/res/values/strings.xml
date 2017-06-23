@@ -34,6 +34,7 @@
 
     <string-array name="menu">
         <item>Thiết lập người dùng</item>
+        <item>Kiểm Tra Tài Khoản</item>
         <item>Đặt đơn thuốc</item>
         <item>Kiểm tra các đơn thuốc</item>
         <item>Đơn thuốc đã duyệt</item>
