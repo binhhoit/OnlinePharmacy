@@ -94,7 +94,7 @@ public class LoginFragment extends Fragment implements Validator.ValidationListe
         String password = etPassword.getText().toString();
 
         loginProcess(email, password);
-        startAnim();
+
 
     }
 
@@ -117,6 +117,7 @@ public class LoginFragment extends Fragment implements Validator.ValidationListe
 
     // process login
     private void loginProcess(String email, String password) {
+        startAnim();
         // khởi tạo gọi class NetworkUtil
         subscriptions.add(NetworkUtil
                 .getRetrofit(email, password)

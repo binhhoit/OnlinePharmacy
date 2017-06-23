@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_receiver_presciption"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.thanh.OnlinePharmacy.Prescription.fragments.ReceiverPresciption">
+    android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_receiver_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#0F9D58"
+        app:tabSelectedTextColor="#e66d6d"
+        app:tabTextColor="#7c6854"></android.support.v7.widget.Toolbar>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:orientation="vertical"
         android:id="@+id/layout1">
 
@@ -22,10 +30,10 @@
 
             <TextView
                 android:id="@+id/tv_name_x"
-                android:layout_width="125dp"
+                android:layout_width="110dp"
                 android:layout_height="match_parent"
                 android:paddingTop="10dp"
-                android:text="Mã Đơn Thuốc:"
+                android:text="Mã Đơn Thuốc"
                 android:textSize="15dp" />
 
             <TextView
@@ -46,10 +54,10 @@
 
             <TextView
                 android:id="@+id/tv_id_x"
-                android:layout_width="125dp"
+                android:layout_width="110dp"
                 android:layout_height="match_parent"
                 android:paddingTop="15dp"
-                android:text="Tên:"
+                android:text="Tên"
                 android:textSize="15dp" />
 
             <TextView
@@ -69,10 +77,10 @@
 
             <TextView
                 android:id="@+id/tv_address_x"
-                android:layout_width="125dp"
+                android:layout_width="110dp"
                 android:layout_height="match_parent"
                 android:paddingTop="15dp"
-                android:text="Địa chỉ:"
+                android:text="Địa chỉ"
                 android:textSize="15dp" />
 
             <TextView
@@ -92,10 +100,10 @@
 
             <TextView
                 android:id="@+id/tv_numberbuy_x"
-                android:layout_width="125dp"
+                android:layout_width="110dp"
                 android:layout_height="match_parent"
                 android:paddingTop="15dp"
-                android:text="Lần Giao Dịch:"
+                android:text="Lần Giao Dịch"
                 android:textSize="15dp" />
 
             <Spinner
@@ -139,9 +147,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layout2"
-        android:layout_below="@+id/layout1"
-        android:layout_above="@+id/layout3"
-
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="#f1f1f1"
         android:orientation="horizontal">
 
@@ -157,11 +164,11 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:gravity="center|bottom"
-        android:layout_alignParentBottom="true"
         android:layout_marginTop="5dp"
-        android:orientation="horizontal"
         android:id="@+id/layout3"
-        >
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/activity_receiverPresciption_btn_selectPay"
@@ -174,4 +181,4 @@
             android:text="Chọn phương thức Thanh Toán" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
