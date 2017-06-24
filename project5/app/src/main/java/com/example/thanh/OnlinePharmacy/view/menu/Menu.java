@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.thanh.OnlinePharmacy.view.login.Profile_;
 import com.example.thanh.OnlinePharmacy.view.pay.PayCardActivity_;
-import com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPresciptionActivity_;
+import com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPrescriptionActivity_;
 import com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPrescriptionConfirmActivity_;
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.view.prescription.SelectMethodSendPrescriptionActivity_;
@@ -68,7 +68,7 @@ public class Menu extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if (i == 3) {
-                    Intent passPrescription = new Intent(Menu.this, ReceiverPresciptionActivity_.class);
+                    Intent passPrescription = new Intent(Menu.this, ReceiverPrescriptionActivity_.class);
                     startActivity(passPrescription);
                 }
                 if (i == 4) {

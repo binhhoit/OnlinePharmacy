@@ -35,9 +35,7 @@ android {
             targetSdkVersion 16
         }
     }
-    aaptOptions {
-        cruncherEnabled = false
-    }
+
 }
 repositories {
     mavenCentral()
@@ -92,3 +90,4 @@ dependencies {
 
 }
 apply from: '../quality/quality.gradle'
+

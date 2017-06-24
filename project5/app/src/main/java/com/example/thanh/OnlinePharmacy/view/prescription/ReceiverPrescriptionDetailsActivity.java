@@ -1,41 +1,41 @@
 package com.example.thanh.OnlinePharmacy.view.prescription;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.content.DialogInterface;
+        import android.content.Intent;
+        import android.content.SharedPreferences;
+        import android.support.v7.app.AlertDialog;
+        import android.support.v7.app.AppCompatActivity;
+        import android.util.Log;
+        import android.view.View;
+        import android.widget.AdapterView;
+        import android.widget.ArrayAdapter;
+        import android.widget.Button;
+        import android.widget.ListView;
+        import android.widget.Spinner;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
-import com.example.thanh.OnlinePharmacy.utils.Constants;
-import com.example.thanh.OnlinePharmacy.view.menu.Menu_;
-import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
-import com.example.thanh.OnlinePharmacy.model.ArrayAdapterListview;
-import com.example.thanh.OnlinePharmacy.R;
-import com.example.thanh.OnlinePharmacy.model.Prescription;
+        import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
+        import com.example.thanh.OnlinePharmacy.utils.Constants;
+        import com.example.thanh.OnlinePharmacy.view.menu.Menu_;
+        import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
+        import com.example.thanh.OnlinePharmacy.model.ArrayAdapterListview;
+        import com.example.thanh.OnlinePharmacy.R;
+        import com.example.thanh.OnlinePharmacy.model.Prescription;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
+        import org.androidannotations.annotations.AfterViews;
+        import org.androidannotations.annotations.EActivity;
+        import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+        import java.util.ArrayList;
+        import java.util.Collections;
+        import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
+        import retrofit2.Call;
+        import retrofit2.Callback;
 
-@EActivity(R.layout.activity_receiver_presciption)
-public class ReceiverPresciptionActivity extends AppCompatActivity {
+@EActivity(R.layout.activity_receiver_presciption_details)
+public class ReceiverPrescriptionDetailsActivity extends AppCompatActivity {
 
     @ViewById(R.id.activity_receiverPresciption_tv_name)
     protected TextView tvName;
@@ -83,7 +83,7 @@ public class ReceiverPresciptionActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     prescription = response.body();
                     if (prescription.size() == 0) {
-                        AlertDialog alertDialog = new AlertDialog.Builder(ReceiverPresciptionActivity.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(ReceiverPrescriptionDetailsActivity.this).create();
                         alertDialog.setCanceledOnTouchOutside(false);
                         alertDialog.setTitle("Thông Báo");
                         alertDialog.setMessage("Bạn chưa có đơn thuốc nào !");
@@ -92,7 +92,7 @@ public class ReceiverPresciptionActivity extends AppCompatActivity {
                                 new DialogInterface.OnClickListener() {
 
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent menu = new Intent(ReceiverPresciptionActivity.this, Menu_.class);
+                                        Intent menu = new Intent(ReceiverPrescriptionDetailsActivity.this, Menu_.class);
                                         startActivity(menu);
                                         finish();
 
@@ -111,7 +111,7 @@ public class ReceiverPresciptionActivity extends AppCompatActivity {
                         Collections.reverse(prescription);
                         //lưa chọn lần mua để xem
                         spnArrayAdapter = new ArrayAdapter(
-                                ReceiverPresciptionActivity.this,
+                                ReceiverPrescriptionDetailsActivity.this,
                                 android.R.layout.simple_spinner_item,
                                 numberBuy);
                         spnArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
@@ -121,14 +121,14 @@ public class ReceiverPresciptionActivity extends AppCompatActivity {
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                 if (position == 0) {
                                     String string = getString(R.string.choose_top);
-                                    Toast.makeText(ReceiverPresciptionActivity.this, string, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ReceiverPrescriptionDetailsActivity.this, string, Toast.LENGTH_SHORT).show();
                                 } else {
                                     position = position - 1;
                                     tvName.setText(prescription.get(position).getIdDatabaseCreate());
                                     tvEmail.setText(prescription.get(position).getEmail());
                                     tvAddress.setText(prescription.get(position).getAddressReceive());
                                     arrayAdapterListview = new ArrayAdapterListview(
-                                            ReceiverPresciptionActivity.this,
+                                            ReceiverPrescriptionDetailsActivity.this,
                                             R.layout.custom_listview,
                                             prescription.get(position).getMiniPrescription());
                                     lvReceiver.setAdapter(arrayAdapterListview);

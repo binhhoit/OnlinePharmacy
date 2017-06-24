@@ -59,13 +59,14 @@ public class QRcodePrescriptionFragment extends Fragment {
 
     @Click(R.id.fragment_bt_scan_qr)
     protected void scannerQrCode() {
-        IntentIntegrator integrator = new IntentIntegrator(getActivity());
+        IntentIntegrator integrator = IntentIntegrator.forSupportFragment(QRcodePrescriptionFragment.this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
         integrator.setPrompt("Scan QR");
         integrator.setCameraId(0);
         integrator.setBeepEnabled(false);
         integrator.setBarcodeImageEnabled(false);
         integrator.initiateScan();
+
     }
 
     private void initSharedPreferences() {
@@ -84,13 +85,14 @@ public class QRcodePrescriptionFragment extends Fragment {
                 Toast.makeText(getActivity(), "you cancelled the scanning", Toast.LENGTH_SHORT).show();
             } else {
 
+                Log.e("kết quả", "onActivityResult: " + "QR" );
                 Prescription prescription = new Prescription();
                 prescription.setEmail(email);   //get mail
                 prescription.setId(id);     //get id
                 prescription.setAddressReceive("nghĩ cách điền sau");   //getaddress
                 prescription.setNumberBuy(time().toString());      //number buy
                 prescription.setStatus("false");
-                ArrayList<MiniPrescription> miniPrescriptions = new ArrayList<MiniPrescription>();
+                ArrayList<MiniPrescription> miniPrescriptions = new ArrayList();
 
                 //parse json
                 try {
@@ -194,6 +196,8 @@ public class QRcodePrescriptionFragment extends Fragment {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+
 
     @Override
     public void onDestroy() {
