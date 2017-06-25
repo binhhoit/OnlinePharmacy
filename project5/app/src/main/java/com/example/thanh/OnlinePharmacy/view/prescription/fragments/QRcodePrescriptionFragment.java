@@ -20,6 +20,7 @@ import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
+import com.example.thanh.OnlinePharmacy.view.pay.PayActivity_;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
@@ -155,7 +156,7 @@ public class QRcodePrescriptionFragment extends Fragment {
                                                             response.body().getMessage(),
                                                     Toast.LENGTH_SHORT).show();
 
-                                            Intent intent = new Intent(getActivity(), PayActivity.class);
+                                            Intent intent = new Intent(getActivity(), PayActivity_.class);
                                             dialog.dismiss();
                                             startActivity(intent);
                                         }

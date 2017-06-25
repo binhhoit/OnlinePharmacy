@@ -209,19 +209,10 @@ module.exports = router => {
 	});
 
 	router.post('/prescription', (req, res) => {
-		var prescription = req.body/*= {
-			id: req.body.id,
-			addressReceive: req.body.addressReceive,
-			number_buy: req.body.number_buy,
-			prescription: [
-				{
-					nameMedical: req.body.nameMedical,
-					number: req.body.number,
-				}
-			]
-		}*/
-		//console.log(prescription);
-		prescription_post.prescriptionPost(prescription)
+
+		console.log("//////////////--->");
+		console.log(req.body.prescription);
+		prescription_post.prescriptionPost(req.body)
 			.then(result => {
 				// console.log(result.status + "   " + result.message);
 				res.json({ status: result.status, message: result.message });

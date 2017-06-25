@@ -34,10 +34,10 @@
 
     <string-array name="menu">
         <item>Thiết lập người dùng</item>
-        <item>Kiểm Tra Tài Khoản</item>
+        <item>Tài khoản</item>
         <item>Đặt đơn thuốc</item>
-        <item>Kiểm tra các đơn thuốc</item>
+        <item>Kiểm tra đơn thuốc</item>
         <item>Đơn thuốc đã duyệt</item>
-        <item>Thông Tin Thêm</item>
+        <item>Thông tin thêm</item>
     </string-array>
 </resources>

@@ -25,6 +25,7 @@ import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
+import com.example.thanh.OnlinePharmacy.view.pay.PayActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -125,6 +126,7 @@ public class SendPrescriptionFragment extends Fragment {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //submit server
+                        Log.e("prescription",prescription.getMiniPrescription().toString());
                         Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPrescription(prescription);
                         call.enqueue(new Callback<ResponseStatus>() {
                             @Override
@@ -137,9 +139,10 @@ public class SendPrescriptionFragment extends Fragment {
                                                 response.body().getMessage(),
                                         Toast.LENGTH_SHORT).show();
 
-                                Intent intent = new Intent(getActivity(), PayActivity.class);
+                                Intent intent = new Intent(getActivity(), PayActivity_.class);
                                 startActivity(intent);
                                 getActivity().finish();
+                                //thêm thông báo bên kia đặt đơn thuốc thành công
                             }
 
                             @Override

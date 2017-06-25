@@ -12,7 +12,7 @@
         app:tabTextColor="#7c6854"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="#0F9D58">
+        android:background="#30b58a">
     </android.support.v7.widget.Toolbar>
     <GridView
         android:id="@+id/grid_view_image_text"

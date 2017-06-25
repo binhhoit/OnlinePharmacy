@@ -11,7 +11,7 @@
         android:id="@+id/activity_select_method_toolbar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="#0F9D58"
+        android:background="#30b58a"
         app:tabSelectedTextColor="#e66d6d"
         app:tabTextColor="#7c6854">
     </android.support.v7.widget.Toolbar>

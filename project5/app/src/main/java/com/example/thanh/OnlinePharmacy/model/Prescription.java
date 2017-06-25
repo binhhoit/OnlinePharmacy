@@ -7,6 +7,7 @@ package com.example.thanh.OnlinePharmacy.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Prescription {
     @SerializedName("idDatabaseCreate")
@@ -23,8 +24,8 @@ public class Prescription {
     private String numberBuy;
     @SerializedName("price")
     private String price;
-    @SerializedName("Prescription")
-    private ArrayList<MiniPrescription> miniPrescription = new ArrayList<>();
+    @SerializedName("prescription")
+    private List<MiniPrescription> miniPrescription = new ArrayList<>();
 
     public String getIdDatabaseCreate() {
         return idDatabaseCreate;
@@ -84,11 +85,11 @@ public class Prescription {
         this.price = price;
     }
 
-    public ArrayList<MiniPrescription> getMiniPrescription() {
+    public List<MiniPrescription> getMiniPrescription() {
         return miniPrescription;
     }
 
-    public void setMiniPrescription(ArrayList<MiniPrescription> miniPrescription) {
+    public void setMiniPrescription(List<MiniPrescription> miniPrescription) {
         this.miniPrescription = miniPrescription;
     }
 }

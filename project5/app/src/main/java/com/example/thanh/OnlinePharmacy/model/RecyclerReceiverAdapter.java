@@ -33,8 +33,8 @@ public class RecyclerReceiverAdapter extends RecyclerView.Adapter<RecyclerReceiv
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tvIdPrescription.setText("sjds");
-        holder.tvDayBuyPrescription.setText("asjewqdi");
+        holder.tvIdPrescription.setText(prescription.get(position).getIdDatabaseCreate());
+        holder.tvDayBuyPrescription.setText(prescription.get(position).getNumberBuy());
     }
 
     @Override

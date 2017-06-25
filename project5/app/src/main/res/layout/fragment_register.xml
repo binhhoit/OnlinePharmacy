@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorTurquoise"
+    android:background="@drawable/bg_login"
     android:orientation="vertical">
 
     <TextView
@@ -11,7 +11,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:text="Đăng Ký"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorTurquoise"
         android:textSize="20dp"
         android:textStyle="bold"
         android:textAllCaps="true"/>
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:text="Họ và tên"
-            android:textColor="#ffffff"
+            android:textColor="@color/colorText"
             android:textSize="14dp" />
 
         <EditText
@@ -46,7 +46,7 @@
         android:layout_height="0.7dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="#ffffff" />
+        android:background="@color/colorText" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:text="Email"
-            android:textColor="#ffffff"
+            android:textColor="@color/colorText"
             android:textSize="14dp" />
 
         <EditText
@@ -79,7 +79,7 @@
         android:layout_height="0.7dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="#ffffff" />
+        android:background="@color/colorText" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:text="Mật Khẩu"
-            android:textColor="#ffffff"
+            android:textColor="@color/colorText"
             android:textSize="14dp" />
 
         <EditText
@@ -114,7 +114,7 @@
         android:layout_height="0.7dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="#ffffff" />
+        android:background="@color/colorText" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:text="Xác Nhận MK"
-            android:textColor="#ffffff"
+            android:textColor="@color/colorText"
             android:textSize="14dp" />
 
         <EditText
@@ -147,7 +147,7 @@
         android:layout_height="0.7dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="#ffffff" />
+        android:background="@color/colorText" />
 
     <ProgressBar
         android:id="@+id/progress"
@@ -166,12 +166,11 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/bg_btn_register"
+        android:background="@drawable/ic_bg_bottom"
         android:gravity="center"
         android:text="Tạo tài khoản"
         android:textColor="@color/colorWhite"
-        android:textSize="20dp"
-        android:textStyle="italic" />
+        android:textSize="20dp" />
 ~
     <TextView
         android:id="@+id/tv_login"
@@ -179,7 +178,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="20dp"
         android:text="Đã có tài khoản ! Đăng nhập !"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorText"
         android:textAlignment="center" />
 
     <LinearLayout
@@ -195,7 +194,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="#ffffff" />
+            android:background="@color/colorText" />
 
         <TextView
             android:layout_width="30dp"
@@ -203,13 +202,13 @@
             android:background="@drawable/bg_activity_register_tv_or"
             android:gravity="center"
             android:text="or"
-            android:textColor="#ffffff"></TextView>
+            android:textColor="@color/colorText"></TextView>
 
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="#ffffff" />
+            android:background="@color/colorText" />
     </LinearLayout>
 
     <TextView
@@ -220,13 +219,13 @@
         android:layout_marginTop="15dp"
         android:text="đăng ký bằng "
         android:textAllCaps="true"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorText"
         android:textSize="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="25dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <ImageView

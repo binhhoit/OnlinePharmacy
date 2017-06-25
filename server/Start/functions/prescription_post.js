@@ -1,54 +1,36 @@
 'presciption_post'
 
 const prescription = require('../models/Prescription');
+const user = require('../models/User');
 
-
-exports.prescriptionPost = (body   /*id,addressReceive,number_buy,nameMedical,number*/) =>
+exports.prescriptionPost = (body) =>
     //
     new Promise((resolve, reject) => {
 
-        var updatePrescription = body.prescription;
-        /* var updatePrescription[] = {
-             nameMedical: body.prescription.nameMedical,
-             number: body.prescription.number,
-         }*/
         console.log("Toa Thuốc : ");
         console.log(body.prescription);
-        prescription.findOneAndUpdate({ id: body.id, number_buy: body.number_buy }, {
-            $push: {prescription : updatePrescription }
-        }, function (err, result) {
-            console.log("/update/" + result);
-            if (result == null) {
-                console.log("/NEW/ ")
-                var prescriptions = new prescription(
-                    body
-                    /*  id: String,
-                        addressReceive: String,
-                        number_buy: String,
-                        prescription: [
-                            {
-                                nameMedical: String,
-                                number: String,
-                            }
-                        ]*/
-                )
+        if (body.id != null) {
+            user.find({ _id: body.id })
+                .then(result => {
 
-                prescriptions.save(function (error, data) {
+                    var prescriptionAddNew = new prescription(body)
 
-                    if (error != null) {
-                        console.log(error);
-                        reject({ status: 404, message: 'Sever do not save data' });
-                    } else {
-                        console.log("thêm mới :" + data);
-                        resolve({ status: 200, message: 'success' });
+                    prescriptionAddNew.save(function (error, data) {
 
-                    }
+                        if (error != null) {
+
+                            console.log(error);
+                            reject({ status: 404, message: 'Sever do not save data' });
+                        } else {
+
+                            console.log("thêm mới :" + data);
+                            resolve({ status: 200, message: 'success' });
+                        }
+                    })
+
                 })
-            } else {
-                resolve(result);
-            }
-        });
-        //
-
-
+                .catch(err => reject({ status: 500, message: 'Internal Server Error !' }));
+        } else {
+            reject({ status: 500, message: 'Internal Server Error !' })
+        }
     });

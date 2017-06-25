@@ -42,7 +42,6 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
 
         getPrescription();
 
-
     }
 
     private void initSharedPreferences() {
@@ -86,6 +85,7 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
                         //đảo mảng
                         Collections.reverse(prescription);
                          //chuyển dữ liệu qua kia
+                        showData();
                     }
                 }
             }
@@ -102,7 +102,7 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
     private void showData(){
 
         recyclerViewReceiver.setHasFixedSize(true);
-        recyclerViewReceiver.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewReceiver.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         recyclerViewReceiver.setAdapter(new RecyclerReceiverAdapter(prescription, getApplicationContext()));
     }
 }
