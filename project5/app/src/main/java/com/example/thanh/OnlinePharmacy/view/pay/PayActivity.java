@@ -25,7 +25,7 @@ public class PayActivity extends AppCompatActivity {
 
     private void payCard() {
         btnPaycard.setOnClickListener(v -> {
-            Intent passIntentPayCard = new Intent(getApplication(), PayCardActivity.class);
+            Intent passIntentPayCard = new Intent(getApplication(), PayCardActivity_.class);
             startActivity(passIntentPayCard);
             finish();
         });

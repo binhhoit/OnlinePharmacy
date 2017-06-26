@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.thanh.OnlinePharmacy.R;
+import com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPrescriptionDetailsActivity_;
 
 import java.util.List;
 
@@ -41,7 +42,8 @@ public class RecyclerReceiverAdapter extends RecyclerView.Adapter<RecyclerReceiv
     public int getItemCount() {
         return prescription.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvIdPrescription;
         private TextView tvDayBuyPrescription;
         private TextView tvDetailsPrescription;
@@ -51,12 +53,10 @@ public class RecyclerReceiverAdapter extends RecyclerView.Adapter<RecyclerReceiv
             tvIdPrescription = (TextView) itemView.findViewById(R.id.rcl_id_prescription);
             tvDayBuyPrescription = (TextView) itemView.findViewById(R.id.rcl_day_buy_prescription);
             tvDetailsPrescription = (TextView) itemView.findViewById(R.id.rcl_details_prescription);
-        }
 
-        @Override
-        public void onClick(View v) {
-
+            tvDetailsPrescription.setOnClickListener(v -> {
+                ReceiverPrescriptionDetailsActivity_.intent(context).prescription(prescription.get(getAdapterPosition())).start();
+            });
         }
     }
-
 }

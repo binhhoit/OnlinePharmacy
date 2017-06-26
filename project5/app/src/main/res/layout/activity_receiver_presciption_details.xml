@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_receiver_presciption"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <android.support.v7.widget.Toolbar
         android:id="@+id/activity_receiver_toolbar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="#0F9D58"
+        android:background="@color/colorTurquoise"
         app:tabSelectedTextColor="#e66d6d"
-        app:tabTextColor="#7c6854"></android.support.v7.widget.Toolbar>
-    <LinearLayout
+        app:tabTextColor="#7c6854" />
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
@@ -34,6 +38,7 @@
                 android:layout_height="match_parent"
                 android:paddingTop="10dp"
                 android:text="Mã Đơn Thuốc"
+                android:textColor="@color/colorTurquoise"
                 android:textSize="15dp" />
 
             <TextView
@@ -41,6 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="10dp"
+                android:textColor="@color/colorTurquoise"
                 android:text="Mã" />
 
         </LinearLayout>
@@ -58,6 +64,7 @@
                 android:layout_height="match_parent"
                 android:paddingTop="15dp"
                 android:text="Tên"
+                android:textColor="@color/colorTurquoise"
                 android:textSize="15dp" />
 
             <TextView
@@ -65,6 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="15dp"
+                android:textColor="@color/colorTurquoise"
                 android:text="Email" />
         </LinearLayout>
 
@@ -104,13 +112,15 @@
                 android:layout_height="match_parent"
                 android:paddingTop="15dp"
                 android:text="Lần Giao Dịch"
+                android:textColor="@color/colorTurquoise"
                 android:textSize="15dp" />
 
-            <Spinner
-                android:id="@+id/activity_receiverPresciption_spn_numberbuy"
+            <TextView
+                android:id="@+id/activity_receiverPresciption_tv_numberbuy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="15dp"></Spinner>
+                android:paddingTop="15dp"
+                android:textColor="@color/colorTurquoise"></TextView>
 
         </LinearLayout>
 
@@ -160,25 +170,25 @@
             android:paddingRight="15dp" />
     </LinearLayout>
 
+
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:gravity="center|bottom"
-        android:layout_marginTop="5dp"
-        android:id="@+id/layout3"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/activity_receiverPresciption_btn_selectPay"
+        <TextView
+            android:id="@+id/activity_receiverPresciption_tv_btn_selectPay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
-            android:paddingTop="2dp"
-            android:background="@drawable/button_login_form"
+            android:gravity="center"
+            android:background="@drawable/ic_bg_buttom"
             android:textColor="@color/colorWhite"
-            android:text="Chọn phương thức Thanh Toán" />
+            android:text="Chọn loai thanh toán" />
     </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

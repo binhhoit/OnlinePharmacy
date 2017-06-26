@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
-import com.example.thanh.OnlinePharmacy.view.menu.Menu;
+import com.example.thanh.OnlinePharmacy.view.menu.Menu_;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
 import com.example.thanh.OnlinePharmacy.model.ArrayAdapterListview;
 import com.example.thanh.OnlinePharmacy.R;
@@ -67,6 +67,7 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
 
     }
 
+
     private void initSharedPreferences() {
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
         id = sharedPreferences.getString(Constants.ID, "");
@@ -106,7 +107,7 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
                                 new DialogInterface.OnClickListener() {
 
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent menu = new Intent(ReceiverPrescriptionConfirmActivity.this, Menu.class);
+                                        Intent menu = new Intent(ReceiverPrescriptionConfirmActivity.this, Menu_.class);
                                         startActivity(menu);
                                         finish();
 

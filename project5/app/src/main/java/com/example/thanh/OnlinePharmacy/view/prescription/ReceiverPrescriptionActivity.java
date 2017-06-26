@@ -3,10 +3,12 @@ package com.example.thanh.OnlinePharmacy.view.prescription;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.example.thanh.OnlinePharmacy.R;
@@ -29,7 +31,8 @@ import retrofit2.Callback;
 
 @EActivity(R.layout.activity_receiver_prescription)
 public class ReceiverPrescriptionActivity extends AppCompatActivity {
-
+    @ViewById(R.id.activity_receiver_toolbar)
+    Toolbar toolbar;
     @ViewById(R.id.activity_receiver_rcv)
     RecyclerView recyclerViewReceiver;
 
@@ -38,9 +41,17 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
     private String id;
     @AfterViews
     protected void init() {
+        setToolBar();
+
         initSharedPreferences();
 
         getPrescription();
+
+    }
+
+    private void setToolBar() {
+        toolbar.setTitle("Lịch sử giao dịch");
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
 
     }
 
@@ -56,9 +67,8 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Prescription>>() {
             @Override
             public void onResponse(Call<List<Prescription>> call, retrofit2.Response<List<Prescription>> response) {
-                // The network call was a success and we got a response
                 Log.e("Note", "Truy cập lấy đơn thuốc về");
-                Log.e("Note", "Truy cập lấy đơn thuốc về" + response.body());
+                Log.e("Note", "" + response.body());
                 if (response.isSuccessful()) {
 
                     prescription = response.body();
@@ -82,9 +92,9 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
                         alertDialog.show();
 
                     } else {
-                        //đảo mảng
+                        //swap array List
                         Collections.reverse(prescription);
-                         //chuyển dữ liệu qua kia
+                         //show data
                         showData();
                     }
                 }
@@ -92,7 +102,6 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Prescription>> call, Throwable t) {
-                // the network call was a failure
                 // TODO: handle error
                 Log.e("ERROR", t.getMessage());
             }
@@ -103,6 +112,6 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
 
         recyclerViewReceiver.setHasFixedSize(true);
         recyclerViewReceiver.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerViewReceiver.setAdapter(new RecyclerReceiverAdapter(prescription, getApplicationContext()));
+        recyclerViewReceiver.setAdapter(new RecyclerReceiverAdapter(prescription, this));
     }
 }

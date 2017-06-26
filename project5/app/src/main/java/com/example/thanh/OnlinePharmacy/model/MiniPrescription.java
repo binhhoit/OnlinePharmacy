@@ -2,11 +2,13 @@ package com.example.thanh.OnlinePharmacy.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by thanh on 3/22/2017.
  */
 
-public class MiniPrescription {
+public class MiniPrescription implements Serializable {
     @SerializedName("nameMedical")
     private String nameMedical;
     @SerializedName("number")

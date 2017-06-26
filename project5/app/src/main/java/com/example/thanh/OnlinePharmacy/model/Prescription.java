@@ -6,11 +6,12 @@ package com.example.thanh.OnlinePharmacy.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Prescription {
-    @SerializedName("idDatabaseCreate")
+public class Prescription implements Serializable {
+    @SerializedName("_id")
     private String idDatabaseCreate;
     @SerializedName("id")
     private String id;

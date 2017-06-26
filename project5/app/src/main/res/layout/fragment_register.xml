@@ -166,7 +166,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/ic_bg_bottom"
+        android:background="@drawable/ic_bg_buttom"
         android:gravity="center"
         android:text="Tạo tài khoản"
         android:textColor="@color/colorWhite"
@@ -186,7 +186,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -216,7 +216,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:text="đăng ký bằng "
         android:textAllCaps="true"
         android:textColor="@color/colorText"
@@ -224,7 +224,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 

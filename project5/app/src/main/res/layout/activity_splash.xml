@@ -32,8 +32,8 @@
         android:layout_below="@+id/tv_welcom_intro"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:visibility="visible"
-        app:indicatorColor="#e7d1d1"
+        android:gravity="center"
+        app:indicatorColor="#e90e0e"
         app:indicatorName="LineSpinFadeLoaderIndicator" />
 
     <TextView

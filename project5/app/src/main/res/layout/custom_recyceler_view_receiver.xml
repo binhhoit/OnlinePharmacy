@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/bg_custom_row_recycler_view"
+    android:layout_margin="3dp"
+    android:padding="2dp"
     android:orientation="horizontal">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:textColor="@color/colorTurquoise"
+            android:text="Mã GD" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:textColor="@color/colorTurquoise"
+            android:text="Thời Gian" />
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -15,7 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center|left"
+            android:textColor="@color/colorTurquoise"
             android:text="mã thuốc" />
 
         <TextView
@@ -23,16 +50,19 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:textColor="@color/colorTurquoise"
+            android:gravity="center|left"
             android:text="ngày mua" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/rcl_details_prescription"
-        android:layout_width="wrap_content"
+        android:layout_width="90dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:gravity="center"
-        android:text="Xem chi tiết đơn thuốc" />
+        android:text="Xem chi tiết\n đơn thuốc"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/ic_bg_buttom"
+        android:layout_margin="2dp"/>
 </LinearLayout>
