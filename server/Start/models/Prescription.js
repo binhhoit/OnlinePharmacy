@@ -5,7 +5,7 @@ const prescriptionSchema = mongoose.Schema({
 	id: String,
 	email: String,
 	addressReceive: String,
-	number_buy: String,
+	numberBuy: String,
 	status: String,
 	price: String,
 	prescription: [
