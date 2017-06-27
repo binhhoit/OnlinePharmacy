@@ -7,13 +7,14 @@ import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.model.Response;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
-import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.view.menu.Menu_;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -58,6 +59,9 @@ public class LoginFragment extends Fragment implements Validator.ValidationListe
     @ViewById(R.id.activity_login_avi_loading)
     protected AVLoadingIndicatorView avi;
 
+    @ViewById(R.id.fragment_login_cb_save_user)
+    protected CheckBox cbSave;
+
     private CompositeSubscription subscriptions;
     private SharedPreferences sharedPreferences;
     private Validator validator;
@@ -70,10 +74,12 @@ public class LoginFragment extends Fragment implements Validator.ValidationListe
         subscriptions = new CompositeSubscription();
 
         Hawk.init(getActivity()).build();
+
+        infoStart();
+
         initSharedPreferences();
 
-        etEmail.setText(Hawk.get("user"));
-        etPassword.setText(Hawk.get("pass"));
+
     }
 
     private void initSharedPreferences() {
@@ -81,9 +87,28 @@ public class LoginFragment extends Fragment implements Validator.ValidationListe
         sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
     }
 
+    private void infoStart(){
+        etEmail.setText(Hawk.get("user"));
+        etPassword.setText(Hawk.get("pass"));
+        cbSave.setChecked(Boolean.parseBoolean(Hawk.get("check")));
+    }
+
+    private void saveUser() {
+        if (cbSave.isChecked() == true) {
+            Hawk.put("user", etEmail.getText().toString());
+            Hawk.put("pass", etPassword.getText().toString());
+            Hawk.put("check", "true");
+        }
+        else {
+            Hawk.put("user", "");
+            Hawk.put("pass", "");
+            Hawk.put("check", "faise");
+        }
+    }
+
     @Click(R.id.btn_login)
     void login() {
-
+        //infoStart();
         validator.validate();
     }
 
@@ -93,6 +118,7 @@ public class LoginFragment extends Fragment implements Validator.ValidationListe
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
+        saveUser();
         loginProcess(email, password);
 
 

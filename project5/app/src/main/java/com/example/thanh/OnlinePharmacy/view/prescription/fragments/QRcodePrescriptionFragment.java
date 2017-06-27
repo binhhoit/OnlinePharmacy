@@ -19,7 +19,6 @@ import com.example.thanh.OnlinePharmacy.model.Prescription;
 import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
-import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity_;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

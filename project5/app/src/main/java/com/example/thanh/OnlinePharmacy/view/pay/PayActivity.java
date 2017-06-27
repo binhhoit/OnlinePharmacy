@@ -1,33 +1,19 @@
 package com.example.thanh.OnlinePharmacy.view.pay;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
 
 import com.example.thanh.OnlinePharmacy.R;
 
-import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_pay)
 public class PayActivity extends AppCompatActivity {
 
-    @ViewById(R.id.btn_pay)
-    protected Button btnPaycard;
+    @Click(R.id.btn_pay)
+    protected void payCard() {
 
-    @AfterViews
-    void init() {
+        PayCardActivity_.intent(this).start();
 
-        payCard();
-
-    }
-
-    private void payCard() {
-        btnPaycard.setOnClickListener(v -> {
-            Intent passIntentPayCard = new Intent(getApplication(), PayCardActivity_.class);
-            startActivity(passIntentPayCard);
-            finish();
-        });
     }
 }

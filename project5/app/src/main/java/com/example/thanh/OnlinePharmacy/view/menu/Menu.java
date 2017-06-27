@@ -5,17 +5,18 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.example.thanh.OnlinePharmacy.view.about.AboutInformationActivity_;
 import com.example.thanh.OnlinePharmacy.view.login.Profile_;
-import com.example.thanh.OnlinePharmacy.view.pay.PayCardActivity_;
+import com.example.thanh.OnlinePharmacy.view.pay.PayActivity_;
 import com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPrescriptionActivity_;
 import com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPrescriptionConfirmActivity_;
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.view.prescription.SelectMethodSendPrescriptionActivity_;
+import com.example.thanh.OnlinePharmacy.view.setting.SettingActivity_;
+import com.example.thanh.OnlinePharmacy.view.support.SupportActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -34,15 +35,18 @@ public class Menu extends AppCompatActivity {
             R.drawable.ic_user,
             R.drawable.ic_checked,
             R.drawable.ic_list,
-            R.drawable.ic_checkpharmacy,
+            R.drawable.ic_check_pharmacy,
             R.drawable.ic_browsing,
+            R.drawable.ic_support,
+            R.drawable.ic_setting,
             R.drawable.ic_info_about,
+
     };
 
     @AfterViews
     void init() {
-        toolbar.setTitle("Lựa Chọn Chức Năng");
-        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
+        setToolbar();
+
         gridViewString =  getResources().getStringArray(R.array.menu);
 
         CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(
@@ -50,40 +54,46 @@ public class Menu extends AppCompatActivity {
                 gridViewString,
                 gridViewImageId);
         androidGridView.setAdapter(adapterViewAndroid);
-        androidGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int i, long id) {
-                if (i == 0) {
-                    Intent intent = new Intent(Menu.this, Profile_.class);
-                    startActivity(intent);
-                }
-                if (i == 1) {
-                    Intent passIntentPayCard = new Intent(Menu.this, PayCardActivity_.class);
-                    startActivity(passIntentPayCard);
-                }
-                if (i == 2) {
-                    Intent intent = new Intent(Menu.this, SelectMethodSendPrescriptionActivity_.class);
-                    startActivity(intent);
-                }
-                if (i == 3) {
-                    Intent passPrescription = new Intent(Menu.this, ReceiverPrescriptionActivity_.class);
-                    startActivity(passPrescription);
-                }
-                if (i == 4) {
-                    Intent passPrescriptionConfirm = new Intent(Menu.this, ReceiverPrescriptionConfirmActivity_.class);
-                    startActivity(passPrescriptionConfirm);
-                }
-                if (i == 5) {
-                    Toast.makeText(getApplicationContext(), "about ", Toast.LENGTH_SHORT).show();
-                }
+        androidGridView.setOnItemClickListener((parent, view, i, id) -> {
+            if (i == 0) {
 
+                Profile_.intent(Menu.this).start();
             }
+            if (i == 1) {
+
+                PayActivity_.intent(Menu.this).start();
+            }
+            if (i == 2) {
+
+                SelectMethodSendPrescriptionActivity_.intent(Menu.this).start();
+            }
+            if (i == 3) {
+
+                ReceiverPrescriptionActivity_.intent(Menu.this).start();
+            }
+            if (i == 4) {
+
+                ReceiverPrescriptionConfirmActivity_.intent(Menu.this).start();
+            }
+            if (i == 5) {
+                SupportActivity_.intent(Menu.this).start();
+            }
+            if (i == 6) {
+                SettingActivity_.intent(Menu.this).start();
+            }
+            if (i == 7) {
+                AboutInformationActivity_.intent(Menu.this).start();
+            }
+
         });
 
     }
 
+    private void setToolbar(){
+        toolbar.setTitle("Lựa Chọn Chức Năng");
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
+    }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 

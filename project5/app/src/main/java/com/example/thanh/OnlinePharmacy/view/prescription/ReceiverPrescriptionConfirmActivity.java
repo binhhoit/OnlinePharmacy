@@ -1,27 +1,21 @@
 package com.example.thanh.OnlinePharmacy.view.prescription;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.thanh.OnlinePharmacy.R;
+import com.example.thanh.OnlinePharmacy.model.Prescription;
+import com.example.thanh.OnlinePharmacy.model.RecyclerReceiverAdapter;
+import com.example.thanh.OnlinePharmacy.model.RecyclerReceiverConfirmAdapter;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.menu.Menu_;
-import com.example.thanh.OnlinePharmacy.view.pay.PayActivity;
-import com.example.thanh.OnlinePharmacy.model.ArrayAdapterListview;
-import com.example.thanh.OnlinePharmacy.R;
-import com.example.thanh.OnlinePharmacy.model.Prescription;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -37,54 +31,45 @@ import retrofit2.Callback;
 @EActivity(R.layout.activity_receiver_prescription_confirm)
 public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
 
-    @ViewById(R.id.activity_receiverPresciptionConfirm_tv_name)
-    protected TextView tvName;
-    @ViewById(R.id.activity_receiverPresciptionConfirm_tv_email)
-    protected TextView tvEmail;
-    @ViewById(R.id.activity_receiverPresciptionConfirm_tv_address)
-    protected TextView tvAddress;
-    @ViewById(R.id.activity_receiverPresciptionConfirm_tv_price)
-    protected TextView tvPrice;
-    @ViewById(R.id.activity_receiverPresciptionConfirm_spn_numberbuy)
-    protected Spinner spnNumberBuy;
-    @ViewById(R.id.activity_receiverPresciptionConfirm_lv_prescription)
-    protected ListView lvReceiver;
-    @ViewById(R.id.activity_receiverPresciptionConfirm_btn_selectPay)
-    protected Button btnSelectPay;
+    @ViewById(R.id.activity_receiver_confirm_toolbar)
+    Toolbar toolbar;
+    @ViewById(R.id.activity_receiver_confirm_rcv)
+    RecyclerView recyclerViewReceiverConfirm;
 
     private List<Prescription> prescription = new ArrayList<>();
-    private ArrayAdapterListview arrayAdapterListview;
-    private ArrayAdapter spnArrayAdapter;
     private SharedPreferences sharedPreferences;
     private String id;
-
     @AfterViews
-    void init() {
+    protected void init() {
+
+        setToolBar();
 
         initSharedPreferences();
+
         getPrescription();
-        selectPay();
 
     }
 
+    private void setToolBar() {
+        toolbar.setTitle("Đơn thuốc đã duyệt");
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
+
+    }
 
     private void initSharedPreferences() {
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
         id = sharedPreferences.getString(Constants.ID, "");
     }
 
-
-
     private void getPrescription() {
-        List<String> number_buy = new ArrayList<>();
+
         Call<List<Prescription>> call = NetworkUtil.getRetrofit().getPrescriptionConfirm(id);
         call.enqueue(new Callback<List<Prescription>>() {
             @Override
             public void onResponse(Call<List<Prescription>> call, retrofit2.Response<List<Prescription>> response) {
-                // The network call was a success and we got a response
                 // TODO: use the repository list and display it
                 Log.e("Note", "Truy cập lấy đơn thuốc về");
-                Log.e("Note", "Truy cập lấy đơn thuốc về" + response.body());
+                Log.e("Note", "" + response.body());
                 if (response.isSuccessful()) {
                     prescription = response.body();
                     if (prescription.size() == 0) {
@@ -96,54 +81,18 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
                         alertDialog.setMessage("Bạn chưa có đơn thuốc nào !");
                         alertDialog.setIcon(R.drawable.ic_warning);
                         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "OK",
-                                new DialogInterface.OnClickListener() {
+                                (dialog, which) -> {
 
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent menu = new Intent(ReceiverPrescriptionConfirmActivity.this, Menu_.class);
-                                        startActivity(menu);
-                                        finish();
+                                    Menu_.intent(ReceiverPrescriptionConfirmActivity.this).start();
 
-                                    }
                                 });
                         alertDialog.show();
 
                     } else {
-                        for (int size = 0; size < prescription.size(); size++) {
-                            Log.e("Number :", "" + prescription.get(size).getNumberBuy());
-                            number_buy.add(size, prescription.get(size).getNumberBuy());
-                        }
-                        number_buy.add(prescription.size(), "---Chọn lần mua---");
-                        //đảo mảng
-                        Collections.reverse(number_buy);
+
+                        //swap array
                         Collections.reverse(prescription);
-                        //choosen number buy to seen
-                        spnArrayAdapter = new ArrayAdapter(
-                                ReceiverPrescriptionConfirmActivity.this,
-                                android.R.layout.simple_spinner_item,
-                                number_buy);
-                        spnArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-                        spnNumberBuy.setAdapter(spnArrayAdapter);
-                        spnNumberBuy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                if (position == 0) {
-                                    Toast.makeText(ReceiverPrescriptionConfirmActivity.this, "Vui lòng chọn lần mua phía trên", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    position = position - 1;
-                                    tvName.setText(prescription.get(position).getIdDatabaseCreate());
-                                    tvEmail.setText(prescription.get(position).getEmail());
-                                    tvAddress.setText(prescription.get(position).getAddressReceive());
-                                    tvPrice.setText(prescription.get(position).getPrice());
-                                    arrayAdapterListview = new ArrayAdapterListview(ReceiverPrescriptionConfirmActivity.this, R.layout.custom_listview, prescription.get(position).getMiniPrescription());
-                                    lvReceiver.setAdapter(arrayAdapterListview);
-                                }
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-
-                            }
-                        });
+                        showData();
                     }
                 }
             }
@@ -155,17 +104,12 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
-    private void selectPay() {
-        btnSelectPay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), PayActivity.class);
-                startActivity(intent);
-            }
-        });
+    private void showData(){
 
+        recyclerViewReceiverConfirm.setHasFixedSize(true);
+        recyclerViewReceiverConfirm.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerViewReceiverConfirm.setAdapter(new RecyclerReceiverConfirmAdapter(prescription, this));
     }
 }

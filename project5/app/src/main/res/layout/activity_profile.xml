@@ -97,7 +97,7 @@
                 android:layout_margin="@dimen/card_padding">
 
                 <TextView
-                    android:id="@+id/activity_receiverPresciption_tv_name"
+                    android:id="@+id/activity_receiver_presciption_details_tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -105,10 +105,10 @@
                     android:textColor="@android:color/black" />
 
                 <TextView
-                    android:id="@+id/activity_receiverPresciption_tv_email"
+                    android:id="@+id/activity__presciption_details_tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/activity_receiverPresciption_tv_name"
+                    android:layout_below="@+id/activity_receiver_presciption_details_tv_name"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/card_items_margin"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -117,7 +117,7 @@
                     android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/activity_receiverPresciption_tv_email"
+                    android:layout_below="@+id/activity__presciption_details_tv_email"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/card_items_margin" />
             </RelativeLayout>

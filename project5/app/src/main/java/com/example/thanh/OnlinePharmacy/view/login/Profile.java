@@ -35,9 +35,9 @@ import rx.subscriptions.CompositeSubscription;
 @EActivity(R.layout.activity_profile)
 public class Profile extends AppCompatActivity implements ChangePasswordDialog.Listener {
 
-    @ViewById(R.id.activity_receiverPresciption_tv_name)
+    @ViewById(R.id.activity_receiver_presciption_details_tv_name)
     protected TextView tvName;
-    @ViewById(R.id.activity_receiverPresciption_tv_email)
+    @ViewById(R.id.activity__presciption_details_tv_email)
     protected TextView tvEmail;
     @ViewById(R.id.tv_date)
     protected TextView tvDate;

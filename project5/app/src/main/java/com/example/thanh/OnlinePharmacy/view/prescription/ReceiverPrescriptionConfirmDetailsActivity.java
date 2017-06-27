@@ -1,6 +1,5 @@
 package com.example.thanh.OnlinePharmacy.view.prescription;
 
-import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,60 +17,62 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
-@EActivity(R.layout.activity_receiver_presciption_details)
-public class ReceiverPrescriptionDetailsActivity extends AppCompatActivity {
+@EActivity(R.layout.activity_receiver_prescription_details_confirm)
+public class ReceiverPrescriptionConfirmDetailsActivity extends AppCompatActivity {
 
-    @ViewById(R.id.activity_receiver_toolbar)
-    protected Toolbar toolbar;
-    @ViewById(R.id.activity_receiver_presciption_details_tv_name)
+    @ViewById(R.id.activity_receiver_confirm_details_toolbar)
+    Toolbar toolbar;
+    @ViewById(R.id.activity_receiver_confirm_detail_tv_name)
     protected TextView tvName;
-    @ViewById(R.id.activity_presciption_details_tv_email)
+    @ViewById(R.id.activity_receiver_confirm_detail_tv_email)
     protected TextView tvEmail;
-    @ViewById(R.id.activity_presciption_details_tv_address)
+    @ViewById(R.id.activity_receiver_confirm_detail_tv_address)
     protected TextView tvAddress;
-    @ViewById(R.id.activity_presciption_details_tv_numberbuy)
+    @ViewById(R.id.activity_receiver_confirm_detail_tv_price)
+    protected TextView tvPrice;
+    @ViewById(R.id.activity_receiver_confirm_detail_tv_numberbuy)
     protected TextView tvNumberBuy;
-    @ViewById(R.id.activity_presciption_details_lv_prescription)
+    @ViewById(R.id.activity_receiver_confirm_detail_lv_prescription)
     protected ListView lvReceiver;
-
-    private ArrayAdapterListview arrayAdapterListview;
 
     @Extra
     protected Prescription prescription;
+
+    private ArrayAdapterListview arrayAdapterListview;
 
     @AfterViews
     void init() {
 
         setToolBar();
 
-        showDetails();
-
+        showData();
     }
 
     private void setToolBar() {
-        toolbar.setTitle("Chi tiết đơn thuốc");
+        toolbar.setTitle("Đơn thuốc đã duyệt");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
-    }
 
-    private void showDetails() {
+    }
+    private void showData() {
 
         tvName.setText(prescription.getIdDatabaseCreate());
         tvEmail.setText(prescription.getEmail());
         tvAddress.setText(prescription.getAddressReceive());
         tvNumberBuy.setText(prescription.getNumberBuy());
+        tvPrice.setText(prescription.getPrice());
 
         arrayAdapterListview = new ArrayAdapterListview(
-                ReceiverPrescriptionDetailsActivity.this,
+                ReceiverPrescriptionConfirmDetailsActivity.this,
                 R.layout.custom_listview,
                 prescription.getMiniPrescription());
+
         lvReceiver.setAdapter(arrayAdapterListview);
 
     }
 
-    @Click(R.id.activity_receiverPresciption_tv_btn_selectPay)
+    @Click(R.id.activity_receiverPresciptionConfirm_btn_selectPay)
     protected void selectPay() {
-        Intent intent = new Intent(getApplication(), PayActivity_.class);
-                startActivity(intent);
 
+        PayActivity_.intent(this).start();
     }
 }

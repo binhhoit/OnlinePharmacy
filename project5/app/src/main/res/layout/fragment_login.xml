@@ -111,24 +111,20 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/fragment_login_cb_save_user"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:text="ghi nhớ đăng nhập"
+                android:textColor="@color/colorText"
+               android:textStyle="italic"
                 android:gravity="center|left"
-                android:text="Ghi nhớ đăng nhâp"
-                android:textColor="@color/colorText" />
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tv_forgot_password"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:gravity="right|center"
                 android:text="Quên mật khẩu?"
                 android:textColor="@color/colorText"

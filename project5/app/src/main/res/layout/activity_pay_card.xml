@@ -1,107 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pay_card_ll_root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="15dp"
-    android:paddingRight="16dp">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/activity_pay_card_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/colorTurquoise"
+            app:tabSelectedTextColor="#e66d6d"
+            app:tabTextColor="#7c6854" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="30dp"
-            android:paddingTop="30dp"
-            android:text="Phương thức Thanh Toán Bằng Thẻ Cào"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:layout_margin="20dp"
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_border_view"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="Kiểm kê tài khoản"
+                    android:textColor="@color/colorText"
+                    android:textSize="20dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="110dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="Tài khoản "
+                        android:textColor="@color/colorText"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/activity_pay_cart_tv_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:textColor="@color/colorText"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="110dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="Số dư hiện tại"
+                        android:textColor="@color/colorText"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/activity_paycart_tv_number_balance"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignLeft="@+id/tv_balance"
+                        android:gravity="center|left"
+                        android:text="100 000 000"
+                        android:textColor="@color/colorRed"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/tv_balance"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:text="VND"
+                        android:textColor="@color/colorRed"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/bg_border_view"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/activity_pay_card_tv_type"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="Chọn loại thẻ"
+                        android:textColor="@color/colorText"
+                        android:textSize="16dp" />
+
+                    <Spinner
+                        android:id="@+id/activity_pay_card_spn_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorText" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/activity_pay_card_tv_Pin"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="Mã pin"
+                        android:textColor="@color/colorText"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/activity_pay_card_et_Pin"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorText" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/activity_pay_card_tv_serial"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="Mã serial"
+                        android:textColor="@color/colorText"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/activity_pay_card_et_serial"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorText" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/activity_pay_card_tv_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ic_bg_buttom"
+                        android:gravity="center"
+                        android:text="Nạp thẻ"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_type"
-            android:layout_width="125dp"
-            android:layout_height="match_parent"
-            android:paddingTop="10dp"
-            android:text="Chọn Loại Thẻ:" />
-
-        <Spinner
-            android:id="@+id/spn_type"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </Spinner>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_Pin"
-            android:layout_width="125dp"
-            android:layout_height="match_parent"
-            android:paddingTop="10dp"
-            android:text="Mã Pin:" />
-
-        <EditText
-            android:id="@+id/et_Pin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:inputType="number" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_serial"
-            android:layout_width="125dp"
-            android:layout_height="match_parent"
-            android:paddingTop="10dp"
-            android:text="Mã Serial:" />
-
-        <EditText
-            android:id="@+id/et_serial"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:inputType="number" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_margin="16dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_submit"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:background="@drawable/button_login_form"
-            android:gravity="center"
-            android:text="Nạp Thẻ"
-            android:textColor="@color/colorWhite"
-            android:textSize="20sp" />
-    </LinearLayout>
-</LinearLayout>
+</FrameLayout>
