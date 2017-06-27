@@ -60,7 +60,7 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
 
     @AfterViews
     void init() {
-        findViewByIDs();
+
         initSharedPreferences();
         getPrescription();
         selectPay();
@@ -73,15 +73,7 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
         id = sharedPreferences.getString(Constants.ID, "");
     }
 
-    private void findViewByIDs() {
-        tvName = (TextView) findViewById(R.id.activity_receiverPresciptionConfirm_tv_name);
-        tvEmail = (TextView) findViewById(R.id.activity_receiverPresciptionConfirm_tv_email);
-        tvAddress = (TextView) findViewById(R.id.activity_receiverPresciptionConfirm_tv_address);
-        tvPrice = (TextView) findViewById(R.id.activity_receiverPresciptionConfirm_tv_price);
-        spnNumberBuy = (Spinner) findViewById(R.id.activity_receiverPresciptionConfirm_spn_numberbuy);
-        lvReceiver = (ListView) findViewById(R.id.activity_receiverPresciptionConfirm_lv_prescription);
-        btnSelectPay = (Button) findViewById(R.id.activity_receiverPresciptionConfirm_btn_selectPay);
-    }
+
 
     private void getPrescription() {
         List<String> number_buy = new ArrayList<>();

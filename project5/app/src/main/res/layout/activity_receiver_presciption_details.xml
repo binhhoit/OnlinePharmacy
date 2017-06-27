@@ -189,6 +189,6 @@
             android:gravity="center"
             android:background="@drawable/ic_bg_buttom"
             android:textColor="@color/colorWhite"
-            android:text="Chọn loai thanh toán" />
+            android:text="Chọn loại thanh toán" />
     </LinearLayout>
 </RelativeLayout>
