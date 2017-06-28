@@ -8,4 +8,5 @@
     <dimen name="button_margin">24dp</dimen>
     <dimen name="card_padding">16dp</dimen>
     <dimen name="card_items_margin">8dp</dimen>
+    <dimen name="size_15.1">15dp</dimen>
 </resources>

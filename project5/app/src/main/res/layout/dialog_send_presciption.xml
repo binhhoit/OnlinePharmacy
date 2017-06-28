@@ -5,76 +5,105 @@
     android:orientation="vertical"
     android:paddingLeft="20dp"
     android:paddingRight="20dp">
-    <View
+    <TextView
         android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center|left"
+        android:text="Đơn thuốc của bạn"
+        android:textColor="@color/colorText"
+        android:textSize="20dp"
+        android:textStyle="italic"/>
+    <View
+        android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
-        android:background="@android:color/black" />
-
+        android:layout_marginBottom="5dp"
+        android:background="@color/colorText"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:background="@drawable/bg_border_viewer">
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="Tên :" />
-
-        <TextView
-            android:id="@+id/dialog_tv_nameSend"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="test" />
-    </LinearLayout>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:text="Tên"
+                android:textColor="@color/colorText"
+                android:textSize="15dp" />
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="Địa Chỉ Nhận :" />
+            <TextView
+                android:id="@+id/dialog_tv_nameSend"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:text="test"
+                android:textColor="@color/colorText"
+                android:textSize="15dp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/dialog_tv_addressSend"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="test" />
-    </LinearLayout>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="Lần mua"
+                android:gravity="center|left"
+                android:textColor="@color/colorText"
+                android:textSize="15dp"/>
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="Lần mua :" />
+            <TextView
+                android:id="@+id/dialog_tv_numberSend"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:textColor="@color/colorText"
+                android:textSize="15dp"
+                android:text="test" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/dialog_tv_numberSend"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="test" />
-    </LinearLayout>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:background="@android:color/black" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:text="Địa Chỉ Nhận "
+                android:textColor="@color/colorText"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/dialog_tv_addressSend"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:text="test"
+                android:textColor="@color/colorText"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/dialog_lv_sendPresciption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"></ListView>
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_border_viewer"></ListView>
 </LinearLayout>

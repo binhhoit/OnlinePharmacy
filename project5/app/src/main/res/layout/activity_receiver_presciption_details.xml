@@ -152,7 +152,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="260dp"
         android:id="@+id/layout2"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -173,12 +173,13 @@
     <TextView
         android:id="@+id/activity_receiverPresciption_tv_btn_selectPay"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="15dp"
         android:background="@drawable/ic_bg_buttom"
         android:gravity="center"
         android:text="Chọn loại thanh toán"
+        android:textSize="18dp"
         android:textColor="@color/colorWhite" />
 
 </RelativeLayout>

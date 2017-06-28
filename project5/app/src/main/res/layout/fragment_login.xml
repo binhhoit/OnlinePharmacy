@@ -176,7 +176,7 @@
         android:layout_marginBottom="15dp"
         android:layout_weight="1"
         android:text="Copyright © 2018 by 716_B5"
-        android:textColor="#b9b4b3"
+        android:textColor="@color/colorCloud"
         android:textAlignment="center"
         android:layout_alignParentBottom="true"/>
 </RelativeLayout>

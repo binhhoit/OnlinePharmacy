@@ -27,7 +27,7 @@ public class ArrayAdapterListview extends android.widget.ArrayAdapter<MiniPrescr
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.custom_listview, null, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.custom_listview_prescription, null, false);
         }
         MiniPrescription item = getItem(position);
 

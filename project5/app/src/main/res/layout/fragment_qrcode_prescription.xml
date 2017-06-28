@@ -5,22 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.thanh.OnlinePharmacy.Prescription.fragments.QRcodePrescription">
+    android:layout_margin="25dp">
 
     <TextView
         android:id="@+id/tv_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100px"
+        android:layout_marginTop="40pt"
+        android:textColor="@color/colorText"
+        android:textSize="25dp"
         android:text="Scan QR code" />
 
-    <Button
-        android:id="@+id/fragment_bt_scan_qr"
+    <TextView
+        android:id="@+id/fragment_tv_bt_scan_qr"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:textSize="18dp"
+        android:gravity="center"
         android:layout_gravity="center"
         android:layout_marginTop="250px"
-        android:text="Scan"
-        android:textAllCaps="true" />
+        android:background="@drawable/ic_bg_buttom"
+        android:textColor="@color/colorWhite"
+        android:text="Quét mã QR code" />
 </LinearLayout>

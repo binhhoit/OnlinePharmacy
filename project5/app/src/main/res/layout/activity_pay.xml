@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gữi tới : "
+            android:text="Gửi tới : "
             android:textColor="@color/colorFacebook"
             android:layout_marginTop="5dp"
             />
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:hint="Tên người nhận"
             android:layout_marginTop="10dp"
-            android:background="@drawable/border_thanhtoan"
+            android:background="@drawable/bg_border_viewer"
             android:textSize="10sp"
             android:textColor="@color/colorGray"
             />
@@ -42,7 +42,7 @@
             android:hint="Địa chỉ giao hàng "
             android:gravity="top"
             android:layout_marginTop="10dp"
-            android:background="@drawable/border_thanhtoan"
+            android:background="@drawable/bg_border_viewer"
             android:textSize="10sp"
             android:textColor="@color/colorGray"
             />
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:hint="Số điện thoại "
             android:layout_marginTop="10dp"
-            android:background="@drawable/border_thanhtoan"
+            android:background="@drawable/bg_border_viewer"
             android:textSize="10sp"
             android:inputType="number"
             android:textColor="@color/colorGray"

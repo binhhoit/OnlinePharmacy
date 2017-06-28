@@ -4,45 +4,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/activity_photo_iv_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:layout_weight="9"
+        android:background="@color/colorSiver" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:layout_weight="2">
 
         <ImageView
             android:id="@+id/activity_photo_iv_camera"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
+            android:background="@drawable/bg_selection_click"
             android:padding="10dp"
             android:src="@drawable/ic_photo_camera" />
 
         <ImageView
             android:id="@+id/activity_photo_iv_picture"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_toRightOf="@+id/activity_photo_iv_camera"
+            android:background="@drawable/bg_selection_click"
             android:padding="10dp"
             android:src="@drawable/ic_picture" />
 
         <ImageView
             android:id="@+id/activity_photo_iv_upload"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_margin="5dp"
+            android:background="@drawable/bg_selection_click"
             android:padding="10dp"
             android:src="@drawable/ic_upload" />
     </RelativeLayout>
-
-    <ImageView
-
-        android:id="@+id/activity_photo_iv_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_margin="16dp"
-        android:background="@color/colorSiver" />
 
 </LinearLayout>

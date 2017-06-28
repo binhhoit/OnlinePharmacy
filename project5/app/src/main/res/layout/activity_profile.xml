@@ -79,17 +79,15 @@
         </LinearLayout>
     </FrameLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_margin="20dp">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/card"
+            android:id="@+id/activity_profile_cv_show_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/progress">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -97,53 +95,122 @@
                 android:layout_margin="@dimen/card_padding">
 
                 <TextView
-                    android:id="@+id/activity_receiver_presciption_details_tv_name"
+                    android:id="@+id/activity_profile_details_tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/black" />
+                    android:text="Tên"
+                    android:textColor="@color/colorTurquoise" />
 
                 <TextView
-                    android:id="@+id/activity__presciption_details_tv_email"
+                    android:id="@+id/activity_profile_details_tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/activity_receiver_presciption_details_tv_name"
+                    android:layout_below="@+id/activity_profile_details_tv_name"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/card_items_margin"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:text="địa chỉ gmail"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorText" />
 
                 <TextView
-                    android:id="@+id/tv_date"
+                    android:id="@+id/activity_profile_tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/activity__presciption_details_tv_email"
+                    android:layout_below="@+id/activity_profile_details_tv_email"
+                    android:text="ngày tạo"
                     android:layout_centerHorizontal="true"
+                    android:textColor="@color/colorText"
                     android:layout_marginTop="@dimen/card_items_margin" />
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
-
-        <Button
-            android:id="@+id/btn_change_password"
+        <android.support.v7.widget.CardView
+            android:id="@+id/activity_profile_rl_edit_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/activity_profile_cv_show_info">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_padding"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tên"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/acd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="địa chỉ gmail" />
+
+                <TextView
+                    android:id="@+id/ádas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ngày tạo" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/activity_profile_ll"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
             android:layout_centerVertical="true"
-            android:drawableRight="@drawable/ic_lock"
-            android:paddingLeft="@dimen/button_padding"
-            android:text="Change Password" />
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/ic_bg_buttom"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_logout"
+            <TextView
+                android:id="@+id/btn_change_password"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="Thay đổi mật khẩu"
+                android:textColor="@color/colorWhite"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_lock" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/btn_prescription"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="19dp"
-            android:drawableRight="@drawable/ic_exit"
-            android:paddingLeft="@dimen/button_padding"
-            android:text="Logout" />
+            android:layout_height="40dp"
+            android:layout_alignTop="@+id/activity_profile_ll"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/ic_bg_buttom"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/btn_logout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="Đăng xuất"
+                android:textColor="@color/colorWhite"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_exit" />
+        </LinearLayout>
+
+    </RelativeLayout>
 </LinearLayout>

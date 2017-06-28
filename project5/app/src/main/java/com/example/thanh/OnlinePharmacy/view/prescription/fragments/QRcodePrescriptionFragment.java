@@ -57,7 +57,7 @@ public class QRcodePrescriptionFragment extends Fragment {
         initSharedPreferences();
     }
 
-    @Click(R.id.fragment_bt_scan_qr)
+    @Click(R.id.fragment_tv_bt_scan_qr)
     protected void scannerQrCode() {
         IntentIntegrator integrator = IntentIntegrator.forSupportFragment(QRcodePrescriptionFragment.this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
@@ -134,7 +134,7 @@ public class QRcodePrescriptionFragment extends Fragment {
 
                     arrayAdapterListview = new ArrayAdapterListview(
                             getActivity(),
-                            R.layout.custom_listview,
+                            R.layout.custom_listview_prescription,
                             prescription.getMiniPrescription());
                     lvSendPresciption.setAdapter(arrayAdapterListview);
 

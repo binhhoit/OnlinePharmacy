@@ -1,5 +1,7 @@
 package com.example.thanh.OnlinePharmacy.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by thanh on 3/7/2017.
  */
@@ -8,6 +10,7 @@ public class User {
     private String name;
     private String email;
     private String password;
+    @SerializedName("created_at")
     private String createdAt;
     private String newPassword;
     private String token;

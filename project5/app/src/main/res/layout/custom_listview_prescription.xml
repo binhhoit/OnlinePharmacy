@@ -10,21 +10,21 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="TextView"
-
-        android:textAlignment="center"
-        android:textSize="20dp" />
+        android:gravity="center"
+        android:textColor="@color/colorText"
+        android:textSize="15dp" />
 
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:background="@color/colorBlack"></View>
+        android:background="@color/colorText"></View>
     <TextView
         android:text="TextView"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-
         android:id="@+id/custom_listvew_tv_number"
-        android:textAlignment="center"
-        android:textSize="20dp"/>
+        android:gravity="center"
+        android:textColor="@color/colorText"
+        android:textSize="15dp" />
 </LinearLayout>

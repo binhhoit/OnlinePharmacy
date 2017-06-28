@@ -1,9 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.thanh.OnlinePharmacy.view.setting.SettingActivity">
+    android:fillViewport="true">
 
-</android.support.constraint.ConstraintLayout>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#e5e5e5"
+        android:orientation="vertical"
+        tools:ignore="MissingPrefix">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/activity_setting_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/colorTurquoise"
+            app:tabSelectedTextColor="#e66d6d"
+            app:tabTextColor="#7c6854" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="53.3dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="12dp"
+                android:text="Account settings"
+                android:textColor="#9a9a9a"
+                android:textSize="@dimen/size_15.1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:minHeight="106.7dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/fragment_settings_deliver_ll_payment_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="19dp"
+                    android:layout_marginLeft="33.3dp"
+                    android:layout_marginTop="19.7dp"
+                    android:text="Payment settings"
+                    android:textColor="#6b6b6b"
+                    android:textSize="@dimen/size_15.1" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="26.3dp"
+                    android:background="@drawable/ic_settings_arrow_right" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="22.7dp"
+                android:layout_marginRight="19dp"
+                android:alpha="0.15"
+                android:background="#282826" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="19.7dp"
+                    android:layout_marginLeft="33.3dp"
+                    android:layout_marginTop="19dp"
+                    android:text="Payout Method"
+                    android:textColor="#6b6b6b"
+                    android:textSize="@dimen/size_15.1" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="26.3dp"
+                    android:background="@drawable/ic_settings_arrow_right" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="53.3dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="13.3dp"
+                android:text="Notification setting"
+                android:textColor="#9a9a9a"
+                android:textSize="@dimen/size_15.1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="53.3dp"
+            android:background="@android:color/white">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="33.3dp"
+                android:text="Notification setting"
+                android:textColor="#6b6b6b"
+                android:textSize="@dimen/size_15.1" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton"
+                android:layout_width="35dp"
+                android:layout_height="22.7dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginRight="25.3dp"
+                android:checked="true"
+                android:text=""
+                android:textOff=""
+                android:textOn=""/>
+                <!--android:background="@drawable/toggle_selector"-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="53.7dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="13.3dp"
+                android:text="Information"
+                android:textColor="#9a9a9a"
+                android:textSize="@dimen/size_15.1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:minHeight="106.7dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="22.3dp"
+                    android:layout_marginLeft="32.3dp"
+                    android:layout_marginTop="19.7dp"
+                    android:text="Terms &amp; Conditions"
+                    android:textColor="#6b6b6b"
+                    android:textSize="@dimen/size_15.1" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="22.7dp"
+                android:layout_marginRight="19dp"
+                android:alpha="0.15"
+                android:background="#282826" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="19.3dp"
+                    android:layout_marginLeft="33.3dp"
+                    android:layout_marginTop="19.3dp"
+                    android:text="Privacy Policy"
+                    android:textColor="#6b6b6b"
+                    android:textSize="@dimen/size_15.1" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_setting_deliver_ll_logout"
+            android:layout_width="match_parent"
+            android:layout_height="53.3dp"
+            android:layout_marginBottom="47.3dp"
+            android:layout_marginTop="52.3dp"
+            android:gravity="center">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Log out"
+                android:textColor="#ee613a"
+                android:textSize="@dimen/size_15.1" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

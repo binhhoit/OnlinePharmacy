@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_chat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,24 +9,27 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/activity_about_toolbar"
         android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorTurquoise"
+        app:tabSelectedTextColor="#e66d6d"
+        app:tabTextColor="#7c6854" />
+
+
+    <!--<ImageView
+        android:id="@+id/iv_back_chat"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorTurquoise"/>
+        android:background="@drawable/ic_arrow_back_white_24dp" />
 
-        <!--<ImageView
-            android:id="@+id/iv_back_chat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_arrow_back_white_24dp" />
-
-        <TextView
-            android:id="@+id/tv_title_chat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="26dp"
-            android:text="Thông Tin thêm"
-            android:textColor="@color/colorWhite"
-            android:textSize="26dp" />
-    </android.support.v7.widget.Toolbar>-->
+    <TextView
+        android:id="@+id/tv_title_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:text="Thông Tin thêm"
+        android:textColor="@color/colorWhite"
+        android:textSize="26dp" />
+</android.support.v7.widget.Toolbar>-->
 
     <ImageView
         android:id="@+id/logo"
@@ -36,15 +40,13 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/ic_pharmacy1" />
 
-    <TextView
+    <ImageView
+        android:id="@+id/tv_welcom_intro"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/logo"
-        android:layout_gravity="center"
-        android:text="Online Pharmacy"
-        android:textColor="@color/colorText"
-        android:textSize="28dp"
-        android:textStyle="bold" />
+        android:layout_height="50dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:src="@drawable/ic_text_start" />
 
     <android.support.v4.widget.Space
         android:layout_width="wrap_content"

@@ -62,7 +62,7 @@ public class ReceiverPrescriptionDetailsActivity extends AppCompatActivity {
 
         arrayAdapterListview = new ArrayAdapterListview(
                 ReceiverPrescriptionDetailsActivity.this,
-                R.layout.custom_listview,
+                R.layout.custom_listview_prescription,
                 prescription.getMiniPrescription());
         lvReceiver.setAdapter(arrayAdapterListview);
 

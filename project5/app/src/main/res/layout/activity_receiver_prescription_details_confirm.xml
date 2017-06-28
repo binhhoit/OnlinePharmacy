@@ -160,7 +160,7 @@
             <LinearLayout
                 android:id="@+id/layout2"
                 android:layout_width="match_parent"
-                android:layout_height="270dp"
+                android:layout_height="260dp"
                 android:background="#f1f1f1"
                 android:orientation="horizontal">
 
@@ -214,13 +214,14 @@
     <TextView
         android:id="@+id/activity_receiverPresciptionConfirm_btn_selectPay"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/ic_bg_buttom"
         android:gravity="center"
+        android:textSize="18dp"
         android:text="phương thức Thanh Toán"
         android:textColor="@color/colorWhite" />
 </RelativeLayout>
