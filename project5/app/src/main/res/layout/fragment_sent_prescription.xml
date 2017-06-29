@@ -120,16 +120,16 @@
                         android:gravity="center"
                         android:text="Tên thuốc"
                         android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
+                        android:textSize="16dp" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="số lượng"
+                        android:text="Số lượng"
                         android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
+                        android:textSize="16dp" />
                 </LinearLayout>
 
 

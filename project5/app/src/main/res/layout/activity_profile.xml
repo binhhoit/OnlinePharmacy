@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_profile"
@@ -9,394 +9,395 @@
     android:orientation="vertical"
     tools:context=".view.login.Profile">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPeterRiver">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/button_margin" />
+            android:background="@color/colorPeterRiver">
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="match_parent"
-            android:layout_height="184dp"
-            android:alpha="0.8"
-            android:scaleType="fitXY"
-            android:src="@drawable/kamran" />
-
-        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            app:theme="@style/ToolbarColoredBackArrow"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/gobackplease" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="bottom"
-                android:text="Thông tin người dùng"
-                android:textColor="#fff"
-                android:textSize="20dp" />
-
-            <ImageView
-                android:id="@+id/activity_profile_iv_edit"
-                android:layout_width="20dp"
-                android:layout_height="30dp"
-                android:layout_gravity="right"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/ic_edit"
-                android:textColor="#fff"
-                android:textSize="14dp" />
-        </android.support.v7.widget.Toolbar>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginTop="25dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.alexzh.circleimageview.CircleImageView
-                android:id="@+id/circleview"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="5dp"
-                android:src="@drawable/ic_user_info"
-                app:view_borderColor="#cccccc"
-                app:view_borderWidth="2dp"
-                app:view_shadowDx="2dp"
-                app:view_shadowDy="0dp"
-                app:view_shadowRadius="2dp" />
-
-            <TextView
-                android:id="@+id/activity_profile_details_tv_name"
+            <ProgressBar
+                android:id="@+id/progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="Tên"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/colorWhite" />
-        </LinearLayout>
-    </FrameLayout>
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/button_margin" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="15dp">
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="184dp"
+                android:alpha="0.8"
+                android:scaleType="fitXY"
+                android:src="@drawable/kamran" />
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/activity_profile_cv_show_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorTurquoise">
+            <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:theme="@style/ToolbarColoredBackArrow">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/gobackplease" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="bottom"
+                    android:text="Thông tin người dùng"
+                    android:textColor="#fff"
+                    android:textSize="20dp" />
+
+                <ImageView
+                    android:id="@+id/activity_profile_iv_edit"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/ic_edit"
+                    android:textColor="#fff"
+                    android:textSize="14dp" />
+            </android.support.v7.widget.Toolbar>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/colorText"></View>
+                <com.alexzh.circleimageview.CircleImageView
+                    android:id="@+id/circleview"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/ic_user_info"
+                    app:view_borderColor="#cccccc"
+                    app:view_borderWidth="2dp"
+                    app:view_shadowDx="2dp"
+                    app:view_shadowDy="0dp"
+                    app:view_shadowRadius="2dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="13dp"
-                        android:src="@drawable/ic_mail_profile" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="gmail"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorText" />
-
-                        <TextView
-                            android:id="@+id/activity_profile_details_tv_email"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:text="địa chỉ gmail"
-                            android:textColor="@color/colorText"
-                            android:textSize="16dp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/colorText"></View>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_date" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="ngày đăng ký"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorText" />
-
-                        <TextView
-                            android:id="@+id/activity_profile_tv_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_below="@+id/activity_profile_details_tv_email"
-                            android:layout_weight="1"
-                            android:text="29-06-2017"
-                            android:textColor="@color/colorText"
-                            android:textSize="16dp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/colorText"></View>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_phone" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="Mobile"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorText" />
-
-                        <TextView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_weight="1"
-                            android:text="098-280-3645"
-                            android:textColor="@color/colorText"
-                            android:textSize="16dp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/colorText"></View>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_birthday" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="Ngày sinh"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorText" />
-
-                        <TextView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:text="23-10-1994"
-                            android:textColor="@color/colorText"
-                            android:textSize="16dp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/colorText"></View>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_address" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="Địa chỉ"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorText" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="top|left"
-                            android:text="Xóm 5,Thôn 3, Lộc An - Bảo Lâm - Lâm Đồng"
-                            android:textColor="@color/colorText"
-                            android:textSize="16dp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/colorText"></View>
+                <TextView
+                    android:id="@+id/activity_profile_details_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="Tên"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/colorWhite" />
             </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </FrameLayout>
 
-
-        <LinearLayout
-            android:id="@+id/activity_profile_ll"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="60dp"
-            android:background="@drawable/ic_bg_buttom"
-            android:orientation="horizontal">
+            android:layout_height="500dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp">
 
-            <TextView
-                android:id="@+id/btn_change_password"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center"
-                android:text="Thay đổi mật khẩu"
-                android:textColor="@color/colorWhite"
-                android:textSize="18dp" />
+            <android.support.v7.widget.CardView
+                android:id="@+id/activity_profile_cv_show_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorTurquoise">
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/ic_lock" />
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="390dp"
+                    android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignTop="@+id/activity_profile_ll"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/ic_bg_buttom"
-            android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/btn_logout"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center"
-                android:text="Đăng xuất"
-                android:textColor="@color/colorWhite"
-                android:textSize="18dp" />
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="18dp"
+                            android:src="@drawable/ic_mail_profile" />
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/ic_exit" />
-        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:orientation="vertical">
 
-    </RelativeLayout>
-</LinearLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_weight="1"
+                                android:gravity="bottom|left"
+                                android:text="gmail"
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorText" />
+
+                            <TextView
+                                android:id="@+id/activity_profile_details_tv_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:text="địa chỉ gmail"
+                                android:textColor="@color/colorText"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/colorView"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="15dp"
+                            android:src="@drawable/ic_date" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="bottom|left"
+                                android:text="ngày đăng ký"
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorText" />
+
+                            <TextView
+                                android:id="@+id/activity_profile_tv_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_below="@+id/activity_profile_details_tv_email"
+                                android:layout_weight="1"
+                                android:text="29-06-2017"
+                                android:textColor="@color/colorText"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/colorView"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="15dp"
+                            android:src="@drawable/ic_phone" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="bottom|left"
+                                android:text="Mobile"
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorText" />
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_weight="1"
+                                android:text="098-280-3645"
+                                android:textColor="@color/colorText"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/colorView"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="15dp"
+                            android:src="@drawable/ic_birthday" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="bottom|left"
+                                android:text="Ngày sinh"
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorText" />
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:text="23-10-1994"
+                                android:textColor="@color/colorText"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/colorView"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="15dp"
+                            android:src="@drawable/ic_address" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView5"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="bottom|left"
+                                android:text="Địa chỉ"
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorText" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="top|left"
+                                android:text="Xóm 5,Thôn 3, Lộc An - Bảo Lâm - Lâm Đồng"
+                                android:textColor="@color/colorText"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <LinearLayout
+                android:id="@+id/activity_profile_ll"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="60dp"
+                android:background="@drawable/ic_bg_buttom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btn_change_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Thay đổi mật khẩu"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/activity_profile_ll"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/ic_bg_buttom"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/btn_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Đăng xuất"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18dp" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

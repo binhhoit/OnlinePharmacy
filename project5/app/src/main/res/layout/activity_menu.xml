@@ -11,11 +11,13 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/activity_menu_abl_toobar"
@@ -68,6 +70,8 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer"
+        app:itemTextColor="@color/colorText"
+        android:background="#e5e5e5"/>
 
 </android.support.v4.widget.DrawerLayout>
