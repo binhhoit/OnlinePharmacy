@@ -4,22 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e5e5e5"
     android:orientation="vertical"
     tools:context="com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPrescriptionActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/activity_receiver_toolbar"
-        android:background="@color/colorTurquoise"
-        app:tabSelectedTextColor="#e66d6d"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:background="@color/colorTurquoise"
+        app:theme="@style/ToolbarColoredBackArrow"
+        app:tabSelectedTextColor="#e66d6d"
         app:tabTextColor="#7c6854" />
+
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/activity_receiver_rcv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:id="@+id/activity_receiver_rcv">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

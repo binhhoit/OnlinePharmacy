@@ -32,6 +32,8 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
+import static com.example.thanh.OnlinePharmacy.R.id.activity_profile_iv_edit;
+
 @EActivity(R.layout.activity_profile)
 public class Profile extends AppCompatActivity implements ChangePasswordDialog.Listener {
 
@@ -134,6 +136,11 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
 
         Snackbar.make(findViewById(R.id.activity_profile), message, Snackbar.LENGTH_SHORT).show();
 
+    }
+
+    @Click(activity_profile_iv_edit)
+    protected void editProfile(){
+        EditProfile_.intent(Profile.this).start();
     }
 
     @Override

@@ -23,6 +23,7 @@ public class SupportActivity extends AppCompatActivity {
     private void setToolbar() {
         toolbar.setTitle("Hỗ trợ người dùng");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
-
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

@@ -12,4 +12,8 @@
         <item name="android:textColor">@color/colorAsbestos</item>
     </style>
 
+    <style name="ToolbarColoredBackArrow" parent="AppTheme">
+        <item name="android:textColorSecondary">#ffffff</item>
+    </style>
+
 </resources>

@@ -71,6 +71,8 @@ public class PayCardActivity extends AppCompatActivity {
     protected void setToolbar() {
         toolbar.setTitle("Thanh toán bằng thẻ cào");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     private void postPayCard(PayCard card) {
         Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPayCard(card);

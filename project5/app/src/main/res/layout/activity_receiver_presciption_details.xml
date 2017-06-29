@@ -3,19 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_receiver_presciption"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#e5e5e5">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/activity_receiver_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/colorTurquoise"
-        app:tabSelectedTextColor="#e66d6d"
-        app:tabTextColor="#7c6854" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/activity_receiver_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/colorTurquoise"
+            app:theme="@style/ToolbarColoredBackArrow"
+            app:tabSelectedTextColor="#e66d6d"
+            app:tabTextColor="#7c6854" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,54 +28,54 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_name_x"
-                android:layout_width="110dp"
-                android:layout_height="match_parent"
-                android:gravity="center|left"
-                android:text="Mã đơn thuốc"
-                android:textColor="@color/colorTurquoise"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/activity_receiver_presciption_details_tv_name"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center|left"
-                android:textColor="@color/colorTurquoise"
-                android:text="Mã" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_name_x"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="Mã đơn thuốc"
+                    android:textColor="@color/colorText"
+                    android:textSize="15dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/activity_receiver_presciption_details_tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="Mã"
+                    android:textColor="@color/colorText" />
 
-            <TextView
-                android:id="@+id/tv_id_x"
-                android:layout_width="110dp"
-                android:layout_height="match_parent"
-                android:gravity="center|left"
-                android:text="Tên"
-                android:textColor="@color/colorTurquoise"
-                android:textSize="15dp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/activity_presciption_details_tv_email"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center|left"
-                android:textColor="@color/colorTurquoise"
-                android:text="Email" />
-        </LinearLayout>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_id_x"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="Tên"
+                    android:textColor="@color/colorText"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/activity_presciption_details_tv_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="Email"
+                    android:textColor="@color/colorText" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -86,7 +89,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center|left"
                     android:text="Ngày GD"
-                    android:textColor="@color/colorTurquoise"
+                    android:textColor="@color/colorText"
                     android:textSize="15dp" />
 
                 <TextView
@@ -95,30 +98,33 @@
                     android:layout_height="match_parent"
                     android:gravity="center|left"
                     android:text="Ngày mua"
-                    android:textColor="@color/colorTurquoise" />
+                    android:textColor="@color/colorText" />
 
             </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_address_x"
-                android:layout_width="110dp"
-                android:layout_height="match_parent"
-                android:gravity="center|left"
-                android:text="Địa chỉ"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/activity_presciption_details_tv_address"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center|left"
-                android:text="Địa Chỉ" />
-        </LinearLayout>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_address_x"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="Địa chỉ"
+                    android:textColor="@color/colorText"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/activity_presciption_details_tv_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="Địa Chỉ"
+                    android:textColor="@color/colorText" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -149,23 +155,22 @@
         </LinearLayout>
 
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:id="@+id/layout2"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="#f1f1f1"
-        android:orientation="horizontal">
-
-        <ListView
-            android:id="@+id/activity_presciption_details_lv_prescription"
+        <LinearLayout
+            android:id="@+id/layout2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp" />
-    </LinearLayout>
+            android:layout_height="260dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#f1f1f1"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/activity_presciption_details_lv_prescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp" />
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -179,7 +184,7 @@
         android:background="@drawable/ic_bg_buttom"
         android:gravity="center"
         android:text="Chọn loại thanh toán"
-        android:textSize="18dp"
-        android:textColor="@color/colorWhite" />
+        android:textColor="@color/colorWhite"
+        android:textSize="18dp" />
 
 </RelativeLayout>

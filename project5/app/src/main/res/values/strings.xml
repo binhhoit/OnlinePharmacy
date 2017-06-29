@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Online Pharmacy</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
     <string name="back">Nhấn back 1 lần nữa sẽ thoát chương trình</string>
     <string name="qr_faile">QR định dạng ko chính xác, vui lòng thử lại</string>
     <string name="choose_top">Vui lòng chọn lần mua phía trên</string>

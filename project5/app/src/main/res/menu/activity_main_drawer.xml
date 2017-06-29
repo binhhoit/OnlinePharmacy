@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_sending"
+            android:title="Gửi đơn thuốc" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_recevied"
+            android:title="Nhận đơn thuốc" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_setting_nav"
+            android:title="Cài đặt" />
+    </group>
+
+    <item android:title="Hỗ trợ">
+        <menu>
+
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Chia sẽ" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_logout"
+                android:title="Đăng xuất" />
+        </menu>
+    </item>
+    <item android:title="Điều Khoản">
+        <menu>
+
+            <item
+                android:title="Trợ giúp và phản hồi" />
+            <item
+                android:title="Giới thiệu về Online pharmacy" />
+            <item
+                android:title="Chính sách bảo mật" />
+        </menu>
+    </item>
+</menu>

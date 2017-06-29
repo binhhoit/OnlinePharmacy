@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_receiver_presciption"
     android:layout_width="match_parent"
+    android:background="#e5e5e5"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -15,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@color/colorTurquoise"
+            app:theme="@style/ToolbarColoredBackArrow"
             app:tabSelectedTextColor="#e66d6d"
             app:tabTextColor="#7c6854" />
 
@@ -69,6 +71,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|left"
                         android:text="Tên"
+                        android:textColor="@color/colorText"
                         android:textSize="15dp" />
 
                     <TextView
@@ -92,6 +95,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|left"
                         android:text="Ngày GĐ"
+                        android:textColor="@color/colorText"
                         android:textSize="15dp" />
 
                     <TextView
@@ -116,6 +120,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|left"
                         android:text="Địa chỉ"
+                        android:textColor="@color/colorText"
                         android:textSize="15dp" />
 
                     <TextView

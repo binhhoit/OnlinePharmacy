@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="15dp"
         android:background="@color/colorText"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -104,6 +104,6 @@
         android:id="@+id/dialog_lv_sendPresciption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/bg_border_viewer"></ListView>
 </LinearLayout>

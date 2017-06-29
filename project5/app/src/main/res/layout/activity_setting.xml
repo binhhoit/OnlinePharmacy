@@ -19,7 +19,8 @@
             android:layout_height="48dp"
             android:background="@color/colorTurquoise"
             app:tabSelectedTextColor="#e66d6d"
-            app:tabTextColor="#7c6854" />
+            app:tabTextColor="#7c6854"
+            app:theme="@style/ToolbarColoredBackArrow" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="12dp"
-                android:text="Account settings"
+                android:text="Cài đặt tài khoản"
                 android:textColor="#9a9a9a"
                 android:textSize="@dimen/size_15.1" />
 
@@ -121,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="13.3dp"
-                android:text="Notification setting"
+                android:text="Cài đặt thông báo"
                 android:textColor="#9a9a9a"
                 android:textSize="@dimen/size_15.1" />
 
@@ -138,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="33.3dp"
-                android:text="Notification setting"
+                android:text="Thông báo ứng dụng"
                 android:textColor="#6b6b6b"
                 android:textSize="@dimen/size_15.1" />
 
@@ -156,8 +157,8 @@
                 android:checked="true"
                 android:text=""
                 android:textOff=""
-                android:textOn=""/>
-                <!--android:background="@drawable/toggle_selector"-->
+                android:textOn="" />
+            <!--android:background="@drawable/toggle_selector"-->
         </LinearLayout>
 
         <LinearLayout
@@ -170,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="13.3dp"
-                android:text="Information"
+                android:text="Thông tin"
                 android:textColor="#9a9a9a"
                 android:textSize="@dimen/size_15.1" />
 
@@ -194,7 +195,7 @@
                     android:layout_marginBottom="22.3dp"
                     android:layout_marginLeft="32.3dp"
                     android:layout_marginTop="19.7dp"
-                    android:text="Terms &amp; Conditions"
+                    android:text="Điều khoản &amp; Điều kiện"
                     android:textColor="#6b6b6b"
                     android:textSize="@dimen/size_15.1" />
             </LinearLayout>
@@ -218,7 +219,7 @@
                     android:layout_marginBottom="19.3dp"
                     android:layout_marginLeft="33.3dp"
                     android:layout_marginTop="19.3dp"
-                    android:text="Privacy Policy"
+                    android:text="Chính sách bảo mật"
                     android:textColor="#6b6b6b"
                     android:textSize="@dimen/size_15.1" />
             </LinearLayout>

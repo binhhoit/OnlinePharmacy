@@ -52,7 +52,8 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
     private void setToolBar() {
         toolbar.setTitle("Lịch sử giao dịch");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
-
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void initSharedPreferences() {

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e5e5e5"
     android:orientation="vertical"
     tools:context="com.example.thanh.OnlinePharmacy.Prescription.Select_method_send_prescription">
 
@@ -13,8 +14,8 @@
         android:layout_height="48dp"
         android:background="#30b58a"
         app:tabSelectedTextColor="#e66d6d"
-        app:tabTextColor="#7c6854">
-    </android.support.v7.widget.Toolbar>
+        app:tabTextColor="#7c6854"
+        app:theme="@style/ToolbarColoredBackArrow"></android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/activity_select_method_tab_layout"

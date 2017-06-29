@@ -156,16 +156,13 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical" />
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/fragment_send_prescript_btn_Add"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_gravity="right"
-                        android:layout_marginBottom="10dp"
                         android:layout_marginRight="15dp"
-                        android:background="@drawable/button_round"
-                        android:padding="10dp"
-                        android:src="@android:drawable/ic_menu_add" />
+                        android:src="@drawable/ic_add" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>

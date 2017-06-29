@@ -23,6 +23,7 @@ public class SettingActivity extends AppCompatActivity {
     private void setToolbar() {
         toolbar.setTitle("Cài đặt");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
-
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

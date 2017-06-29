@@ -51,7 +51,8 @@ public class ReceiverPrescriptionConfirmDetailsActivity extends AppCompatActivit
     private void setToolBar() {
         toolbar.setTitle("Đơn thuốc đã duyệt");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
-
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     private void showData() {
 

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e5e5e5"
     tools:context="com.example.thanh.OnlinePharmacy.view.support.SupportActivity">
 
     <android.support.v7.widget.Toolbar
@@ -12,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/colorTurquoise"
+        app:theme="@style/ToolbarColoredBackArrow"
         app:tabSelectedTextColor="#e66d6d"
         app:tabTextColor="#7c6854" />
 

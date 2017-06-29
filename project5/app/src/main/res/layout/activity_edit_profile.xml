@@ -32,7 +32,6 @@
 
         <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            app:theme="@style/ToolbarColoredBackArrow"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -50,15 +49,15 @@
                 android:textColor="#fff"
                 android:textSize="20dp" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/activity_profile_iv_edit"
-                android:layout_width="20dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/ic_edit"
+                android:text="save"
                 android:textColor="#fff"
-                android:textSize="14dp" />
+                android:textSize="16dp" />
         </android.support.v7.widget.Toolbar>
 
         <LinearLayout
@@ -73,7 +72,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/ic_user_info"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_photo_camera"
                 app:view_borderColor="#cccccc"
                 app:view_borderWidth="2dp"
                 app:view_shadowDx="2dp"
@@ -105,7 +105,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="280dp"
                 android:orientation="vertical">
 
                 <View
@@ -134,6 +134,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/textView4"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_centerHorizontal="true"
@@ -235,12 +236,12 @@
                             android:textAllCaps="true"
                             android:textColor="@color/colorText" />
 
-                        <TextView
-
+                        <EditText
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_centerHorizontal="true"
                             android:layout_weight="1"
+                            android:background="@android:color/transparent"
                             android:text="098-280-3645"
                             android:textColor="@color/colorText"
                             android:textSize="16dp" />
@@ -281,11 +282,12 @@
                             android:textAllCaps="true"
                             android:textColor="@color/colorText" />
 
-                        <TextView
-
+                        <EditText
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:inputType="date"
                             android:text="23-10-1994"
                             android:textColor="@color/colorText"
                             android:textSize="16dp" />
@@ -326,11 +328,13 @@
                             android:textAllCaps="true"
                             android:textColor="@color/colorText" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
+                            android:background="@android:color/transparent"
                             android:gravity="top|left"
+                            android:inputType="text"
                             android:text="Xóm 5,Thôn 3, Lộc An - Bảo Lâm - Lâm Đồng"
                             android:textColor="@color/colorText"
                             android:textSize="16dp" />
@@ -352,7 +356,6 @@
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="60dp"
             android:background="@drawable/ic_bg_buttom"
             android:orientation="horizontal">
 
@@ -373,30 +376,6 @@
                 android:src="@drawable/ic_lock" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignTop="@+id/activity_profile_ll"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/ic_bg_buttom"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/btn_logout"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center"
-                android:text="Đăng xuất"
-                android:textColor="@color/colorWhite"
-                android:textSize="18dp" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/ic_exit" />
-        </LinearLayout>
 
     </RelativeLayout>
 </LinearLayout>

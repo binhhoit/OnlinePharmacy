@@ -22,8 +22,9 @@ public class AboutInformationActivity extends AppCompatActivity {
     }
 
     private void setToolbar() {
-        toolbar.setTitle("Thông Tin Thêm");
+        toolbar.setTitle("Thông tin thêm");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
-
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
