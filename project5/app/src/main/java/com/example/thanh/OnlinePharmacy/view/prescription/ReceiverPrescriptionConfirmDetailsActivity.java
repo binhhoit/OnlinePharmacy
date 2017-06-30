@@ -3,6 +3,7 @@ package com.example.thanh.OnlinePharmacy.view.prescription;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -53,7 +54,7 @@ public class ReceiverPrescriptionConfirmDetailsActivity extends AppCompatActivit
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());    }
     private void showData() {
 
         tvName.setText(prescription.getIdDatabaseCreate());

@@ -35,26 +35,11 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/kamran" />
 
-            <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/activity_profile_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:theme="@style/ToolbarColoredBackArrow">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/gobackplease" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="bottom"
-                    android:text="Thông tin người dùng"
-                    android:textColor="#fff"
-                    android:textSize="20dp" />
-
                 <ImageView
                     android:id="@+id/activity_profile_iv_edit"
                     android:layout_width="20dp"

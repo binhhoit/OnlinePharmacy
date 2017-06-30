@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -37,6 +39,8 @@ import static com.example.thanh.OnlinePharmacy.R.id.activity_profile_iv_edit;
 @EActivity(R.layout.activity_profile)
 public class Profile extends AppCompatActivity implements ChangePasswordDialog.Listener {
 
+    @ViewById(R.id.activity_profile_toolbar)
+    protected Toolbar toolbar;
     @ViewById(R.id.activity_profile_details_tv_name)
     protected TextView tvName;
     @ViewById(R.id.activity_profile_details_tv_email)
@@ -53,11 +57,18 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
 
     @AfterViews
     void init() {
-
+        setToolbar();
         subscriptions = new CompositeSubscription();
         initSharedPreferences();
         loadProfile();
 
+    }
+    public void setToolbar(){
+        toolbar.setTitle("Thông tin Người dùng");
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
 
     private void initSharedPreferences() {
@@ -68,14 +79,13 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
     }
 
     @Click(R.id.btn_logout)
-    void logout() {
+    protected void logout() {
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(Constants.EMAIL, "");
         editor.putString(Constants.TOKEN, "");
         editor.apply();
-        Intent intent = new Intent(Profile.this, MainActivity_.class);
-        startActivity(intent);
+        MainActivity_.intent(this).start();
         finish();
     }
 

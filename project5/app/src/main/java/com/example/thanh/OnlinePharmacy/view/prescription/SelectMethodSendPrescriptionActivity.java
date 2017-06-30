@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.view.prescription.fragments.PagerFragmentAdapter;
@@ -34,6 +35,7 @@ public class SelectMethodSendPrescriptionActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         FragmentManager manager = getSupportFragmentManager();
         PagerFragmentAdapter adapter = new PagerFragmentAdapter(manager);

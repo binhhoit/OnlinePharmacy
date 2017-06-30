@@ -1,6 +1,7 @@
 package com.example.thanh.OnlinePharmacy.view.menu;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -15,8 +16,10 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.thanh.OnlinePharmacy.R;
+import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.about.AboutInformationActivity_;
 import com.example.thanh.OnlinePharmacy.view.login.Profile_;
+import com.example.thanh.OnlinePharmacy.view.main.MainActivity_;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity_;
 import com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPrescriptionActivity_;
 import com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPrescriptionConfirmActivity_;
@@ -42,6 +45,10 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
     @ViewById(R.id.grid_view_image_text)
     protected GridView androidGridView;
 
+    private SharedPreferences sharedPreferences;
+    private String token;
+    private String email;
+
     private int temp = 0;
     private String[] gridViewString;
     private int[] gridViewImageId = {
@@ -59,7 +66,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
     @AfterViews
     void init() {
         setToolbarAndNavDrawer();
-
+        initSharedPreferences();
         gridViewString = getResources().getStringArray(R.array.menu);
 
         CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(
@@ -101,13 +108,17 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
 
         });
 
-
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
 
-
     }
 
+    private void initSharedPreferences() {
+
+        sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
+        token = sharedPreferences.getString(Constants.TOKEN, "");
+        email = sharedPreferences.getString(Constants.EMAIL, "");
+    }
     private void setToolbarAndNavDrawer() {
         toolbar.setTitle("Lựa Chọn Chức Năng");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
@@ -122,29 +133,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-  /*  @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            temp++;
-            if (temp == 1) {
-
-                Toast.makeText(Menu.this, "Nhấn back 1 lần nữa sẽ thoát chương trình", Toast.LENGTH_SHORT).show();
-
-            }
-            if (temp == 2) {
-                //thoát khỏi chương trình
-                Intent startMain = new Intent(Intent.ACTION_MAIN);
-                startMain.addCategory(Intent.CATEGORY_HOME);
-                startActivity(startMain);
-                finish();
-            }
-
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }*/
 
     @Override
     public void onBackPressed() {
@@ -165,7 +153,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                 startActivity(startMain);
                 finish();
             }
-            //super.onBackPressed();
         }
     }
 
@@ -197,17 +184,25 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_sent_prescription) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+            SelectMethodSendPrescriptionActivity_.intent(Menu.this).start();
+        } else if (id == R.id.nav_receiver_prescription) {
+            ReceiverPrescriptionActivity_.intent(Menu.this).start();
+        } else if (id == R.id.nav_seting) {
+            SettingActivity_.intent(Menu.this).start();
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_logout) {
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(Constants.EMAIL, "");
+            editor.putString(Constants.TOKEN, "");
+            editor.apply();
+            MainActivity_.intent(this).start();
+            finish();
 
         }
 

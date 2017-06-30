@@ -73,6 +73,7 @@ public class PayCardActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
     private void postPayCard(PayCard card) {
         Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPayCard(card);
