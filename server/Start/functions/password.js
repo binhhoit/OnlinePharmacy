@@ -6,39 +6,36 @@ const nodemailer = require('nodemailer');
 const randomstring = require("randomstring");
 const config = require('../config/config.json');
 
-exports.changePassword = (email, password, newPassword) => 
+exports.changePassword = (id, password, newPassword) =>
 
 	new Promise((resolve, reject) => {
 
-		user.find({ email: email })
+		user.find({ _id: id })
+			.then(users => {
+				
+				let user = users[0];
+				const hashed_password = user.hashed_password;
 
-		.then(users => {
+				if (bcrypt.compareSync(password, hashed_password)) {
 
-			let user = users[0];
-			const hashed_password = user.hashed_password;
+					const salt = bcrypt.genSaltSync(10);
+					const hash = bcrypt.hashSync(newPassword, salt);
 
-			if (bcrypt.compareSync(password, hashed_password)) {
+					user.hashed_password = hash;
 
-				const salt = bcrypt.genSaltSync(10);
-				const hash = bcrypt.hashSync(newPassword, salt);
+					return user.save();
 
-				user.hashed_password = hash;
+				} else {
 
-				return user.save();
-
-			} else {
-
-				reject({ status: 401, message: 'Invalid Old Password !' });
-			}
-		})
-
-		.then(user => resolve({ status: 200, message: 'Password Updated Sucessfully !' }))
-
-		.catch(err => reject({ status: 500, message: 'Internal Server Error !' }));
+					reject({ status: 401, message: 'Invalid Old Password !' });
+				}
+			})
+			.then(user => resolve({ status: 200, message: 'Password Updated Sucessfully !' }))
+			.catch(err => reject({ status: 500, message: 'Internal Server Error !' }));
 
 	});
 
-exports.resetPasswordInit = email =>
+exports.resetPasswordInit = (email) =>
 
 	new Promise((resolve, reject) => {
 
@@ -46,106 +43,106 @@ exports.resetPasswordInit = email =>
 
 		user.find({ email: email })
 
-		.then(users => {
+			.then(users => {
 
-			if (users.length == 0) {
+				if (users.length == 0) {
 
-				reject({ status: 404, message: 'User Not Found !' });
+					reject({ status: 404, message: 'User Not Found !' });
 
-			} else {
+				} else {
 
-				let user = users[0];
+					let user = users[0];
 
-				const salt = bcrypt.genSaltSync(10);
-				const hash = bcrypt.hashSync(random, salt);
+					const salt = bcrypt.genSaltSync(10);
+					const hash = bcrypt.hashSync(random, salt);
 
-				user.temp_password = hash;
-				user.temp_password_time = new Date();
+					user.temp_password = hash;
+					user.temp_password_time = new Date();
 
-				return user.save();
-			}
-		})
+					return user.save();
+				}
+			})
 
-		.then(user => {
+			.then(user => {
 
-			const transporter = nodemailer.createTransport(`smtps://${config.email}:${config.password}@smtp.gmail.com`);
- 
-			const mailOptions = {
+				const transporter = nodemailer.createTransport(`smtps://${config.email}:${config.password}@smtp.gmail.com`);
 
-    			from: `"${config.name}" <${config.email}>`,
-    			to: email,  
-    			subject: 'Reset Password Request ', 
-    			html: `Hello ${user.name},<br><br>
+				const mailOptions = {
+
+					from: `"${config.name}" <${config.email}>`,
+					to: email,
+					subject: 'Reset Password Request ',
+					html: `Hello ${user.name},<br><br>
     			&nbsp;&nbsp;&nbsp;&nbsp; Your reset password token is <b>${random}</b>. 
     			If you are viewing this mail from a Android Device click this <a href = "http://thanhbinh/${random}">link</a>. 
     			The token is valid for only 2 minutes.<br><br>
     			Thanks,<br>
     			thanhbinh.`
-    		
-			};
 
-			return transporter.sendMail(mailOptions);
+				};
 
-		})
+				return transporter.sendMail(mailOptions);
 
-		.then(info => {
+			})
 
-			console.log(info);
-			resolve({ status: 200, message: 'Check mail for instructions' })
-		})
+			.then(info => {
 
-		.catch(err => {
+				console.log(info);
+				resolve({ status: 200, message: 'Check mail for instructions' })
+			})
 
-			console.log(err);
-			reject({ status: 500, message: 'Internal Server Error !' });
+			.catch(err => {
 
-		});
+				console.log(err);
+				reject({ status: 500, message: 'Internal Server Error !' });
+
+			});
 	});
 
-exports.resetPasswordFinish = (email, token, password) => 
+exports.resetPasswordFinish = (email, token, password) =>
 
 	new Promise((resolve, reject) => {
 
 		user.find({ email: email })
 
-		.then(users => {
+			.then(users => {
 
-			let user = users[0];
+				let user = users[0];
 
-			const diff = new Date() - new Date(user.temp_password_time); 
-			const seconds = Math.floor(diff / 1000);
-			console.log(`Seconds : ${seconds}`);
+				const diff = new Date() - new Date(user.temp_password_time);
+				const seconds = Math.floor(diff / 1000);
+				console.log(`Seconds : ${seconds}`);
 
-			if (seconds < 120) {
+				if (seconds < 120) {
 
-				return user;
+					return user;
 
-			} else {
+				} else {
 
-				reject({ status: 401, message: 'Time Out ! Try again' });
-			}
-		})
+					reject({ status: 401, message: 'Time Out ! Try again' });
+				}
+			})
 
-		.then(user => {
+			.then(user => {
 
-			if (bcrypt.compareSync(token, user.temp_password)) {
+				if (bcrypt.compareSync(token, user.temp_password)) {
 
-				const salt = bcrypt.genSaltSync(10);
-				const hash = bcrypt.hashSync(password, salt);
-				user.hashed_password = hash;
-				user.temp_password = undefined;
-				user.temp_password_time = undefined;
+					const salt = bcrypt.genSaltSync(10);
+					const hash = bcrypt.hashSync(password, salt);
+					user.hashed_password = hash;
+					user.temp_password = undefined;
+					user.temp_password_time = undefined;
 
-				return user.save();
+					return user.save();
 
-			} else {
+				} else {
 
-				reject({ status: 401, message: 'Invalid Token !' });
-			}
-		})
+					reject({ status: 401, message: 'Invalid Token !' });
+				}
+			})
 
-		.then(user => resolve({ status: 200, message: 'Password Changed Sucessfully !' }))
+			.then(user => resolve({ status: 200, message: 'Password Changed Sucessfully !' }))
 
-		.catch(err => reject({ status: 500, message: 'Internal Server Error !' }));
+			.catch(err => reject({ status: 500, message: 'Internal Server Error !' }));
 
 	});

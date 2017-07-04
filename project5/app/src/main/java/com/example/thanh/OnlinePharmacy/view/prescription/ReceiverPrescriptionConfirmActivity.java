@@ -38,6 +38,8 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
     private List<Prescription> prescription = new ArrayList<>();
     private SharedPreferences sharedPreferences;
     private String id;
+    private String token;
+
     @AfterViews
     protected void init() {
 
@@ -59,12 +61,14 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
 
     private void initSharedPreferences() {
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
+
+        token = sharedPreferences.getString(Constants.TOKEN, "");
         id = sharedPreferences.getString(Constants.ID, "");
     }
 
     private void getPrescription() {
 
-        Call<List<Prescription>> call = NetworkUtil.getRetrofit().getPrescriptionConfirm(id);
+        Call<List<Prescription>> call = NetworkUtil.getRetrofit(token).getPrescriptionConfirm(id);
         call.enqueue(new Callback<List<Prescription>>() {
             @Override
             public void onResponse(Call<List<Prescription>> call, retrofit2.Response<List<Prescription>> response) {

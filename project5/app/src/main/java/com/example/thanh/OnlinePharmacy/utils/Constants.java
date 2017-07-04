@@ -5,7 +5,7 @@ package com.example.thanh.OnlinePharmacy.utils;
  */
 
 public class Constants {
-    //125.253.123.32 192.168.137.1 192.168.1.208
+    //125.253.123.32 192.168.137.1 192.168.1.46
     public static final String BASE_URL = "http://125.253.123.32:8080/api/";
     public static final String TOKEN = "token";
     public static final String EMAIL = "email";

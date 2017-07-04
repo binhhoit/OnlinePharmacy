@@ -56,6 +56,7 @@ public class SendPrescriptionFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private String id;
     private String email;
+    private String token;
 
     @AfterViews
     void init() {
@@ -69,6 +70,8 @@ public class SendPrescriptionFragment extends Fragment {
 
     private void initSharedPreferences() {
         sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
+
+        token = sharedPreferences.getString(Constants.TOKEN, "");
         id = sharedPreferences.getString(Constants.ID, "");
         email = sharedPreferences.getString(Constants.EMAIL, "");
     }
@@ -139,7 +142,7 @@ public class SendPrescriptionFragment extends Fragment {
 
     private void submitServer(Prescription prescription) {
 
-        Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPrescription(prescription);
+        Call<ResponseStatus> call = NetworkUtil.getRetrofit(token).postPrescription(prescription);
         call.enqueue(new Callback<ResponseStatus>() {
             @Override
             public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {

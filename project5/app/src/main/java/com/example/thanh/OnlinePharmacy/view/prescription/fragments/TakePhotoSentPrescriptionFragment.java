@@ -63,6 +63,7 @@ public class TakePhotoSentPrescriptionFragment extends Fragment {
     private String selectPhoto;
     private SharedPreferences sharedPreferences;
     private String id;
+    private String token;
     private String email;
 
     @AfterViews
@@ -105,43 +106,8 @@ public class TakePhotoSentPrescriptionFragment extends Fragment {
                     Bitmap bitmap = ImageLoader.init().from(selectPhoto).requestSize(512, 512).getBitmap();
                     String encodedImage = ImageBase64.encode(bitmap);
                     Log.d(TAG, encodedImage);
-                    PhotoPrescription photoPrescription = new PhotoPrescription();
-                    photoPrescription.setId(id);
-                    photoPrescription.setStatus("false");
-                    photoPrescription.setEmail(email);
-                    photoPrescription.setAddressReceive("làm chổ điền thêm zô sau");
-                    photoPrescription.setPhoto(encodedImage);
-                    photoPrescription.setNumberBuy(time());
 
-                    Call<ResponseStatus> call = NetworkUtil
-                            .getRetrofit()
-                            .postPhotoPrescription(photoPrescription);
-                    call.enqueue(new Callback<ResponseStatus>() {
-                        @Override
-                        public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
-                            Toast.makeText(
-                                  getActivity(),
-                                    "Thành Công: " +
-                                            response.body().getStatus() +
-                                            "  " +
-                                            response.body().getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(
-                                   getActivity(),
-                                    PayActivity_.class);
-                            startActivity(intent);
-                            getActivity().finish();
-                        }
-
-                        @Override
-                        public void onFailure(Call<ResponseStatus> call, Throwable t) {
-                            Toast.makeText(
-                                    getActivity(),
-                                    "Thất Bại " + t.getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-                            Log.e("ERROR", "" + t.getMessage());
-                        }
-                    });
+                    submitServer(encodedImage);
 
                 } catch (FileNotFoundException e) {
                     Toast.makeText(
@@ -160,8 +126,51 @@ public class TakePhotoSentPrescriptionFragment extends Fragment {
         sharedPreferences =   getActivity()
                 .getSharedPreferences("account", MODE_PRIVATE);
 
+        token = sharedPreferences.getString(Constants.TOKEN, "");
         id = sharedPreferences.getString(Constants.ID, "");
         email = sharedPreferences.getString(Constants.EMAIL, "");
+    }
+
+    private void submitServer(String encodedImage){
+        PhotoPrescription photoPrescription = new PhotoPrescription();
+        photoPrescription.setId(id);
+        photoPrescription.setStatus("false");
+        photoPrescription.setEmail(email);
+        photoPrescription.setAddressReceive("làm chổ điền thêm zô sau");
+        photoPrescription.setPhoto(encodedImage);
+        photoPrescription.setNumberBuy(time());
+
+        postPhoto(photoPrescription);
+    }
+
+    private void postPhoto(PhotoPrescription photoPrescription){
+        Call<ResponseStatus> call = NetworkUtil
+                .getRetrofit(token)
+                .postPhotoPrescription(photoPrescription);
+        call.enqueue(new Callback<ResponseStatus>() {
+            @Override
+            public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
+                Toast.makeText(
+                        getActivity(),
+                        "Thành Công: " +
+                                response.body().getStatus() +
+                                "  " +
+                                response.body().getMessage(),
+                        Toast.LENGTH_SHORT).show();
+
+                PayActivity_.intent(getActivity()).start();
+                getActivity().finish();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseStatus> call, Throwable t) {
+                Toast.makeText(
+                        getActivity(),
+                        "Thất Bại " + t.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                Log.e("ERROR", "" + t.getMessage());
+            }
+        });
     }
 
     private String time() {

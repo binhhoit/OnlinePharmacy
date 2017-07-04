@@ -11,7 +11,11 @@
     "mongoose": "^4.6.0",
     "morgan": "^1.7.0",
     "nodemailer": "^2.6.0",
+    "nodemon": "^1.11.0",
     "randomstring": "^1.1.5",
     "sha256": "^0.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

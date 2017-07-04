@@ -2,11 +2,11 @@
 
 const user = require('../models/User');
 
-exports.getProfile = email => 
+exports.getProfile = (id) => 
 	
 	new Promise((resolve,reject) => {
 
-		user.find({ email: email }, { name: 1, email: 1, created_at: 1, _id: 0 })
+		user.find({ _id: id }, { name: 1, email: 1, created_at: 1, _id: 0 })
 
 		.then(users => resolve(users[0]))
 

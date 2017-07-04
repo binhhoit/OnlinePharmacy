@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +51,7 @@ public class PayCardActivity extends AppCompatActivity {
     private ArrayAdapter<String> arrayAdapter;
     private SharedPreferences sharedPreferences;
     private String mail;
+    private String token;
 
     @AfterViews
     protected void init() {
@@ -65,6 +65,7 @@ public class PayCardActivity extends AppCompatActivity {
     private void initSharedPreferences() {
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
         mail = sharedPreferences.getString(Constants.EMAIL, "");
+        token = sharedPreferences.getString(Constants.TOKEN, "");
         tv_email.setText(mail);
     }
 
@@ -76,7 +77,7 @@ public class PayCardActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
     private void postPayCard(PayCard card) {
-        Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPayCard(card);
+        Call<ResponseStatus> call = NetworkUtil.getRetrofit(token).postPayCard(card);
         call.enqueue(new Callback<ResponseStatus>() {
             @Override
             public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
@@ -140,7 +141,6 @@ public class PayCardActivity extends AppCompatActivity {
             if (etPin.getText().toString().equals("") == true ||
                     etSerial.getText().toString().equals("") == true ||
                     card.getType().toString().equals("chọn") == true) {
-               // Toast.makeText(getApplication(), "Các trường chưa phù hợp", Toast.LENGTH_SHORT).show();
                 showSnackBarMessage("Các trường chưa phù hợp");
             } else {
                 //submit info card transfer server

@@ -1,7 +1,5 @@
 package com.example.thanh.OnlinePharmacy.view.prescription;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -39,6 +37,7 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
     private List<Prescription> prescription = new ArrayList<>();
     private SharedPreferences sharedPreferences;
     private String id;
+    private String token;
 
     @AfterViews
     protected void init() {
@@ -62,11 +61,12 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
 
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
         id = sharedPreferences.getString(Constants.ID, "");
+        token = sharedPreferences.getString(Constants.TOKEN, "");
     }
 
     private void getPrescription() {
 
-        Call<List<Prescription>> call = NetworkUtil.getRetrofit().getPrescription(id);
+        Call<List<Prescription>> call = NetworkUtil.getRetrofit(token).getPrescription(id);
         call.enqueue(new Callback<List<Prescription>>() {
             @Override
             public void onResponse(Call<List<Prescription>> call, retrofit2.Response<List<Prescription>> response) {

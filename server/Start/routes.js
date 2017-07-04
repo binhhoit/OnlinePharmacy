@@ -26,7 +26,7 @@ module.exports = router => {
 	router.post('/authenticate', (req, res) => {
 		//get request lấy giá trị thông tin user
 		const credentials = auth(req);
-		console.log(credentials.name + "     " + credentials.pass + "         co ket noi login");
+		console.log(credentials.name + "co ket noi login");
 		if (!credentials) {
 
 			res.status(400).json({ message: 'Invalid Request !' });
@@ -75,17 +75,12 @@ module.exports = router => {
 
 			profile.getProfile(req.params.id)
 
-				.then(result => {
-					console.log(result)
-					res.json(result)
-				})
+				.then(result => { res.json(result) })
 
 				.catch(err => res.status(err.status).json({ message: err.message }));
 
-		} else {
+		} else { res.status(401).json({ message: 'Invalid Token !' }); }
 
-			res.status(401).json({ message: 'Invalid Token !' });
-		}
 	});
 
 	router.put('/users/:id', (req, res) => {
@@ -103,8 +98,10 @@ module.exports = router => {
 
 				password.changePassword(req.params.id, oldPassword, newPassword)
 
-					.then(result => res.status(result.status).json({ message: result.message }))
+					.then(result => {
 
+						res.status(result.status).json({ message: result.message })
+					})
 					.catch(err => res.status(err.status).json({ message: err.message }));
 
 			}
@@ -114,9 +111,9 @@ module.exports = router => {
 		}
 	});
 
-	router.post('/users/:id/password', (req, res) => {
+	router.post('/users/:email/password', (req, res) => {
 
-		const email = req.params.id;
+		const email = req.params.email;
 		const token = req.body.token;
 		const newPassword = req.body.password;
 
@@ -147,8 +144,9 @@ module.exports = router => {
 			try {
 
 				var decoded = jwt.verify(token, config.secret);
-
-				return decoded.message === req.params.id;
+				console.log(decoded);
+				console.log(req.params.id);
+				return decoded.id === req.params.id;
 
 			} catch (err) {
 
@@ -176,6 +174,7 @@ module.exports = router => {
 
 
 	});
+
 	router.post('/drugstorelist', (req, res) => {
 
 		drugstore_post.drug_store_post(req.body)
@@ -184,6 +183,7 @@ module.exports = router => {
 			})
 
 	});
+
 	router.delete('/drugstorelist/:id', (req, res) => {
 		var id = req.params.id;
 		drugstore_delete.drug_store_delete(id)
@@ -193,69 +193,93 @@ module.exports = router => {
 	});
 
 	//------------------------------prescription (đơn thuốc)----------------------------------
+
 	router.get('/prescription/:id', (req, res) => {
-		prescription_get.prescriptionGet(req.params.id)
-			.then(result => {
-				// console.log("***" + result + "***")
-				res.json(result);
-			})
+		if (checkToken(req)) {
+			prescription_get.prescriptionGet(req.params.id)
+				.then(result => {
+					// console.log("***" + result + "***")
+					res.json(result);
+				})
+		} else {
+			res.status(401).json({ message: 'Invalid Token !' });
+		}
 	});
+
 	// lấy đơn thuốc xác thực trên di động.
 	router.get('/prescription/:id/:boolean', (req, res) => {
-		prescription_get_confirm.prescriptionGet(req.params.id,req.params.boolean)
-			.then(result => {
-				res.json(result);
-			})
+
+		if (checkToken(req)) {
+			prescription_get_confirm.prescriptionGet(req.params.id, req.params.boolean)
+				.then(result => {
+					res.json(result);
+				})
+		} else {
+			res.status(401).json({ message: 'Invalid Token !' });
+		}
 	});
 
 	router.post('/prescription', (req, res) => {
-
-		console.log("//////////////--->");
-		console.log(req.body.prescription);
-		prescription_post.prescriptionPost(req.body)
-			.then(result => {
-				// console.log(result.status + "   " + result.message);
-				res.json({ status: result.status, message: result.message });
-			})
+		if (checkToken(req)) {
+			prescription_post.prescriptionPost(req.body)
+				.then(result => {
+					res.json({ status: result.status, message: result.message });
+				})
+		} else {
+			res.status(401).json({ message: 'Invalid Token !' });
+		}
 	});
+
 	router.post('/prescription/photo', (req, res) => {
-		var prescription = req.body;
-		prescriptionPhoto_post.prescriptionPhotoPost(prescription)
-			.then(result => {
-				// console.log(result.status + "   " + result.message);
-				res.json({ status: result.status, message: result.message });
-			})
+		if (checkToken(req)) {
+			var prescription = req.body;
+			prescriptionPhoto_post.prescriptionPhotoPost(prescription)
+				.then(result => {
+					// console.log(result.status + "   " + result.message);
+					res.json({ status: result.status, message: result.message });
+				})
+		} else {
+			res.status(401).json({ message: 'Invalid Token !' });
+		}
 	});
 	//------------------------------1Pay (thanh toán trực tuyến)----------------------------------
 
 	router.post('/1pay', (req, res) => {
-		var data = req.body;
-		console.log(data);
-		pay.PayPost(data)
-			.then(result => {
-				// console.log("****Mã Thanh Toán Card")
-				// console.log(result.status + "   " + result.amount);
-				res.json({ status: result.status, message: result.amount });
-			})
+		if (checkToken(req)) {
+			var data = req.body;
+			console.log(data);
+			pay.PayPost(data)
+				.then(result => {
+					// console.log("****Mã Thanh Toán Card")
+					// console.log(result.status + "   " + result.amount);
+					res.json({ status: result.status, message: result.amount });
+				})
+		} else {
+			res.status(401).json({ message: 'Invalid Token !' });
+		}
 
 	});
 
 	//------------------------------confirm (kiểm duyệt đơn thuốc)----------------------------------
+
 	router.get('/confirm', (req, res) => {
-		res.render(__dirname +"/view/confirmPresciption.ejs");
+		res.render(__dirname + "/view/confirmPresciption.ejs");
 	});
+
 	router.get('/viewModal', (req, res) => {
-		res.render(__dirname +"/view/viewModal.ejs");
+		res.render(__dirname + "/view/viewModal.ejs");
 	});
+
 	router.get('/confirmList/:boolean', (req, res) => {
 		var id = 'all';
-		prescription_get_confirm.prescriptionGet(id,req.params.boolean)
+		prescription_get_confirm.prescriptionGet(id, req.params.boolean)
 			.then(result => {
 				res.json(result);
 			})
 	});
+
 	router.put('/confirmList/:id', (req, res) => {
-		prescription_put_confirm.prescriptionPut(req.params.id,req.body)
+		prescription_put_confirm.prescriptionPut(req.params.id, req.body)
 			.then(result => {
 				res.json(result);
 			})

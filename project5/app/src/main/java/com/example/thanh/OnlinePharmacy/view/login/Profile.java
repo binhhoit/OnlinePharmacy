@@ -1,6 +1,5 @@
 package com.example.thanh.OnlinePharmacy.view.login;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -52,7 +51,7 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
 
     private SharedPreferences sharedPreferences;
     private String token;
-    private String email;
+    private String id;
     private CompositeSubscription subscriptions;
 
     @AfterViews
@@ -75,7 +74,7 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
 
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
         token = sharedPreferences.getString(Constants.TOKEN, "");
-        email = sharedPreferences.getString(Constants.EMAIL, "");
+        id = sharedPreferences.getString(Constants.ID, "");
     }
 
     @Click(R.id.btn_logout)
@@ -95,7 +94,7 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
         ChangePasswordDialog fragment = new ChangePasswordDialog_();
         // Bundle pass data to activity
         Bundle bundle = new Bundle();
-        bundle.putString(Constants.EMAIL, email);
+        bundle.putString(Constants.ID, id);
         bundle.putString(Constants.TOKEN, token);
         fragment.setArguments(bundle);
         fragment.show(getFragmentManager(), ChangePasswordDialog.TAG);
@@ -104,7 +103,7 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
     // các phản hồi đưa lên đc load
     private void loadProfile() {
 
-        subscriptions.add(NetworkUtil.getRetrofit(token).getProfile(email)
+        subscriptions.add(NetworkUtil.getRetrofit(token).getProfile(id)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError));

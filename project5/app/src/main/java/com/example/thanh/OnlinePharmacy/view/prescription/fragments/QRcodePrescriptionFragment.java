@@ -49,6 +49,7 @@ public class QRcodePrescriptionFragment extends Fragment {
 
     private SharedPreferences sharedPreferences;
     private String id;
+    private String token;
     private String email;
     private ArrayAdapterListview arrayAdapterListview;
 
@@ -74,6 +75,7 @@ public class QRcodePrescriptionFragment extends Fragment {
 
         sharedPreferences = getActivity().getSharedPreferences("account", MODE_PRIVATE);
         id = sharedPreferences.getString(Constants.ID, "");
+        token = sharedPreferences.getString(Constants.TOKEN, "");
         email = sharedPreferences.getString(Constants.EMAIL, "");
     }
 
@@ -187,7 +189,7 @@ public class QRcodePrescriptionFragment extends Fragment {
     }
 
     private void postPrescription(Prescription prescription, DialogInterface dialog) {
-        Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPrescription(prescription);
+        Call<ResponseStatus> call = NetworkUtil.getRetrofit(token).postPrescription(prescription);
         call.enqueue(new Callback<ResponseStatus>() {
             @Override
             public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {

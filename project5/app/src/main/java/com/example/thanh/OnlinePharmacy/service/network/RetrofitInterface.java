@@ -30,12 +30,12 @@ public interface RetrofitInterface {
     Observable<Response> login();
 
     //  router.get('/users/:id', (req,res)
-    @GET("users/{email}")
-    Observable<User> getProfile(@Path("email") String email);
+    @GET("users/{id}")
+    Observable<User> getProfile(@Path("id") String id);
 
     //  router.put('/users/:id'
-    @PUT("users/{email}")
-    Observable<Response> changePassword(@Path("email") String email, @Body User user);
+    @PUT("users/{id}")
+    Observable<Response> changePassword(@Path("id") String email, @Body User user);
 
     //  router.post('/users/:id/password' dùng chung vs bên dưới
     @POST("users/{email}/password")
