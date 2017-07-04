@@ -134,7 +134,7 @@ public class PayCardActivity extends AppCompatActivity {
         });
 
         tvSubmit.setOnClickListener(v -> {
-            //add pin add serial
+            //addView pin addView serial
             card.setPin(etPin.getText().toString());
             card.setSerial(etSerial.getText().toString());
             if (etPin.getText().toString().equals("") == true ||

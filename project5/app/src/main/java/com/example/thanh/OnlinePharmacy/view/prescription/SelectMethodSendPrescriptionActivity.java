@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.view.prescription.fragments.PagerFragmentAdapter;
@@ -29,14 +28,20 @@ public class SelectMethodSendPrescriptionActivity extends AppCompatActivity {
     @AfterViews
     protected void init() {
 
-        //getSupportActionBar().hide();
-        //toolbar.setLogo(getDrawable(R.drawable.ic_list));
+        setToolbar();
+
+        setAdapterFragment();
+    }
+
+    private void setToolbar() {
         toolbar.setTitle("Nhập đơn thuốc");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colortoolbar));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
+    }
 
+    private void setAdapterFragment(){
         FragmentManager manager = getSupportFragmentManager();
         PagerFragmentAdapter adapter = new PagerFragmentAdapter(manager);
         pager.setAdapter(adapter);

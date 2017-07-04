@@ -1,7 +1,6 @@
 package com.example.thanh.OnlinePharmacy.view.prescription.fragments;
 
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -61,9 +60,11 @@ public class SendPrescriptionFragment extends Fragment {
     @AfterViews
     void init() {
         initSharedPreferences();
+
         etUserName.setText(email);
         etNumber.setText(time());
-        add();
+
+        addView();
     }
 
     private void initSharedPreferences() {
@@ -91,6 +92,7 @@ public class SendPrescriptionFragment extends Fragment {
             LinearLayout innerLayout = (LinearLayout) scrollViewlinerLayout.getChildAt(i);
             EditText medicine = (EditText) innerLayout.findViewById(R.id.et_medicine);
             EditText number = (EditText) innerLayout.findViewById(R.id.et_number);
+
             MiniPrescription tempMiniPrescription = new MiniPrescription();
             tempMiniPrescription.setNameMedical(medicine.getText().toString());// get info medicine(thuốc)
             tempMiniPrescription.setNumber(number.getText().toString());// get info number
@@ -98,6 +100,7 @@ public class SendPrescriptionFragment extends Fragment {
             prescription.setMiniPrescription(miniPrescriptions);
 
         }
+
         dialogShow(prescription);
     }
 
@@ -124,41 +127,44 @@ public class SendPrescriptionFragment extends Fragment {
         alertDialogBuilder.setCancelable(false).setPositiveButton("Đồng Ý",
                 (dialog, id1) -> {
                     //submit server
-                    Log.e("prescription", prescription.getMiniPrescription().toString());
-                    Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPrescription(prescription);
-                    call.enqueue(new Callback<ResponseStatus>() {
-                        @Override
-                        public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
-                            Toast.makeText(
-                                    getActivity(),
-                                    "Thành Công: " +
-                                            response.body().getStatus() +
-                                            "  " +
-                                            response.body().getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-
-                            Intent intent = new Intent(getActivity(), PayActivity_.class);
-                            startActivity(intent);
-                            getActivity().finish();
-                            //thêm thông báo bên kia đặt đơn thuốc thành công
-                        }
-
-                        @Override
-                        public void onFailure(Call<ResponseStatus> call, Throwable t) {
-                            Toast.makeText(
-                                    getActivity(),
-                                    "Thất Bại " + t.getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-                            Log.e("ERROR", "" + t.getMessage());
-                        }
-                    });
-
+                    submitServer(prescription);
                 })
                 .setNegativeButton("Sửa hoặc Hủy",
                         (dialog, id12) -> dialog.cancel());
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+
+    }
+
+    private void submitServer(Prescription prescription) {
+
+        Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPrescription(prescription);
+        call.enqueue(new Callback<ResponseStatus>() {
+            @Override
+            public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
+                Toast.makeText(
+                        getActivity(),
+                        "Thành Công: " +
+                                response.body().getStatus() +
+                                "  " +
+                                response.body().getMessage(),
+                        Toast.LENGTH_SHORT).show();
+
+                PayActivity_.intent(getActivity()).start();
+                getActivity().finish();
+                //thêm thông báo bên kia đặt đơn thuốc thành công
+            }
+
+            @Override
+            public void onFailure(Call<ResponseStatus> call, Throwable t) {
+                Toast.makeText(
+                        getActivity(),
+                        "Thất Bại " + t.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                Log.e("ERROR", "" + t.getMessage());
+            }
+        });
 
     }
 
@@ -169,7 +175,7 @@ public class SendPrescriptionFragment extends Fragment {
     }
 
     @Click(R.id.fragment_send_prescript_btn_Add)
-    protected void add() {
+    protected void addView() {
         LinearLayout linearLayoutForm = (LinearLayout) getActivity().findViewById(R.id.linearLayoutForm);
 
         LinearLayout newView = (LinearLayout) getActivity()

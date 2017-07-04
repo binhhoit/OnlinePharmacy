@@ -77,7 +77,7 @@ public class TakePhotoSentPrescriptionFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     startActivityForResult(cameraPhoto.takePhotoIntent(), CAMERA_REQUEST);
-                    //add photo to libery
+                    //addView photo to libery
                     // cameraPhoto.addToGallery();
                 } catch (IOException e) {
                     e.printStackTrace();

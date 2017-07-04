@@ -21,8 +21,7 @@ import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity_;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -30,9 +29,11 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -85,103 +86,20 @@ public class QRcodePrescriptionFragment extends Fragment {
                 Toast.makeText(getActivity(), "you cancelled the scanning", Toast.LENGTH_SHORT).show();
             } else {
 
-                Log.e("kết quả", "onActivityResult: " + "QR" );
+                Log.e("kết quả", "onActivityResult: " + "QR");
                 Prescription prescription = new Prescription();
                 prescription.setEmail(email);   //get mail
                 prescription.setId(id);     //get id
                 prescription.setAddressReceive("nghĩ cách điền sau");   //getaddress
                 prescription.setNumberBuy(time().toString());      //number buy
                 prescription.setStatus("false");
-                ArrayList<MiniPrescription> miniPrescriptions = new ArrayList();
 
                 //parse json
                 try {
-                    JsonParser jsonParser = new JsonParser();
-                    JsonArray jsonArray = (JsonArray) jsonParser.parse(result.getContents());
-                    for (int i = 0; i < jsonArray.size(); i++) {
-                        Gson gson = new Gson();
-                        MiniPrescription tempMiniPrescription = gson.fromJson(
-                                jsonArray
-                                        .get(i)
-                                        .getAsJsonObject()
-                                        .toString(),
-                                MiniPrescription.class);
-                        miniPrescriptions.add(tempMiniPrescription);
-                    }
-                    prescription.setMiniPrescription(miniPrescriptions);
 
+                    parseJson(prescription, result);
                     //show dialog
-                    LayoutInflater li = LayoutInflater.from(getActivity());
-                    View customDialogView = li.inflate(R.layout.dialog_send_presciption, null);
-
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-                    alertDialogBuilder.setTitle("Đơn Thuốc Bạn Đặt Mua");
-                    alertDialogBuilder.setView(customDialogView);
-
-                    // gán các thuộc tính vào dialog
-                    ListView lvSendPresciption = (ListView) customDialogView
-                            .findViewById(R.id.dialog_lv_sendPresciption);
-                    TextView tvNameSend = (TextView) customDialogView
-                            .findViewById(R.id.dialog_tv_nameSend);
-                    TextView tvAddressSend = (TextView) customDialogView
-                            .findViewById(R.id.dialog_tv_addressSend);
-                    TextView tvNumberSend = (TextView) customDialogView
-                            .findViewById(R.id.dialog_tv_numberSend);
-
-                    tvNameSend.setText(prescription.getEmail());
-                    tvAddressSend.setText(prescription.getAddressReceive());
-                    tvNumberSend.setText(prescription.getNumberBuy());
-
-                    arrayAdapterListview = new ArrayAdapterListview(
-                            getActivity(),
-                            R.layout.custom_listview_prescription,
-                            prescription.getMiniPrescription());
-                    lvSendPresciption.setAdapter(arrayAdapterListview);
-
-                    alertDialogBuilder.setCancelable(false).setPositiveButton("Đồng Ý",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //accept
-                                    //submit server
-                                    Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPrescription(prescription);
-                                    call.enqueue(new Callback<ResponseStatus>() {
-                                        @Override
-                                        public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
-                                            Toast.makeText(
-                                                    getActivity(),
-                                                    "Thành Công: " +
-                                                            response.body().getStatus() +
-                                                            "  " +
-                                                            response.body().getMessage(),
-                                                    Toast.LENGTH_SHORT).show();
-
-                                            Intent intent = new Intent(getActivity(), PayActivity_.class);
-                                            dialog.dismiss();
-                                            startActivity(intent);
-                                        }
-
-                                        @Override
-                                        public void onFailure(Call<ResponseStatus> call, Throwable t) {
-                                            Toast.makeText(
-                                                    getActivity(),
-                                                    "Thất Bại " +
-                                                            t.getMessage(),
-                                                    Toast.LENGTH_SHORT).show();
-                                            Log.e("ERROR", "" + t.getMessage());
-                                        }
-                                    });
-                                }
-                            })
-                            .setNegativeButton("Sửa hoặc Hủy",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            scannerQrCode();
-                                            dialog.cancel();
-                                        }
-                                    });
-
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
+                    showDialogInfoPrescription(prescription);
 
                 } catch (Exception e) {
                     Log.e("Error QR", "" + e.getMessage());
@@ -197,7 +115,105 @@ public class QRcodePrescriptionFragment extends Fragment {
         }
     }
 
+    private void parseJson(Prescription prescription, IntentResult result) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<MiniPrescription>>() {
+        }.getType();
+        ArrayList<MiniPrescription> miniPrescriptions = gson.fromJson(result.getContents(), type);
+        prescription.setMiniPrescription(miniPrescriptions);
 
+        //method old
+       /* ArrayList<MiniPrescription> miniPrescriptions = new ArrayList<>();
+        JsonParser jsonParser = new JsonParser();
+        JsonArray jsonArray = (JsonArray) jsonParser.parse(result.getContents());
+        for (int i = 0; i < jsonArray.size(); i++) {
+            Gson gson = new Gson();
+            MiniPrescription tempMiniPrescription = gson.fromJson(
+                    jsonArray
+                            .get(i)
+                            .getAsJsonObject()
+                            .toString(),
+                    MiniPrescription.class);
+            miniPrescriptions.addView(tempMiniPrescription);
+        }
+        prescription.setMiniPrescription(miniPrescriptions);*/
+    }
+
+    private void showDialogInfoPrescription(Prescription prescription) {
+        LayoutInflater li = LayoutInflater.from(getActivity());
+        View customDialogView = li.inflate(R.layout.dialog_send_presciption, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        alertDialogBuilder.setView(customDialogView);
+
+        // gán các thuộc tính vào dialog
+        ListView lvSendPresciption = (ListView) customDialogView
+                .findViewById(R.id.dialog_lv_sendPresciption);
+        TextView tvNameSend = (TextView) customDialogView
+                .findViewById(R.id.dialog_tv_nameSend);
+        TextView tvAddressSend = (TextView) customDialogView
+                .findViewById(R.id.dialog_tv_addressSend);
+        TextView tvNumberSend = (TextView) customDialogView
+                .findViewById(R.id.dialog_tv_numberSend);
+
+        tvNameSend.setText(prescription.getEmail());
+        tvAddressSend.setText(prescription.getAddressReceive());
+        tvNumberSend.setText(prescription.getNumberBuy());
+
+        arrayAdapterListview = new ArrayAdapterListview(
+                getActivity(),
+                R.layout.custom_listview_prescription,
+                prescription.getMiniPrescription());
+        lvSendPresciption.setAdapter(arrayAdapterListview);
+
+        alertDialogBuilder.setCancelable(false).setPositiveButton("Đồng Ý",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //accept
+                        //submit server
+                        postPrescription(prescription, dialog);
+                    }
+                })
+                .setNegativeButton("Sửa hoặc Hủy",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                scannerQrCode();
+                                dialog.cancel();
+                            }
+                        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void postPrescription(Prescription prescription, DialogInterface dialog) {
+        Call<ResponseStatus> call = NetworkUtil.getRetrofit().postPrescription(prescription);
+        call.enqueue(new Callback<ResponseStatus>() {
+            @Override
+            public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
+                Toast.makeText(
+                        getActivity(),
+                        "Thành Công: " +
+                                response.body().getStatus() +
+                                "  " +
+                                response.body().getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                PayActivity_.intent(getActivity()).start();
+                dialog.dismiss();
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseStatus> call, Throwable t) {
+                Toast.makeText(
+                        getActivity(),
+                        "Thất Bại " +
+                                t.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                Log.e("ERROR", "" + t.getMessage());
+            }
+        });
+    }
 
     @Override
     public void onDestroy() {

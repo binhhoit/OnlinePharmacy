@@ -10,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.model.Prescription;
@@ -40,6 +39,7 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
     private List<Prescription> prescription = new ArrayList<>();
     private SharedPreferences sharedPreferences;
     private String id;
+
     @AfterViews
     protected void init() {
         setToolBar();
@@ -77,27 +77,11 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
                     prescription = response.body();
 
                     if (prescription.size() == 0) {
-                        AlertDialog alertDialog = new AlertDialog.Builder(ReceiverPrescriptionActivity.this).create();
-                        alertDialog.setCanceledOnTouchOutside(false);
-                        alertDialog.setTitle("Thông Báo");
-                        alertDialog.setMessage("Bạn chưa có đơn thuốc nào !");
-                        alertDialog.setIcon(R.drawable.ic_warning);
-                        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "OK",
-                                new DialogInterface.OnClickListener() {
-
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent menu = new Intent(ReceiverPrescriptionActivity.this, Menu_.class);
-                                        startActivity(menu);
-                                        finish();
-
-                                    }
-                                });
-                        alertDialog.show();
-
+                        dialogNoPrescription();
                     } else {
                         //swap array List
                         Collections.reverse(prescription);
-                         //show data
+                        //show data
                         showData();
                     }
                 }
@@ -111,7 +95,22 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
         });
     }
 
-    private void showData(){
+    private void dialogNoPrescription() {
+        AlertDialog alertDialog = new AlertDialog.Builder(ReceiverPrescriptionActivity.this).create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setTitle("Thông Báo");
+        alertDialog.setMessage("Bạn chưa có đơn thuốc nào !");
+        alertDialog.setIcon(R.drawable.ic_warning);
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "OK",
+                (dialog, which) -> {
+                    Menu_.intent(ReceiverPrescriptionActivity.this).start();
+                    finish();
+
+                });
+        alertDialog.show();
+    }
+
+    private void showData() {
 
         recyclerViewReceiver.setHasFixedSize(true);
         recyclerViewReceiver.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));

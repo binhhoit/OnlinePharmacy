@@ -8,11 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.model.Prescription;
-import com.example.thanh.OnlinePharmacy.model.RecyclerReceiverAdapter;
 import com.example.thanh.OnlinePharmacy.model.RecyclerReceiverConfirmAdapter;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
@@ -71,28 +69,11 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Prescription>> call, retrofit2.Response<List<Prescription>> response) {
                 // TODO: use the repository list and display it
-                Log.e("Note", "Truy cập lấy đơn thuốc về");
-                Log.e("Note", "" + response.body());
                 if (response.isSuccessful()) {
                     prescription = response.body();
                     if (prescription.size() == 0) {
-                        AlertDialog alertDialog = new AlertDialog.Builder(
-                                ReceiverPrescriptionConfirmActivity.this)
-                                .create();
-                        alertDialog.setCanceledOnTouchOutside(false);
-                        alertDialog.setTitle("Thông Báo");
-                        alertDialog.setMessage("Bạn chưa có đơn thuốc nào !");
-                        alertDialog.setIcon(R.drawable.ic_warning);
-                        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "OK",
-                                (dialog, which) -> {
-
-                                    Menu_.intent(ReceiverPrescriptionConfirmActivity.this).start();
-
-                                });
-                        alertDialog.show();
-
+                        dialogNoPrescription();
                     } else {
-
                         //swap array
                         Collections.reverse(prescription);
                         showData();
@@ -107,6 +88,21 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void dialogNoPrescription() {
+        AlertDialog alertDialog = new AlertDialog.Builder(ReceiverPrescriptionConfirmActivity.this).create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setTitle("Thông Báo");
+        alertDialog.setMessage("Bạn chưa có đơn thuốc nào !");
+        alertDialog.setIcon(R.drawable.ic_warning);
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "OK",
+                (dialog, which) -> {
+                    Menu_.intent(ReceiverPrescriptionConfirmActivity.this).start();
+                    finish();
+
+                });
+        alertDialog.show();
     }
 
     private void showData(){

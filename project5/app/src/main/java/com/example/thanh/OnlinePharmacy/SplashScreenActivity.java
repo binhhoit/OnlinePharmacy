@@ -39,8 +39,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                         public void run() {
                             Log.e("Start","start handler");
                             stopAnim();
-                            Intent intent = new Intent(SplashScreenActivity.this, MainActivity_.class);
-                            startActivity(intent);
+                            MainActivity_.intent(SplashScreenActivity.this).start();
                         }
                     });
 
