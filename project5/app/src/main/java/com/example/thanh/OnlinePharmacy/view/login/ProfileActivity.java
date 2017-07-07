@@ -17,7 +17,6 @@ import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.view.login.fragments.ChangePasswordDialog_;
-import com.example.thanh.OnlinePharmacy.view.main.MainActivity_;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -36,7 +35,7 @@ import rx.subscriptions.CompositeSubscription;
 import static com.example.thanh.OnlinePharmacy.R.id.activity_profile_iv_edit;
 
 @EActivity(R.layout.activity_profile)
-public class Profile extends AppCompatActivity implements ChangePasswordDialog.Listener {
+public class ProfileActivity extends AppCompatActivity implements ChangePasswordDialog.Listener {
 
     @ViewById(R.id.activity_profile_toolbar)
     protected Toolbar toolbar;
@@ -84,7 +83,7 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
         editor.putString(Constants.EMAIL, "");
         editor.putString(Constants.TOKEN, "");
         editor.apply();
-        MainActivity_.intent(this).start();
+        LoginActivity_.intent(this).start();
         finish();
     }
 
@@ -149,7 +148,7 @@ public class Profile extends AppCompatActivity implements ChangePasswordDialog.L
 
     @Click(activity_profile_iv_edit)
     protected void editProfile(){
-        EditProfile_.intent(Profile.this).start();
+        EditProfileActivity_.intent(ProfileActivity.this).start();
     }
 
     @Override

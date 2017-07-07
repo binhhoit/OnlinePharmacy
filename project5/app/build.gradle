@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'checkstyle'
+apply from: '../quality/quality.gradle'
+
+
 android {
 
     compileSdkVersion 25
@@ -87,8 +90,11 @@ dependencies {
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
     //Hawk 2.0 using save user or pass
     compile 'com.orhanobut:hawk:2.0.1'
-
+    //google api sign
+    compile 'com.google.android.gms:play-services:11.0.2'
+    compile 'com.google.android.gms:play-services-location:11.0.2'
+    //login facebook
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
 }
-apply from: '../quality/quality.gradle'
-
+apply plugin: 'com.google.gms.google-services'
 

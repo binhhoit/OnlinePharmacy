@@ -21,7 +21,7 @@ import com.example.thanh.OnlinePharmacy.model.PayCard;
 import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
-import com.example.thanh.OnlinePharmacy.view.menu.Menu_;
+import com.example.thanh.OnlinePharmacy.view.menu.MenuActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -52,6 +52,7 @@ public class PayCardActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private String mail;
     private String token;
+    private String id;
 
     @AfterViews
     protected void init() {
@@ -66,6 +67,7 @@ public class PayCardActivity extends AppCompatActivity {
         sharedPreferences = getApplication().getSharedPreferences("account", MODE_PRIVATE);
         mail = sharedPreferences.getString(Constants.EMAIL, "");
         token = sharedPreferences.getString(Constants.TOKEN, "");
+        id = sharedPreferences.getString(Constants.ID, "");
         tv_email.setText(mail);
     }
 
@@ -77,7 +79,7 @@ public class PayCardActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
     private void postPayCard(PayCard card) {
-        Call<ResponseStatus> call = NetworkUtil.getRetrofit(token).postPayCard(card);
+        Call<ResponseStatus> call = NetworkUtil.getRetrofit(token).postPayCard(card,id);
         call.enqueue(new Callback<ResponseStatus>() {
             @Override
             public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
@@ -92,7 +94,7 @@ public class PayCardActivity extends AppCompatActivity {
                             "Đã nạp thành công thẻ cào mệnh giá: " + response.body().getMessage(),
                             Toast.LENGTH_SHORT)
                             .show();
-                    Menu_.intent(PayCardActivity.this).start();
+                    MenuActivity_.intent(PayCardActivity.this).start();
                 }
             }
 

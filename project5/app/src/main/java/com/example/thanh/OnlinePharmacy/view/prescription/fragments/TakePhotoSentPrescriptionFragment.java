@@ -146,7 +146,7 @@ public class TakePhotoSentPrescriptionFragment extends Fragment {
     private void postPhoto(PhotoPrescription photoPrescription){
         Call<ResponseStatus> call = NetworkUtil
                 .getRetrofit(token)
-                .postPhotoPrescription(photoPrescription);
+                .postPhotoPrescription(photoPrescription,id);
         call.enqueue(new Callback<ResponseStatus>() {
             @Override
             public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {

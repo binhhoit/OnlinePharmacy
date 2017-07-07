@@ -189,7 +189,7 @@ public class QRcodePrescriptionFragment extends Fragment {
     }
 
     private void postPrescription(Prescription prescription, DialogInterface dialog) {
-        Call<ResponseStatus> call = NetworkUtil.getRetrofit(token).postPrescription(prescription);
+        Call<ResponseStatus> call = NetworkUtil.getRetrofit(token).postPrescription(prescription, id);
         call.enqueue(new Callback<ResponseStatus>() {
             @Override
             public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {

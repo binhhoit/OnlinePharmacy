@@ -19,7 +19,7 @@ import org.androidannotations.annotations.ViewById;
 import java.util.Calendar;
 
 @EActivity(R.layout.activity_edit_profile)
-public class EditProfile extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity {
 
     static final int DILOG_ID = 0;
 
@@ -89,7 +89,7 @@ public class EditProfile extends AppCompatActivity {
 
         etMobile.getText();
         tvBrith.getText();
-        Profile_.intent(this).start();
+        ProfileActivity_.intent(this).start();
     }
 
 }

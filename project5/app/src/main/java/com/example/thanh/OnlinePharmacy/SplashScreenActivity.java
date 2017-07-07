@@ -3,7 +3,7 @@ package com.example.thanh.OnlinePharmacy;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.example.thanh.OnlinePharmacy.view.main.MainActivity_;
+import com.example.thanh.OnlinePharmacy.view.login.LoginActivity_;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.androidannotations.annotations.AfterViews;
@@ -38,7 +38,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                         public void run() {
                             Log.e("Start","start handler");
                             stopAnim();
-                            MainActivity_.intent(SplashScreenActivity.this).start();
+                            LoginActivity_.intent(SplashScreenActivity.this).start();
                         }
                     });
 

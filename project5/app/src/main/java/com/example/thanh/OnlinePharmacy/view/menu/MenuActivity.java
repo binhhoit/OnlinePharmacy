@@ -2,9 +2,7 @@ package com.example.thanh.OnlinePharmacy.view.menu;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,8 +16,8 @@ import android.widget.Toast;
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.about.AboutInformationActivity_;
-import com.example.thanh.OnlinePharmacy.view.login.Profile_;
-import com.example.thanh.OnlinePharmacy.view.main.MainActivity_;
+import com.example.thanh.OnlinePharmacy.view.login.LoginActivity_;
+import com.example.thanh.OnlinePharmacy.view.login.ProfileActivity_;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity_;
 import com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPrescriptionActivity_;
 import com.example.thanh.OnlinePharmacy.view.prescription.ReceiverPrescriptionConfirmActivity_;
@@ -32,12 +30,12 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_menu)
-public class Menu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @ViewById(R.id.activity_menu_toolbar)
     protected Toolbar toolbar;
-    @ViewById(R.id.fab)
-    FloatingActionButton fab;
+  /*  @ViewById(R.id.fab)
+    FloatingActionButton fab;*/
     @ViewById(R.id.drawer_layout)
     DrawerLayout drawer;
     @ViewById(R.id.nav_view)
@@ -70,7 +68,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         gridViewString = getResources().getStringArray(R.array.menu);
 
         CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(
-                Menu.this,
+                MenuActivity.this,
                 gridViewString,
                 gridViewImageId);
         androidGridView.setAdapter(adapterViewAndroid);
@@ -78,39 +76,39 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         androidGridView.setOnItemClickListener((parent, view, i, id) -> {
             if (i == 0) {
 
-                Profile_.intent(Menu.this).start();
+                ProfileActivity_.intent(MenuActivity.this).start();
             }
             if (i == 1) {
 
-                PayActivity_.intent(Menu.this).start();
+                PayActivity_.intent(MenuActivity.this).start();
             }
             if (i == 2) {
 
-                SelectMethodSendPrescriptionActivity_.intent(Menu.this).start();
+                SelectMethodSendPrescriptionActivity_.intent(MenuActivity.this).start();
             }
             if (i == 3) {
 
-                ReceiverPrescriptionActivity_.intent(Menu.this).start();
+                ReceiverPrescriptionActivity_.intent(MenuActivity.this).start();
             }
             if (i == 4) {
 
-                ReceiverPrescriptionConfirmActivity_.intent(Menu.this).start();
+                ReceiverPrescriptionConfirmActivity_.intent(MenuActivity.this).start();
             }
             if (i == 5) {
-                SupportActivity_.intent(Menu.this).start();
+                SupportActivity_.intent(MenuActivity.this).start();
             }
             if (i == 6) {
-                SettingActivity_.intent(Menu.this).start();
+                SettingActivity_.intent(MenuActivity.this).start();
             }
             if (i == 7) {
-                AboutInformationActivity_.intent(Menu.this).start();
+                AboutInformationActivity_.intent(MenuActivity.this).start();
             }
 
         });
 
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+      /*  fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
-
+*/
     }
 
     private void initSharedPreferences() {
@@ -144,7 +142,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
             temp++;
             if (temp == 1) {
 
-                Toast.makeText(Menu.this, "Nhấn back 1 lần nữa sẽ thoát chương trình", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuActivity.this, "Nhấn back 1 lần nữa sẽ thoát chương trình", Toast.LENGTH_SHORT).show();
             }
             if (temp == 2) {
                 //exit application
@@ -188,11 +186,11 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
             // Handle the camera action
         } else if (id == R.id.nav_sent_prescription) {
 
-            SelectMethodSendPrescriptionActivity_.intent(Menu.this).start();
+            SelectMethodSendPrescriptionActivity_.intent(MenuActivity.this).start();
         } else if (id == R.id.nav_receiver_prescription) {
-            ReceiverPrescriptionActivity_.intent(Menu.this).start();
+            ReceiverPrescriptionActivity_.intent(MenuActivity.this).start();
         } else if (id == R.id.nav_seting) {
-            SettingActivity_.intent(Menu.this).start();
+            SettingActivity_.intent(MenuActivity.this).start();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_logout) {
@@ -201,7 +199,9 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
             editor.putString(Constants.EMAIL, "");
             editor.putString(Constants.TOKEN, "");
             editor.apply();
-            MainActivity_.intent(this).start();
+
+            LoginActivity_.intent(this).start();
+
             finish();
 
         }

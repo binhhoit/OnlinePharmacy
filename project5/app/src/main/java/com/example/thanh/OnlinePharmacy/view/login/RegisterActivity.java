@@ -1,19 +1,16 @@
-package com.example.thanh.OnlinePharmacy.view.login.fragments;
-
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+package com.example.thanh.OnlinePharmacy.view.login;
 
 import android.support.design.widget.Snackbar;
-
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.model.Response;
 import com.example.thanh.OnlinePharmacy.model.User;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
-import com.example.thanh.OnlinePharmacy.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -26,7 +23,7 @@ import com.orhanobut.hawk.Hawk;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import java.io.IOException;
@@ -37,10 +34,8 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
-@EFragment(R.layout.fragment_register)
-public class RegisterFragment extends Fragment implements Validator.ValidationListener {
-
-    public static final String TAG = RegisterFragment.class.getSimpleName();
+@EActivity(R.layout.activity_register)
+public class RegisterActivity extends AppCompatActivity implements Validator.ValidationListener {
 
     @NotEmpty(message = "Trường này chưa điền")
     @ViewById(R.id.et_name)
@@ -64,21 +59,25 @@ public class RegisterFragment extends Fragment implements Validator.ValidationLi
     @ViewById(R.id.progress)
     protected ProgressBar progressbar;
 
+
     private CompositeSubscription subscriptions;
     private Validator validator;
+
 
     @AfterViews
     void init() {
         validator = new Validator(this);
         validator.setValidationListener(this);
-        Hawk.init(getActivity()).build();
+
+        Hawk.init(this).build();
+
         subscriptions = new CompositeSubscription();
     }
 
     @Click(R.id.tv_register)
     void register() {
-
         validator.validate();
+
     }
 
     @Override
@@ -106,13 +105,13 @@ public class RegisterFragment extends Fragment implements Validator.ValidationLi
 
         for (ValidationError error : errors) {
             View view = error.getView();
-            String message = error.getCollatedErrorMessage(getActivity());
+            String message = error.getCollatedErrorMessage(this);
 
             // Display error messages ;)
             if (view instanceof EditText) {
                 ((EditText) view).setError(message);
             } else {
-                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -158,19 +157,13 @@ public class RegisterFragment extends Fragment implements Validator.ValidationLi
 
     private void showSnackBarMessage(String message) {
 
-        if (getView() != null) {
-
-            Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
-        }
+        Snackbar.make(findViewById(R.id.activity_register), message, Snackbar.LENGTH_SHORT).show();
 
     }
 
     @Click(R.id.tv_login)
     void goToLogin() {
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        LoginFragment fragment = new LoginFragment_();
-        ft.replace(R.id.fragmentFrame, fragment, LoginFragment.TAG);
-        ft.commit();
+        LoginActivity_.intent(this).start();
     }
 
     @Override
@@ -178,5 +171,4 @@ public class RegisterFragment extends Fragment implements Validator.ValidationLi
         super.onDestroy();
         subscriptions.unsubscribe();
     }
-
 }

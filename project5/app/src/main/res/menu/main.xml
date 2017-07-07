@@ -5,10 +5,12 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
+        android:theme="@style/OverflowMenu"
         app:showAsAction="collapseActionView" />
     <item
         android:id="@+id/action_support"
         android:orderInCategory="100"
         android:title="Hỗ trợ"
+        android:theme="@style/OverflowMenu"
         app:showAsAction="collapseActionView" />
 </menu>

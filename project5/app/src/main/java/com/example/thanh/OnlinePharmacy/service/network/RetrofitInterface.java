@@ -35,7 +35,7 @@ public interface RetrofitInterface {
 
     //  router.put('/users/:id'
     @PUT("users/{id}")
-    Observable<Response> changePassword(@Path("id") String email, @Body User user);
+    Observable<Response> changePassword(@Path("id") String id, @Body User user);
 
     //  router.post('/users/:id/password' dùng chung vs bên dưới
     @POST("users/{email}/password")
@@ -54,14 +54,14 @@ public interface RetrofitInterface {
     Call<List<Prescription>> getPrescriptionConfirm(@Path("id") String id);
 
     //  router.post('/Prescription'
-    @POST("Prescription")
-    Call<ResponseStatus> postPrescription(@Body Prescription Prescription);
+    @POST("Prescription/{id}")
+    Call<ResponseStatus> postPrescription(@Body Prescription Prescription,@Path("id") String id);
 
     //  router.get('/prescriptionlist'
-    @POST("1pay")
-    Call<ResponseStatus> postPayCard(@Body PayCard payCard);
+    @POST("1pay/{id}")
+    Call<ResponseStatus> postPayCard(@Body PayCard payCard,@Path("id") String id);
 
-    @POST("Prescription/photo")
-    Call<ResponseStatus> postPhotoPrescription(@Body PhotoPrescription PhotoPrescription);
+    @POST("Prescription/photo/{id}")
+    Call<ResponseStatus> postPhotoPrescription(@Body PhotoPrescription PhotoPrescription,@Path("id") String id);
 }
 

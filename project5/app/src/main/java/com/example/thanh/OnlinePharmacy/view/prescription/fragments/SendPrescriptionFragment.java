@@ -142,18 +142,26 @@ public class SendPrescriptionFragment extends Fragment {
 
     private void submitServer(Prescription prescription) {
 
-        Call<ResponseStatus> call = NetworkUtil.getRetrofit(token).postPrescription(prescription);
+        Call<ResponseStatus> call = NetworkUtil.getRetrofit(token).postPrescription(prescription,id);
         call.enqueue(new Callback<ResponseStatus>() {
             @Override
             public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
+                if(response.body().getStatus().equals("401")){
+                    Toast.makeText(
+                            getActivity(),
+                            "Thất bại: " +
+                                    response.body().getStatus() +
+                                    "  " +
+                                    response.body().getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
                 Toast.makeText(
                         getActivity(),
-                        "Thành Công: " +
+                        "Gửi thành công " +
                                 response.body().getStatus() +
                                 "  " +
                                 response.body().getMessage(),
                         Toast.LENGTH_SHORT).show();
-
                 PayActivity_.intent(getActivity()).start();
                 getActivity().finish();
                 //thêm thông báo bên kia đặt đơn thuốc thành công

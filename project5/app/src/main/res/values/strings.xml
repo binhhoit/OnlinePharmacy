@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Online Pharmacy</string>
 
+    <string name="server_client_id">610899324593-l29l3j9q5c5kkciicsl5i9heghag41lg.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">295768680886412</string>
+    <string name="fb_login_protocol_scheme">fb295768680886412</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
@@ -46,4 +50,8 @@
         <item>Cài đặt</item>
         <item>Thông tin thêm</item>
     </string-array>
+     <string name="info_user">Tài khoản bị trùng lặp với đăng ký trước đó
+    </string>
+
+
 </resources>

@@ -6,7 +6,7 @@ exports.getProfile = (id) =>
 	
 	new Promise((resolve,reject) => {
 
-		user.find({ _id: id }, { name: 1, email: 1, created_at: 1, _id: 0 })
+		user.find({ _id: id }, { name: 1, email: 1, created_at: 1, _id: 1 })
 
 		.then(users => resolve(users[0]))
 

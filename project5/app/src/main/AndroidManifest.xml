@@ -3,7 +3,6 @@
     package="com.example.thanh.OnlinePharmacy">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -22,9 +21,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <!--
+            <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        -->
+        <meta-data
             android:name="net.hockeyapp.android.appIdentifier"
             android:value="${HOCKEYAPP_APP_ID}" />
 
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
         <activity android:name=".SplashScreenActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,12 +54,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.main.MainActivity_" />
-        <activity android:name=".view.login.Profile_" />
-        <activity android:name=".view.login.EditProfile_"></activity>
+        <activity android:name=".view.login.LoginActivity_" />
+        <activity android:name=".view.login.RegisterActivity_"/>
+        <activity android:name=".view.login.ProfileActivity_" />
+        <activity android:name=".view.login.EditProfileActivity_" />
         <activity android:name=".view.prescription.ReceiverPrescriptionDetailsActivity_" />
         <activity android:name=".view.pay.PayCardActivity_" />
-        <activity android:name=".view.menu.Menu_" />
+        <activity android:name=".view.menu.MenuActivity_" />
         <activity android:name=".view.prescription.SelectMethodSendPrescriptionActivity_" />
         <activity android:name=".view.prescription.ReceiverPrescriptionConfirmDetailsActivity_" />
         <activity

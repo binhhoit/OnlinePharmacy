@@ -219,7 +219,7 @@ module.exports = router => {
 		}
 	});
 
-	router.post('/prescription', (req, res) => {
+	router.post('/prescription/:id', (req, res) => {
 		if (checkToken(req)) {
 			prescription_post.prescriptionPost(req.body)
 				.then(result => {
@@ -230,7 +230,7 @@ module.exports = router => {
 		}
 	});
 
-	router.post('/prescription/photo', (req, res) => {
+	router.post('/prescription/photo/:id', (req, res) => {
 		if (checkToken(req)) {
 			var prescription = req.body;
 			prescriptionPhoto_post.prescriptionPhotoPost(prescription)
@@ -244,7 +244,7 @@ module.exports = router => {
 	});
 	//------------------------------1Pay (thanh toán trực tuyến)----------------------------------
 
-	router.post('/1pay', (req, res) => {
+	router.post('/1pay/:id', (req, res) => {
 		if (checkToken(req)) {
 			var data = req.body;
 			console.log(data);

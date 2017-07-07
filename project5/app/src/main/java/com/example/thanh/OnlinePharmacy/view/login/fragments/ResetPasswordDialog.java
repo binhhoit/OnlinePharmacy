@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.example.thanh.OnlinePharmacy.view.main.MainActivity;
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.model.Response;
 import com.example.thanh.OnlinePharmacy.model.User;
@@ -86,7 +85,7 @@ public class ResetPasswordDialog extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        listner = (MainActivity) context;
+       /* listner = (LoginActivity) context;*/
     }
 
     private void setEmptyFields() {

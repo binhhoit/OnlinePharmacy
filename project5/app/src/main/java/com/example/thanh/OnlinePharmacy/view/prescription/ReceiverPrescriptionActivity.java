@@ -14,7 +14,7 @@ import com.example.thanh.OnlinePharmacy.model.Prescription;
 import com.example.thanh.OnlinePharmacy.model.RecyclerReceiverAdapter;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
-import com.example.thanh.OnlinePharmacy.view.menu.Menu_;
+import com.example.thanh.OnlinePharmacy.view.menu.MenuActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -103,7 +103,7 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
         alertDialog.setIcon(R.drawable.ic_warning);
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "OK",
                 (dialog, which) -> {
-                    Menu_.intent(ReceiverPrescriptionActivity.this).start();
+                    MenuActivity_.intent(ReceiverPrescriptionActivity.this).start();
                     finish();
 
                 });

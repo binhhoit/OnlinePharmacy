@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_login">
@@ -14,22 +15,13 @@
         android:padding="20dp">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginTop="5dp"
             android:src="@drawable/ic_pharmacy1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:text="Đăng nhập"
-            android:textAllCaps="true"
-            android:textColor="@color/colorTurquoise"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,12 +103,12 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/fragment_login_cb_save_user"
+                android:id="@+id/activity_login_cb_save_user"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="ghi nhớ đăng nhập"
                 android:textColor="@color/colorText"
-               android:textStyle="italic"
+                android:textStyle="italic"
                 android:gravity="center|left"
                 android:layout_weight="1" />
 
@@ -156,20 +148,73 @@
             android:textStyle="italic"
             android:textColor="@color/colorText" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <com.wang.avi.AVLoadingIndicatorView
-            android:id="@+id/activity_login_avi_loading"
-            style="@style/AVLoadingIndicatorView"
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/colorText" />
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_activity_register_tv_or"
+                android:gravity="center"
+                android:text="or"
+                android:textColor="@color/colorText"></TextView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/colorText" />
+        </LinearLayout>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:visibility="gone"
-            app:indicatorColor="#e90e0e"
-            app:indicatorName="BallBeatIndicator" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:text="đăng Nhập bằng "
+            android:textAllCaps="true"
+            android:textColor="@color/colorText"
+            android:textSize="16dp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/activity_login_iv_google_plus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:src="@drawable/ic_google_plus" />
+
+            <ImageView
+                android:id="@+id/activity_login_iv_facebook"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:src="@drawable/ic_face" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:src="@drawable/ic_twitter" />
+        </LinearLayout>
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -179,4 +224,24 @@
         android:textColor="@color/colorCloud"
         android:textAlignment="center"
         android:layout_alignParentBottom="true"/>
+
+    <LinearLayout
+        android:id="@+id/activity_login_ll_avi_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#538b9c9a"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/activity_login_avi_loading"
+            style="@style/AVLoadingIndicatorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:indicatorColor="#e90e0e"
+            app:indicatorName="BallBeatIndicator" />
+    </LinearLayout>
 </RelativeLayout>
