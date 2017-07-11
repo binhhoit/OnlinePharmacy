@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "610899324593",
+    "project_id": "firebase-online-pharmacy"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610899324593:android:80ebd0a5f593d0b5",
+        "android_client_info": {
+          "package_name": "com.example.thanh.OnlinePharmacy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610899324593-a2dqerjl9cd4slsp00b8qu7ptecn35on.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.thanh.OnlinePharmacy",
+            "certificate_hash": "fa5e9c184c04e13ae1b2bb57abd17269a67665cb"
+          }
+        },
+        {
+          "client_id": "610899324593-toduaudb73icj7aijdf93tjen8od4u71.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "610899324593-l29l3j9q5c5kkciicsl5i9heghag41lg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.thanh.OnlinePharmacy",
+            "certificate_hash": "e8a79184ca2a357818cb389570a9d11b370910b0"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfFRxoHMnnr02xnNJDIqv-0-p6vRTl1L8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
