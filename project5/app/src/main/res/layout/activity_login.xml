@@ -208,6 +208,7 @@
                 android:src="@drawable/ic_face" />
 
             <ImageView
+                android:id="@+id/activity_login_iv_twitter"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"

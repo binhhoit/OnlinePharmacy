@@ -45,6 +45,15 @@ import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 import com.orhanobut.hawk.Hawk;
+import com.twitter.sdk.android.core.DefaultLogger;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterConfig;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterAuthClient;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.androidannotations.annotations.AfterViews;
@@ -114,15 +123,15 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
     @AfterViews
     protected void init() {
+        initSharedPreferences();
 
         infoStart();
 
-        initSharedPreferences();
-
-        loginFacebook();
+        setloginFacebook();
 
         setLoginGoogle();
 
+        setLoginTwitter();
     }
 
     private void initSharedPreferences() {
@@ -291,7 +300,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
         Log.e("permission", "");
     }
 
-    private void loginFacebook() {
+    private void setloginFacebook() {
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -372,6 +381,8 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }
+
+        loginTwitter.onActivityResult(requestCode, resultCode, data);
     }
 
     private void setLoginGoogle() {
@@ -410,19 +421,19 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
             //Uri personPhoto = acct.getPhotoUrl();
             loginProcess(personEmailGoogle, "passwordGoogle");
-            signOut();
+            signOutGoogle();
             // updateUI(true);
         } else {
             Log.e("login google.com", "dang nhap that bai");
         }
     }
 
-    private void signOut() {
+    private void signOutGoogle() {
         Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
                     @Override
                     public void onResult(Status status) {
-                        Log.e("signOut", "sign out google");
+                        Log.e("signOutGoogle", "sign out google");
                     }
                 });
     }
@@ -438,10 +449,42 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
             //user.setLocation(fbLocation);
             registerProcess(user);
         } else {
-            signOut();
+            signOutGoogle();
         }
     }
 
+    TwitterLoginButton loginTwitter;
+    TwitterAuthClient twitterAuthClient;
+
+    private void setLoginTwitter() {
+        TwitterConfig config = new TwitterConfig.Builder(this)
+                .logger(new DefaultLogger(Log.DEBUG))
+                .twitterAuthConfig(new TwitterAuthConfig("CONSUMER_KEY", "CONSUMER_SECRET"))
+                .debug(true)
+                .build();
+        Twitter.initialize(config);
+
+        twitterAuthClient = new TwitterAuthClient();
+
+    }
+
+    @Click(R.id.activity_login_iv_twitter)
+    protected void signInTwitter() {
+        twitterAuthClient.authorize(this, new com.twitter.sdk.android.core.Callback<TwitterSession>() {
+
+            @Override
+            public void success(Result<TwitterSession> twitterSessionResult) {
+                // Success
+                Log.e("twitter", "" + twitterSessionResult.data);
+            }
+
+            @Override
+            public void failure(TwitterException e) {
+                e.printStackTrace();
+                Log.e("twitter","" + e.getMessage());
+            }
+        });
+    }
 
     private void registerProcess(User user) {
 

@@ -19,26 +19,12 @@ android {
         jackOptions {
             enabled true
         }
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    productFlavors {
-        dev {
-            targetSdkVersion 21
-        }
-        free {
-            targetSdkVersion 16
-        }
-    }
-
 }
 repositories {
     mavenCentral()
@@ -91,10 +77,16 @@ dependencies {
     //Hawk 2.0 using save user or pass
     compile 'com.orhanobut:hawk:2.0.1'
     //google api sign
-    compile 'com.google.android.gms:play-services:11.0.2'
+    compile 'com.google.android.gms:play-services-plus:11.0.2'
+    compile 'com.google.android.gms:play-services-auth:11.0.2'
     compile 'com.google.android.gms:play-services-location:11.0.2'
     //login facebook
     compile 'com.facebook.android:facebook-android-sdk:4.+'
+    //login twitter
+    // Include all the Twitter APIs
+    compile 'com.twitter.sdk.android:twitter:3.0.0'
+    // (Optional) Monetize using mopub
+    compile 'com.twitter.sdk.android:twitter-mopub:3.0.0'
 }
 apply plugin: 'com.google.gms.google-services'
 
