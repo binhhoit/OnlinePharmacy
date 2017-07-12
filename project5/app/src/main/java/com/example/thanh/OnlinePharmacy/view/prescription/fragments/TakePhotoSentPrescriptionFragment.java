@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.model.Crash;
 import com.example.thanh.OnlinePharmacy.model.PhotoPrescription;
-import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity_;
@@ -32,9 +31,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
@@ -144,33 +143,29 @@ public class TakePhotoSentPrescriptionFragment extends Fragment {
     }
 
     private void postPhoto(PhotoPrescription photoPrescription){
-        Call<ResponseStatus> call = NetworkUtil
-                .getRetrofit(token)
-                .postPhotoPrescription(photoPrescription,id);
-        call.enqueue(new Callback<ResponseStatus>() {
-            @Override
-            public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
-                Toast.makeText(
-                        getActivity(),
-                        "Thành Công: " +
-                                response.body().getStatus() +
-                                "  " +
-                                response.body().getMessage(),
-                        Toast.LENGTH_SHORT).show();
 
-                PayActivity_.intent(getActivity()).start();
-                getActivity().finish();
-            }
+        Observable.defer(() -> NetworkUtil.getRetrofit(token).postPhotoPrescription(photoPrescription, id))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(responseStatus -> {
+                    Toast.makeText(
+                            getActivity(),
+                            "Thành Công: " +
+                                    responseStatus.getStatus() +
+                                    "  " +
+                                    responseStatus.getMessage(),
+                            Toast.LENGTH_SHORT).show();
 
-            @Override
-            public void onFailure(Call<ResponseStatus> call, Throwable t) {
-                Toast.makeText(
-                        getActivity(),
-                        "Thất Bại " + t.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-                Log.e("ERROR", "" + t.getMessage());
-            }
-        });
+                    PayActivity_.intent(getActivity()).start();
+                    getActivity().finish();
+
+                }, throwable -> {
+                    Toast.makeText(
+                            getActivity(),
+                            "Thất Bại " + throwable.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                    Log.e("ERROR", "" + throwable.getMessage());
+                });
     }
 
     private String time() {

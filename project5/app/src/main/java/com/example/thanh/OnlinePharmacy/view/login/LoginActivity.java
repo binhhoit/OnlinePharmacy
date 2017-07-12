@@ -49,11 +49,12 @@ import com.twitter.sdk.android.core.DefaultLogger;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterAuthToken;
 import com.twitter.sdk.android.core.TwitterConfig;
+import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterAuthClient;
-import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.androidannotations.annotations.AfterViews;
@@ -75,6 +76,13 @@ import rx.subscriptions.CompositeSubscription;
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends AppCompatActivity implements Validator.ValidationListener, GoogleApiClient.OnConnectionFailedListener {
 
+    public static final String TAG = LoginActivity.class.getSimpleName();
+    private static final int RC_SIGN_IN_GOOGLE = 9001;
+    private static final int RC_SIGN_IN_FACEBOOK = 64206;
+    private static final int RC_SIGN_IN_TWITTER = 140;
+    private static final String CONSUMER_KEY = "buQaggRH7HxN05c46QrjrIqe0";
+    private static final String CONSUMER_SECRET = "7A1b7uly358aNnUt2mB0A880WMax3wViwtveXupmjzSSnPIGmM";
+    private int TEMP = 0;
 
     @NotEmpty(message = "Trường này chưa điền")
     @Email(message = "Email chưa đúng")
@@ -98,6 +106,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     private CompositeSubscription subscriptions;
     private SharedPreferences sharedPreferences;
     private Validator validator;
+    private ResetPasswordDialog resetPasswordDialog;
 
     protected String fbId = null;
     protected String fbBirthday = null;
@@ -105,6 +114,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     protected String fbEmail = null;
     protected String fbName = null;
     private boolean loginFacebook = false;
+    private CallbackManager callbackManager;
 
     private String personNameGoogle;
     private String personGivenNameGoogle;
@@ -112,14 +122,9 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     private String personEmailGoogle;
     private String personIdGoogle;
     private GoogleApiClient googleApiClient;
-    private static final int RC_SIGN_IN = 9001;
     private boolean loginGoogle = false;
 
-    public static final String TAG = LoginActivity.class.getSimpleName();
-    private int TEMP = 0;
-
-    private ResetPasswordDialog resetPasswordDialog;
-    private CallbackManager callbackManager;
+    private TwitterAuthClient twitterAuthClient;
 
     @AfterViews
     protected void init() {
@@ -375,14 +380,16 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == RC_SIGN_IN_FACEBOOK) {
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+        }
+        if (requestCode == RC_SIGN_IN_GOOGLE) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }
-
-        loginTwitter.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN_TWITTER) {
+            twitterAuthClient.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     private void setLoginGoogle() {
@@ -401,7 +408,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     @Click(R.id.activity_login_iv_google_plus)
     protected void signInGoogle() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        startActivityForResult(signInIntent, RC_SIGN_IN_GOOGLE);
     }
 
     private void handleSignInResult(GoogleSignInResult result) {
@@ -453,13 +460,10 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
         }
     }
 
-    TwitterLoginButton loginTwitter;
-    TwitterAuthClient twitterAuthClient;
-
     private void setLoginTwitter() {
         TwitterConfig config = new TwitterConfig.Builder(this)
                 .logger(new DefaultLogger(Log.DEBUG))
-                .twitterAuthConfig(new TwitterAuthConfig("CONSUMER_KEY", "CONSUMER_SECRET"))
+                .twitterAuthConfig(new TwitterAuthConfig(CONSUMER_KEY, CONSUMER_SECRET))
                 .debug(true)
                 .build();
         Twitter.initialize(config);
@@ -467,6 +471,8 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
         twitterAuthClient = new TwitterAuthClient();
 
     }
+
+
 
     @Click(R.id.activity_login_iv_twitter)
     protected void signInTwitter() {
@@ -476,6 +482,10 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
             public void success(Result<TwitterSession> twitterSessionResult) {
                 // Success
                 Log.e("twitter", "" + twitterSessionResult.data);
+                TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
+                TwitterAuthToken authToken = session.getAuthToken();
+                /*String token = authToken.token;
+                String secret = authToken.secret;*/
             }
 
             @Override

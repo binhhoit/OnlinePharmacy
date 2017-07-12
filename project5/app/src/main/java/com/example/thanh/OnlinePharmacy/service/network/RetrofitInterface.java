@@ -47,21 +47,21 @@ public interface RetrofitInterface {
 
     //  router.get('/Prescription'
     @GET("Prescription/{id}")
-    Call<List<Prescription>> getPrescription(@Path("id") String id);
+    Observable<List<Prescription>> getPrescription(@Path("id") String id);
 
     //  router.post('/Prescription'/confirmList/
     @GET("Prescription/{id}/true")
-    Call<List<Prescription>> getPrescriptionConfirm(@Path("id") String id);
+    Observable<List<Prescription>> getPrescriptionConfirm(@Path("id") String id);
 
     //  router.post('/Prescription'
     @POST("Prescription/{id}")
-    Call<ResponseStatus> postPrescription(@Body Prescription Prescription,@Path("id") String id);
+    Observable<ResponseStatus> postPrescription(@Body Prescription Prescription,@Path("id") String id);
 
     //  router.get('/prescriptionlist'
     @POST("1pay/{id}")
-    Call<ResponseStatus> postPayCard(@Body PayCard payCard,@Path("id") String id);
+    Observable<ResponseStatus> postPayCard(@Body PayCard payCard,@Path("id") String id);
 
     @POST("Prescription/photo/{id}")
-    Call<ResponseStatus> postPhotoPrescription(@Body PhotoPrescription PhotoPrescription,@Path("id") String id);
+    Observable<ResponseStatus> postPhotoPrescription(@Body PhotoPrescription PhotoPrescription,@Path("id") String id);
 }
 

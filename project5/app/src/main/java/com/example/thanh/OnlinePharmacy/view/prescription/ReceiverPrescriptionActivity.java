@@ -24,8 +24,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 @EActivity(R.layout.activity_receiver_prescription)
 public class ReceiverPrescriptionActivity extends AppCompatActivity {
@@ -66,32 +67,25 @@ public class ReceiverPrescriptionActivity extends AppCompatActivity {
 
     private void getPrescription() {
 
-        Call<List<Prescription>> call = NetworkUtil.getRetrofit(token).getPrescription(id);
-        call.enqueue(new Callback<List<Prescription>>() {
-            @Override
-            public void onResponse(Call<List<Prescription>> call, retrofit2.Response<List<Prescription>> response) {
-                Log.e("Note", "Truy cập lấy đơn thuốc về");
-                Log.e("Note", "" + response.body());
-                if (response.isSuccessful()) {
+        Observable.defer(() -> NetworkUtil.getRetrofit(token).getPrescription(id))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(prescriptions -> {
+                            Log.e("size", "" + prescriptions.size());
+                            prescription = prescriptions;
 
-                    prescription = response.body();
-
-                    if (prescription.size() == 0) {
-                        dialogNoPrescription();
-                    } else {
-                        //swap array List
-                        Collections.reverse(prescription);
-                        //show data
-                        showData();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Prescription>> call, Throwable t) {
-                // TODO: handle error
-                Log.e("ERROR", t.getMessage());
-            }
+                            if (prescription.size() == 0) {
+                                dialogNoPrescription();
+                            } else {
+                                //swap array List
+                                Collections.reverse(prescription);
+                                //show data
+                                showData();
+                            }
+                        },
+                        throwable -> {
+                            // TODO: handle error
+                            Log.e("ERROR", throwable.getMessage());
         });
     }
 

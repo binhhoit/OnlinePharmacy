@@ -54,7 +54,7 @@ dependencies {
     compile "org.androidannotations:androidannotations-api:$androidAnnotationVersion"
     compile "org.androidannotations:androidannotations:$androidAnnotationVersion"
     annotationProcessor "org.androidannotations:androidannotations:$androidAnnotationVersion"
-    //retrofit
+    //retrofit and rxjava
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'

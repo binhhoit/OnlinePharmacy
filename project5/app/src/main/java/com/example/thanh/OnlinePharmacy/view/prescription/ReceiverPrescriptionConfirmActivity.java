@@ -24,8 +24,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 @EActivity(R.layout.activity_receiver_prescription_confirm)
 public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
@@ -68,29 +69,23 @@ public class ReceiverPrescriptionConfirmActivity extends AppCompatActivity {
 
     private void getPrescription() {
 
-        Call<List<Prescription>> call = NetworkUtil.getRetrofit(token).getPrescriptionConfirm(id);
-        call.enqueue(new Callback<List<Prescription>>() {
-            @Override
-            public void onResponse(Call<List<Prescription>> call, retrofit2.Response<List<Prescription>> response) {
-                // TODO: use the repository list and display it
-                if (response.isSuccessful()) {
-                    prescription = response.body();
-                    if (prescription.size() == 0) {
-                        dialogNoPrescription();
-                    } else {
-                        //swap array
-                        Collections.reverse(prescription);
-                        showData();
-                    }
-                }
-            }
+        Observable.defer(() -> NetworkUtil.getRetrofit(token).getPrescriptionConfirm(id))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(prescriptions -> {
 
-            @Override
-            public void onFailure(Call<List<Prescription>> call, Throwable t) {
-                // TODO: handle error
-                Log.e("ERROR", t.getMessage());
-            }
-        });
+                            prescription = prescriptions;
+                            if (prescription.size() == 0) {
+                                dialogNoPrescription();
+                            } else {
+                                //swap array
+                                Collections.reverse(prescription);
+                                showData();
+                            }
+                        },
+                        throwable -> {
+                            Log.e("ERROR", throwable.getMessage());
+                        });
 
     }
 

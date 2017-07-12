@@ -1,12 +1,14 @@
-<resources xmlns:android="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Online Pharmacy</string>
 
     <string name="server_client_id">610899324593-l29l3j9q5c5kkciicsl5i9heghag41lg.apps.googleusercontent.com</string>
     <string name="facebook_app_id">295768680886412</string>
     <string name="fb_login_protocol_scheme">fb295768680886412</string>
 
-    <string android:name="com.twitter.sdk.android.CONSUMER_KEY">buQaggRH7HxN05c46QrjrIqe0</string>
-    <string android:name="com.twitter.sdk.android.CONSUMER_SECRET">7A1b7uly358aNnUt2mB0A880WMax3wViwtveXupmjzSSnPIGmM</string>
+    <!--<string
+        android:name="com.twitter.sdk.android.CONSUMER_KEY">buQaggRH7HxN05c46QrjrIqe0</string>
+    <string
+        android:name="com.twitter.sdk.android.CONSUMER_SECRET">7A1b7uly358aNnUt2mB0A880WMax3wViwtveXupmjzSSnPIGmM</string>-->
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -53,8 +55,8 @@
         <item>Cài đặt</item>
         <item>Thông tin thêm</item>
     </string-array>
-     <string name="info_user">Tài khoản bị trùng lặp với đăng ký trước đó
-    </string>
+    <string name="info_user">Tài khoản bị trùng lặp với đăng ký trước đó</string>
+    <string name="pay_card_info">Đã nạp thành công thẻ cào mệnh giá:</string>
 
 
 </resources>

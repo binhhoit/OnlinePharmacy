@@ -19,7 +19,6 @@ import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.model.ArrayAdapterListview;
 import com.example.thanh.OnlinePharmacy.model.MiniPrescription;
 import com.example.thanh.OnlinePharmacy.model.Prescription;
-import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity_;
@@ -33,9 +32,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -142,40 +141,38 @@ public class SendPrescriptionFragment extends Fragment {
 
     private void submitServer(Prescription prescription) {
 
-        Call<ResponseStatus> call = NetworkUtil.getRetrofit(token).postPrescription(prescription,id);
-        call.enqueue(new Callback<ResponseStatus>() {
-            @Override
-            public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
-                if(response.body().getStatus().equals("401")){
-                    Toast.makeText(
-                            getActivity(),
-                            "Thất bại: " +
-                                    response.body().getStatus() +
-                                    "  " +
-                                    response.body().getMessage(),
-                            Toast.LENGTH_SHORT).show();
-                }
-                Toast.makeText(
-                        getActivity(),
-                        "Gửi thành công " +
-                                response.body().getStatus() +
-                                "  " +
-                                response.body().getMessage(),
-                        Toast.LENGTH_SHORT).show();
-                PayActivity_.intent(getActivity()).start();
-                getActivity().finish();
-                //thêm thông báo bên kia đặt đơn thuốc thành công
-            }
-
-            @Override
-            public void onFailure(Call<ResponseStatus> call, Throwable t) {
-                Toast.makeText(
-                        getActivity(),
-                        "Thất Bại " + t.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-                Log.e("ERROR", "" + t.getMessage());
-            }
-        });
+        Observable.defer(() -> NetworkUtil.getRetrofit(token).postPrescription(prescription, id))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(responseStatus -> {
+                            if (responseStatus.getStatus().equals("401")) {
+                                Toast.makeText(
+                                        getActivity(),
+                                        "Thất bại: " +
+                                                responseStatus.getStatus() +
+                                                "  " +
+                                                responseStatus.getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(
+                                        getActivity(),
+                                        "Gửi thành công " +
+                                                responseStatus.getStatus() +
+                                                "  " +
+                                                responseStatus.getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                                PayActivity_.intent(getActivity()).start();
+                                getActivity().finish();
+                                //thêm thông báo bên kia đặt đơn thuốc thành công
+                            }
+                        },
+                        throwable -> {
+                            Toast.makeText(
+                                    getActivity(),
+                                    "Thất Bại " + throwable.getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                            Log.e("ERROR", "" + throwable.getMessage());
+                        });
 
     }
 

@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.thanh.OnlinePharmacy.R;
 import com.example.thanh.OnlinePharmacy.model.PayCard;
-import com.example.thanh.OnlinePharmacy.model.ResponseStatus;
 import com.example.thanh.OnlinePharmacy.service.network.NetworkUtil;
 import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.menu.MenuActivity_;
@@ -27,9 +26,9 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 @EActivity(R.layout.activity_pay_card)
 public class PayCardActivity extends AppCompatActivity {
@@ -79,32 +78,27 @@ public class PayCardActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
     private void postPayCard(PayCard card) {
-        Call<ResponseStatus> call = NetworkUtil.getRetrofit(token).postPayCard(card,id);
-        call.enqueue(new Callback<ResponseStatus>() {
-            @Override
-            public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
-                // The network call was a success and we got a response
-                // TODO: use the repository list and display it
-                Log.e("Note", "Truy cập lấy thông tin mệnh giá về");
-                Log.e("Note", "Truy cập lấy thông tin mệnh giá về" + response.body());
-                if (response.isSuccessful()) {
-                    Log.e("Mã Trạng thái:  ", "" + response.body().getStatus());
-                    Log.e("Trạng thái:  ", "" + response.body().getMessage());
+
+        Observable.defer(() -> NetworkUtil.getRetrofit(token).postPayCard(card, id))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(responseStatus -> {
+                    Log.e("Mã Trạng thái:  ", "" + responseStatus.getStatus());
+                    Log.e("Trạng thái:  ", "" + responseStatus.getMessage());
                     Toast.makeText(PayCardActivity.this,
-                            "Đã nạp thành công thẻ cào mệnh giá: " + response.body().getMessage(),
+                            getResources().getString(R.string.pay_card_info) + responseStatus.getMessage(),
                             Toast.LENGTH_SHORT)
                             .show();
                     MenuActivity_.intent(PayCardActivity.this).start();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseStatus> call, Throwable t) {
-                // the network call was a failure
-                // TODO: handle error
-                Log.e("ERROR", t.getMessage());
-            }
-        });
+                }, throwable -> {
+                    Toast.makeText(
+                            PayCardActivity.this,
+                            "Thất Bại " +
+                                    throwable.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                    Log.e("ERROR", "" + throwable.getMessage());
+                });
     }
 
     private void submitPayCard() {
