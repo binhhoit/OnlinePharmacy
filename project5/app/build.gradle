@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId "com.example.thanh.OnlinePharmacy"
         minSdkVersion 21
-        targetSdkVersion 16
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -91,6 +91,10 @@ dependencies {
     compile 'com.twitter.sdk.android:twitter:3.0.0'
     // (Optional) Monetize using mopub
     compile 'com.twitter.sdk.android:twitter-mopub:3.0.0'
+    //dager MVP
+    compile 'com.hannesdorfmann.mosby:mvp:2.0.1'
+    compile 'com.google.dagger:dagger:2.8'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
 }
 apply plugin: 'com.google.gms.google-services'
 

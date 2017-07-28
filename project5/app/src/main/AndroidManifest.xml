@@ -12,7 +12,7 @@
         android:required="true" />
 
     <application
-        android:name="android.support.multidex.MultiDexApplication"
+        android:name=".view.application.MainApplication_"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@drawable/logo_pharmacy"
@@ -47,15 +47,21 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".SplashScreenActivity_">
+        <activity
+            android:name=".SplashScreenActivity_"
+            android:theme="@style/loginTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.login.LoginActivity_" />
-        <activity android:name=".view.login.RegisterActivity_"/>
+        <activity
+            android:name=".view.login.LoginActivity_"
+            android:theme="@style/loginTheme" />
+        <activity
+            android:name=".view.login.RegisterActivity_"
+            android:theme="@style/loginTheme" />
         <activity android:name=".view.login.ProfileActivity_" />
         <activity android:name=".view.login.EditProfileActivity_" />
         <activity android:name=".view.prescription.ReceiverPrescriptionDetailsActivity_" />

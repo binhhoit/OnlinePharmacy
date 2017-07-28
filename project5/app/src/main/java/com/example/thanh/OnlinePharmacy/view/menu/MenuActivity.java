@@ -67,11 +67,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         initSharedPreferences();
         gridViewString = getResources().getStringArray(R.array.menu);
 
-        CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(
-                MenuActivity.this,
-                gridViewString,
-                gridViewImageId);
-        androidGridView.setAdapter(adapterViewAndroid);
+            CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(
+                    MenuActivity.this,
+                    gridViewString,
+                    gridViewImageId);
+            androidGridView.setAdapter(adapterViewAndroid);
 
         androidGridView.setOnItemClickListener((parent, view, i, id) -> {
             if (i == 0) {
