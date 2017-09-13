@@ -57,6 +57,7 @@
     </string-array>
     <string name="info_user">Tài khoản bị trùng lặp với đăng ký trước đó</string>
     <string name="pay_card_info">Đã nạp thành công thẻ cào mệnh giá:</string>
+    <string name="mission_qr">Quét mã QR để lấy thông tin đơn thuốc</string>
 
 
 </resources>

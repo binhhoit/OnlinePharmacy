@@ -1,9 +1,12 @@
 package com.example.thanh.OnlinePharmacy.view.prescription.fragments;
 
+import android.Manifest;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,12 +24,14 @@ import com.example.thanh.OnlinePharmacy.utils.Constants;
 import com.example.thanh.OnlinePharmacy.view.pay.PayActivity_;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
+import com.google.zxing.ResultPoint;
+import com.journeyapps.barcodescanner.BarcodeCallback;
+import com.journeyapps.barcodescanner.BarcodeResult;
+import com.journeyapps.barcodescanner.CompoundBarcodeView;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
@@ -39,12 +44,16 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.example.thanh.OnlinePharmacy.utils.Constants.MY_PERMISSIONS_REQUEST_CAMERA;
 
 /**
  * Created by PC_ASUS on 6/23/2017.
  */
 @EFragment(R.layout.fragment_qrcode_prescription)
 public class QRcodePrescriptionFragment extends Fragment {
+
+    @ViewById(R.id.activity_scan_qr_code_view_barcode_scanner)
+    protected CompoundBarcodeView viewQRcode;
 
     private SharedPreferences sharedPreferences;
     private String id;
@@ -56,19 +65,44 @@ public class QRcodePrescriptionFragment extends Fragment {
     protected void init() {
 
         initSharedPreferences();
+
+        checkCamera();
     }
 
-    @Click(R.id.fragment_tv_bt_scan_qr)
-    protected void scannerQrCode() {
-        IntentIntegrator integrator = IntentIntegrator.forSupportFragment(QRcodePrescriptionFragment.this);
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-        integrator.setPrompt("Scan QR");
-        integrator.setCameraId(0);
-        integrator.setBeepEnabled(false);
-        integrator.setBarcodeImageEnabled(false);
-        integrator.initiateScan();
+    protected void checkCamera() {
 
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.CAMERA},
+                    MY_PERMISSIONS_REQUEST_CAMERA);
+        } else {
+            runCameraQRCode();
+        }
     }
+
+    private void runCameraQRCode() {
+        viewQRcode.decodeContinuous(callback);
+        viewQRcode.setStatusText("");
+        viewQRcode.getViewFinder().setVisibility(View.GONE);
+    }
+
+    private BarcodeCallback callback = new BarcodeCallback() {
+        @Override
+        public void barcodeResult(BarcodeResult result) {
+            if (result.getText() != null) {
+                Log.d("QR code result", result.toString());
+                handleResult(result);
+            }
+        }
+
+        @Override
+        public void possibleResultPoints(List<ResultPoint> resultPoints) {
+            System.out.println("Possible Result points = " + resultPoints);
+        }
+    };
 
     private void initSharedPreferences() {
 
@@ -78,26 +112,22 @@ public class QRcodePrescriptionFragment extends Fragment {
         email = sharedPreferences.getString(Constants.EMAIL, "");
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+    public void handleResult(BarcodeResult result) {
+
         if (result != null) {
-            if (result.getContents() == null) {
-                Toast.makeText(getActivity(), "you cancelled the scanning", Toast.LENGTH_SHORT).show();
-            } else {
-
                 Log.e("kết quả", "onActivityResult: " + "QR");
                 Prescription prescription = new Prescription();
                 prescription.setEmail(email);   //get mail
                 prescription.setId(id);     //get id
                 prescription.setAddressReceive("nghĩ cách điền sau");   //getaddress
-                prescription.setNumberBuy(time().toString());      //number buy
+                prescription.setNumberBuy(time());      //number buy
                 prescription.setStatus("false");
 
                 //parse json
                 try {
 
+                    Gson gson = new Gson();
                     parseJson(prescription, result);
                     //show dialog
                     showDialogInfoPrescription(prescription);
@@ -110,17 +140,16 @@ public class QRcodePrescriptionFragment extends Fragment {
                             Toast.LENGTH_LONG)
                             .show();
                 }
-            }
         } else {
-            super.onActivityResult(requestCode, resultCode, data);
+
         }
     }
 
-    private void parseJson(Prescription prescription, IntentResult result) {
+    private void parseJson(Prescription prescription, BarcodeResult result) {
         Gson gson = new Gson();
         Type type = new TypeToken<List<MiniPrescription>>() {
         }.getType();
-        ArrayList<MiniPrescription> miniPrescriptions = gson.fromJson(result.getContents(), type);
+        ArrayList<MiniPrescription> miniPrescriptions = gson.fromJson(result.toString(), type);
         prescription.setMiniPrescription(miniPrescriptions);
 
         //method old
@@ -178,7 +207,6 @@ public class QRcodePrescriptionFragment extends Fragment {
                 .setNegativeButton("Sửa hoặc Hủy",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                scannerQrCode();
                                 dialog.cancel();
                             }
                         });
@@ -214,12 +242,6 @@ public class QRcodePrescriptionFragment extends Fragment {
                 });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.e("finish", "ket thuc");
-        //finish();
-    }
 
     private String time() {
         Date today = new Date(System.currentTimeMillis());

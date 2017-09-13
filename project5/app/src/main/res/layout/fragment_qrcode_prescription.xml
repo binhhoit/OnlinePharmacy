@@ -1,29 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="25dp">
+    tools:ignore="MissingPrefix">
 
-    <TextView
-        android:id="@+id/tv_scan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40pt"
-        android:textColor="@color/colorText"
-        android:textSize="25dp"
-        android:text="Scan QR code" />
+    <com.journeyapps.barcodescanner.CompoundBarcodeView
+        android:id="@+id/activity_scan_qr_code_view_barcode_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:screenOrientation="portrait">
 
-    <TextView
-        android:id="@+id/fragment_tv_bt_scan_qr"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:textSize="18dp"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="250px"
-        android:background="@drawable/ic_bg_buttom"
-        android:textColor="@color/colorWhite"
-        android:text="Quét mã QR code" />
-</LinearLayout>
+    </com.journeyapps.barcodescanner.CompoundBarcodeView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="33.7"
+            android:background="@color/black_transparent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="21.1"
+                android:background="@color/black_transparent" />
+
+            <View
+                android:layout_width="209.3dp"
+                android:layout_height="209.3dp"
+                android:background="@android:color/transparent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="21.1"
+                android:background="@color/black_transparent" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="34"
+            android:background="@color/black_transparent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_scan_qr_code_ll_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="19.8" />
+
+        <TextView
+            android:id="@+id/activity_scan_qr_code_tv_info_view"
+            fontPath="fonts/SFUIText_Regular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:lineSpacingExtra="5.8dp"
+            android:text="@string/mission_qr"
+            android:textColor="@color/white"
+            android:textSize="15.4dp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="4.3" />
+
+        <RelativeLayout
+            android:layout_width="248.7dp"
+            android:layout_height="247dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_line_qr" />
+
+            <View
+                android:layout_width="209.3dp"
+                android:layout_height="209.3dp"
+                android:layout_centerInParent="true"
+                android:background="@android:color/transparent" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="19.2" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="4.8" />
+    </LinearLayout>
+
+</RelativeLayout>

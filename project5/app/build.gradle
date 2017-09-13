@@ -65,7 +65,6 @@ dependencies {
     compile 'com.mikhaellopez:circularimageview:2.0.1'
     compile 'com.makeramen:roundedimageview:2.2.1'
     //QR code
-    compile 'me.dm7.barcodescanner:zxing:1.9'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
     // multidex line code
@@ -81,11 +80,11 @@ dependencies {
     //Hawk 2.0 using save user or pass
     compile 'com.orhanobut:hawk:2.0.1'
     //google api sign
-    compile 'com.google.android.gms:play-services-plus:11.0.2'
+    //compile 'com.google.android.gms:play-services-plus:11.0.2'
     compile 'com.google.android.gms:play-services-auth:11.0.2'
     compile 'com.google.android.gms:play-services-location:11.0.2'
     //login facebook
-    compile 'com.facebook.android:facebook-android-sdk:4.+'
+    compile 'com.facebook.android:facebook-android-sdk:4.24.0'
     //login twitter
     // Include all the Twitter APIs
     compile 'com.twitter.sdk.android:twitter:3.0.0'
